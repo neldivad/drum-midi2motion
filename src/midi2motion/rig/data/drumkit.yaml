@@ -1,0 +1,164 @@
+# drumkit.yaml: the drum kit as data (R-418: "the kit is data"; drum round 2, 2026-11-17). Read by tools/drums2/kitdata.py, which hands every other
+# tool (chart, planner, checks, inspector, Blender scene) one kit object. Metres, degrees. Character space: the performer sits at the origin facing -y,
+# +x = the performer's LEFT, z up. Nothing about a layout lives in code: hand preference, which foot plays which pedal, pedal and ankle positions and the
+# shoulders are DERIVED from this file and the body rig (rig.yaml + the android's rest pose).
+version: 1
+
+# ---- the performer's choices (the body itself comes from the rig: shoulders, hips, leg and arm lengths are measured there, never typed here)
+performer:
+  lead_hand: R                 # the hand that keeps time (hat, ride). A layout may override it (a left-handed kit: L)
+  grip: {lead: german, weak: german}        # stated by ROLE so a mirror swaps it. His OK'd pair was lead German + weak American (right German, left American on the right-handed kit).
+                                            # Drum round 2 keeps BOTH GERMAN: the earlier trial (out/grip_trial_v001.json) measured it best, and on this kit the American weak hand sits 32 mm inside the left
+                                            # thigh while it waits over the snare (63 of 109 raw collision frames; both German: 38, none of them the thigh). `weak: american` still runs: it is one word here.
+  seat: {z: 0.475, y: -0.07}   # throne top and its centre under the pelvis (the sibling's numbers; the hip joint sits 9.4 cm above the seat top, so the thighs slope down 6.5 deg: MD 2013 "hipbone slightly higher than the knee")
+  root: [0.0, 0.0, -0.36]      # the android's hips drop from standing to seated
+  reach: {comfortable_m: [0.45, 0.76]}   # the stick tip from the shoulder: nearer than 0.45 a stick has no room; up to 0.76 the arm plays it at <= 0.85 of its length (0.53 m + the stick's 0.35 m lever = 0.86 at full stretch).
+                                         # Beyond it the trunk goes. The full-body round ran 0.70 (rig.yaml reach_plan.drums) on the far kit, where the trunk had to go anyway; at 0.70 this kit still leaned the trunk 8-15 deg in a plain groove
+  legs: {shin_fwd_deg: 8.0, ankle_z: 0.105}   # a foot on its pedal: the heel under the knee or slightly ahead (Bloom; MD 2013 Hessler "knee roughly above heel")
+
+stick: {l: 0.40, r: 0.007, drop: 0.030}       # the sibling's stroke-list convention (wrist -> tip); the grip itself is rig.yaml's
+
+# ---- how hand preference is derived (tools/drums2/kitdata.py derive_pref): cost[piece][hand] = geo_per_m x how much farther the strike point is from this hand's
+# shoulder than from the other's + the piece's ROLE against the performer's lead hand. The sibling's hand-written PREF table is reproduced within its own spread
+# for the sibling layout (out/drums2/kit_derived_*.json compares them).
+preference:
+  geo_per_m: 8.0
+  role:                        # extra cost for [lead hand, weak hand]
+    time:     [0.0, 3.0]       # hats and ride: the lead hand keeps time
+    backbeat: [0.6, 0.0]       # the snare is the weak hand's home
+    accent:   [0.4, 0.4]       # crashes, splash, china: either hand
+    tom:      [0.2, 0.2]
+  zone: {cross: [5.0, 0.0]}    # the cross-stick is a weak-hand technique
+  crossing:                    # arms crossed (the hand on the far side of the other): free when the lead hand keeps time over the weak hand's backbeat
+    free: [[time, backbeat]]
+    cheap: {pairs: [[accent, backbeat]], cost: 0.3}
+    cost: 2.5
+  # 2026-11-20 option, not the default (kitdata.load(preset, sticking="open")): OPEN-HANDED playing, as the professional drummer of Inesta et al. (Disney Research,
+  # SCA 2026) plays ("cross-armed playing is inefficient and rarely taught"). Same kit; only who plays what and what crossing costs: the hi-hat goes to the WEAK hand,
+  # the snare becomes the LEAD hand's home, the ride stays the lead hand's, and no crossing is free.
+  # 2026-11-20 (benchmark round 3): R-448's nearest-piece step may only go to a NEIGHBOUR of the written piece: the same kind (never drum <-> cymbal), the hi-hat never
+  # swapped, rims at most `max_edge_gap_m` apart in 3D (centre distance - both radii); the same role first (tom <-> tom), then the rest of the kind. Otherwise softer / cut.
+  substitute: {max_edge_gap_m: 0.12, never: [hat]}
+  open_handed:
+    role_by_piece: {hat: [3.0, 0.0]}      # [lead, weak]: the hi-hat is the weak hand's (the ride keeps role `time`: the lead hand's)
+    role: {backbeat: [0.0, 0.6]}          # the snare: the lead hand's home
+    crossing: {free: [], cheap: {pairs: [], cost: 0.3}, cost: 2.5}
+
+# 2026-11-20 (benchmark round 3): no two strokes land on the identical point. Each stroke's strike point moves, in the playing surface's plane, by a Gaussian draw seeded
+# by its MIDI id (deterministic: every loop pass and every rerun sees the same point), clipped at clip_sigma x sigma; the radial position stays inside its zone's band
+# (zone fraction +- band x radius) so a rimshot stays a rimshot and the bell stays the bell; the hi-hat keeps its open/closed gap (only the place moves).
+# The spread GROWS WITH THE STROKE (his amendment): sigma = sigma0 + k x (MIDI velocity / 127). Signal-dependent noise (Harris & Wolpert 1998, Nature 394:780): the
+# endpoint error's SD grows in proportion to the motor command, so loud, fast strokes land less precisely (the speed-accuracy trade-off behind Fitts' law). Here the
+# velocity stands for the command: our stroke's lift and contact speed are set by it (lift ~ v^1.6, contact speed against velocity r ~ 0.9 in the review3 judge).
+# Sizes (my choice, not a measurement): sigma0 = the floor of a slow, careful tap, about a third of a stick bead (~1.5 cm); k sized so a full-velocity stroke's 95 %
+# radius stays a hand's width (~3-4 cm) on a 25-36 cm head and well inside Inesta et al.'s 14 cm cluster bound. Drum 4 mm + 12 mm x v (v40: 0.8 cm, v127: 1.6 cm);
+# cymbals, bigger flatter targets struck less precisely, 6 + 18 mm (v127: 2.4 cm); the hi-hat's top is struck close to one spot by its own geometry, 3 + 9 mm.
+# `impact_scatter: null` turns it off (the solver as before).
+impact_scatter: {seed: 7, sigma0_m: {drum: 0.004, cymbal: 0.006, hat: 0.003}, k_m: {drum: 0.012, cymbal: 0.018, hat: 0.009}, clip_sigma: 2.5, zone_band: 0.08}
+
+# where on a piece a zone is struck: fraction of the radius from the centre toward the player
+zones: {head: 0.38, rimshot: 0.70, cross: 0.05, closed: 0.72, open: 0.72, edge: 0.86, bow: 0.55, bell: 0.0}
+bell: {r: 0.055, h: 0.030}
+hat_gap: {open: 0.026, closed: 0.003}
+
+# ---- the note map (the author's drum MIDI notes, GM-like): note -> [piece, zone, hand|foot]; null = a layer that sounds and is not played (R-401).
+# A foot note names the PIECE; the foot is derived from where that piece's pedal stands. A layout may remap notes (presets.*.note_map).
+note_map:
+  36: [kick, beater, foot]
+  44: [hat, pedal, foot]
+  38: [snare, head, hand]
+  40: [snare, rimshot, hand]
+  37: [snare, cross, hand]
+  42: [hat, closed, hand]
+  46: [hat, open, hand]
+  50: [tom1, head, hand]
+  48: [tom1, head, hand]
+  47: [tom2, head, hand]
+  45: [tom3, head, hand]
+  43: [floor, head, hand]
+  41: [floor, head, hand]
+  49: [crash, edge, hand]
+  57: [crash, edge, hand]
+  51: [ride, bow, hand]
+  53: [ride, bell, hand]
+  39: null
+names: {36: kick, 37: side stick, 38: snare, 39: clap, 40: snare rim, 41: "floor tom (41)", 43: "floor tom (43)", 45: "tom 3 (45)", 47: "tom 2 (47)", 48: "tom 1 (48)", 50: "tom 1 (50)",
+        42: hat closed, 44: hat pedal, 46: hat open, 49: crash, 51: ride, 53: ride bell, 52: china, 55: splash, 57: crash 2}
+
+# ---- extra pieces a layout may add (presets.*.add: [ids]). Sizes are real (inches -> metres); positions are per layout.
+library:
+  splash:  {kind: cymbal, r: 0.127, depth: 0.008, role: accent, col: [0.80, 0.66, 0.30]}     # 10"
+  china:   {kind: cymbal, r: 0.229, depth: 0.012, role: accent, col: [0.80, 0.66, 0.30]}     # 18"
+  floor2:  {kind: drum,   r: 0.203, depth: 0.40,  role: tom,    col: [0.16, 0.18, 0.40], two_hands: true}      # a second floor tom, 16"
+  kick2:   {kind: kick,   r: 0.280, depth: 0.40,  role: kick,   col: [0.10, 0.11, 0.16]}     # a second kick 22x16
+
+presets:
+  # the sibling drum lab's kit.py, number for number (2026-11-16-android-drums/tools/kit.py): the layout the old clips play. Its pedals are typed, as there.
+  sibling:
+    note: "the sibling lab's layout: toms 0.86-1.0 m from the shoulders of a 0.53 m arm"
+    pieces:
+      - {id: kick,  kind: kick,   role: kick,     c: [-0.26, -0.74, 0.285], n: [0, 1, 0],                    r: 0.280, depth: 0.40,  col: [0.10, 0.11, 0.16], pedal: {ankle: [-0.26, -0.45]}}
+      - {id: snare, kind: drum,   role: backbeat, c: [0.04, -0.57, 0.665],  tilt: {toward: [0, 1], deg: 0},  r: 0.178, depth: 0.12,  col: [0.72, 0.74, 0.78], two_hands: true}
+      - {id: tom1,  kind: drum,   role: tom,      c: [-0.06, -0.90, 0.840], tilt: {toward: [0, 1], deg: 20}, r: 0.127, depth: 0.19,  col: [0.16, 0.18, 0.40]}
+      - {id: tom2,  kind: drum,   role: tom,      c: [-0.38, -0.90, 0.840], tilt: {toward: [0, 1], deg: 20}, r: 0.152, depth: 0.21,  col: [0.16, 0.18, 0.40]}
+      - {id: tom3,  kind: drum,   role: tom,      c: [-0.70, -0.84, 0.790], tilt: {toward: [0.7, 0.7], deg: 14}, r: 0.165, depth: 0.24, col: [0.16, 0.18, 0.40]}
+      - {id: floor, kind: drum,   role: tom,      c: [-0.66, -0.42, 0.640], tilt: {toward: [0, 1], deg: 0},  r: 0.203, depth: 0.40,  col: [0.16, 0.18, 0.40], two_hands: true}
+      - {id: hat,   kind: cymbal, role: time,     c: [0.43, -0.66, 0.900],  tilt: {toward: [0, 1], deg: 0},  r: 0.178, depth: 0.012, col: [0.80, 0.66, 0.30], pedal: {ankle: [0.36, -0.42]}}
+      - {id: crash, kind: cymbal, role: accent,   c: [0.30, -0.90, 1.140],  tilt: {toward: [-0.3, 1], deg: 12}, r: 0.203, depth: 0.010, col: [0.80, 0.66, 0.30]}
+      - {id: ride,  kind: cymbal, role: time,     c: [-0.84, -0.46, 0.990], tilt: {toward: [1, 0.45], deg: 16}, r: 0.254, depth: 0.012, col: [0.80, 0.66, 0.30]}
+
+  # the standard five-piece-plus kit REBUILT AT REAL REACH for this performer (drum round 2). Same pieces and sizes as the sibling's; places, heights and tilts set as
+  # drummers set up (README, Drum round 2: the sources per rule), then confirmed by tools/drums2/reach.py. Pedals are DERIVED from the legs (azimuth = the thigh's splay);
+  # the kick and the hi-hat stand where their pedals put them.
+  standard:
+    note: "real reach: nothing farther than a comfortable lean; pedals where the feet fall; snare at navel height between the knees"
+    pieces:
+      - {id: kick,  kind: kick,   role: kick,     c: {from_pedal: [0.0, -0.29], z: 0.285},   n: [0, 1, 0],            r: 0.280, depth: 0.40,  col: [0.10, 0.11, 0.16], pedal: {azimuth_deg: -23}}
+      - {id: snare, kind: drum,   role: backbeat, c: [0.02, -0.50, 0.665],  tilt: {toward: [0, 1], deg: 0},           r: 0.178, depth: 0.12,  col: [0.72, 0.74, 0.78], two_hands: true}     # head at navel height (0.66 m), rim 7 cm above the knees, between the thighs
+      - {id: tom1,  kind: drum,   role: tom,      c: [0.10, -0.78, 0.790],  tilt: {toward: [0, 1], deg: 25},          r: 0.127, depth: 0.19,  col: [0.16, 0.18, 0.40]}                     # near rim just beyond the snare's far rim, tilted at the player
+      - {id: tom2,  kind: drum,   role: tom,      c: [-0.22, -0.79, 0.830], tilt: {toward: [0.1, 1], deg: 20},       r: 0.152, depth: 0.21,  col: [0.16, 0.18, 0.40]}
+      - {id: tom3,  kind: drum,   role: tom,      c: [-0.57, -0.69, 0.790], tilt: {toward: [0.6, 0.8], deg: 14},      r: 0.165, depth: 0.24,  col: [0.16, 0.18, 0.40]}
+      - {id: floor, kind: drum,   role: tom,      c: [-0.62, -0.30, 0.645], tilt: {toward: [1, 0], deg: 0},           r: 0.203, depth: 0.40,  col: [0.16, 0.18, 0.40], two_hands: true}     # level with the snare, beside the right thigh
+      - {id: hat,   kind: cymbal, role: time,     c: {from_pedal: [0.10, -0.21], z: 0.830},  tilt: {toward: [0, 1], deg: 0}, r: 0.178, depth: 0.012, col: [0.80, 0.66, 0.30], pedal: {azimuth_deg: 31}}   # 16.5 cm above the snare
+      - {id: crash, kind: cymbal, role: accent,   c: [0.34, -0.74, 1.100],  tilt: {toward: [-0.3, 1], deg: 12},       r: 0.203, depth: 0.010, col: [0.80, 0.66, 0.30]}                     # below head height, inside a relaxed reach
+      - {id: ride,  kind: cymbal, role: time,     c: [-0.73, -0.47, 0.970], tilt: {toward: [1, 0.6], deg: 10},       r: 0.254, depth: 0.012, col: [0.80, 0.66, 0.30]}                     # under shoulder height (1.02 m), over the gap between tom 3 and the floor tom
+
+  # 2026-11-20 benchmark candidates (the left hand's own stroke dipped into the hi-hat's edge): `standard` with the hi-hat cymbal moved on its stand, pedal unchanged
+  hh_up35:     {note: "standard, hi-hat 3.5 cm higher (20 cm over the snare head)", base: standard, move: {hat: [0.0, 0.0, 0.035]}}
+  hh_out40:    {note: "standard, hi-hat 4 cm further to the performer's left", base: standard, move: {hat: [0.04, 0.0, 0.0]}}
+  hh_up35_out40: {note: "standard, hi-hat 3.5 cm higher and 4 cm further left", base: standard, move: {hat: [0.04, 0.0, 0.035]}}
+  hh_up35_back30: {note: "standard, hi-hat 3.5 cm higher and 3 cm nearer the player", base: standard, move: {hat: [0.0, 0.03, 0.035]}}
+  hh_out60:    {note: "standard, hi-hat 6 cm further to the performer's left", base: standard, move: {hat: [0.06, 0.0, 0.0]}}
+  hh_out50_back20: {note: "standard, hi-hat 5 cm further left and 2 cm nearer the player", base: standard, move: {hat: [0.05, 0.02, 0.0]}}
+  hh_out80:    {note: "standard, hi-hat 8 cm further to the performer's left", base: standard, move: {hat: [0.08, 0.0, 0.0]}}
+  hh_down50:   {note: "standard, hi-hat 5 cm lower (11.5 cm over the snare head)", base: standard, move: {hat: [0.0, 0.0, -0.05]}}
+  hh_out40_down40: {note: "standard, hi-hat 4 cm further left and 4 cm lower (12.5 cm over the snare head)", base: standard, move: {hat: [0.04, 0.0, -0.04]}}
+  hh_down65:   {note: "standard, hi-hat 6.5 cm lower (10 cm over the snare head, the low end of the taught 10-20 cm)", base: standard, move: {hat: [0.0, 0.0, -0.065]}}
+  hh_out30_down55: {note: "standard, hi-hat 3 cm further left and 5.5 cm lower (11 cm over the snare head)", base: standard, move: {hat: [0.03, 0.0, -0.055]}}
+  hh_out30_down65: {note: "standard, hi-hat 3 cm further left and 6.5 cm lower (10 cm over the snare head)", base: standard, move: {hat: [0.03, 0.0, -0.065]}}
+  # the pick (benchmark round 3): hh_out30_down65. Its mirrored, second-floor-tom twin for his lefty proof clip:
+  lefty_floor2_hh:
+    note: "lefty_floor2 on the round-3 hi-hat place: the mirror of hh_out30_down65 + a second floor tom for note 41"
+    mirror: hh_out30_down65
+    add:
+      - {id: floor2, c: [-0.69, -0.31, 0.690], tilt: {toward: [1, 0], deg: 0}}
+    note_map:
+      41: [floor2, head, hand]
+    names: {41: "floor tom 2 (41)"}
+
+  # a CHANGED setup that re-solves from data alone: the standard kit mirrored for a left-handed drummer (lead hand, grip pair, feet, preference all follow the mirror),
+  # plus a second floor tom. His MIDI already writes two floor-tom notes (41 low: 63 hits in closure; 43 high: 18); the standard kit plays both on one drum, this one
+  # gives note 41 its own.
+  # the control for the mirror: `standard` mirrored and nothing else. If the rig were left-right symmetric it would solve to the mirror image of `standard`.
+  lefty:
+    note: "left-handed mirror of `standard`, nothing added (the symmetry control)"
+    mirror: standard
+
+  lefty_floor2:
+    note: "left-handed mirror of `standard` + a second floor tom for note 41"
+    mirror: standard
+    add:
+      - {id: floor2, c: [-0.69, -0.31, 0.690], tilt: {toward: [1, 0], deg: 0}}     # on the far side of the hi-hat, where the mirrored kit has room and the weak hand reaches (a place tried beside and behind the first floor tom had no wrist pose)
+    note_map:
+      41: [floor2, head, hand]
+    names: {41: "floor tom 2 (41)"}

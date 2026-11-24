@@ -1,0 +1,2343 @@
+{
+"schema": "review3.judgement/1",
+"clip": "drums_remedy_clip_v001",
+"instrument": "drums",
+"title": "DRUMS  hh_out30_down65  closure bars 1-1",
+"fps": 30,
+"hz": 120,
+"frames": 114,
+"duration": 3.7667,
+"audio": "nelperform_24fc__6p/inspector/none.opus",
+"videos": {
+"full": "work/drums2/remedy_clip_v001_perf_v001.mp4",
+"close": "work/drums2/remedy_clip_v001_close_v001.mp4",
+"inset": "work/drums2/remedy_clip_v001_feet_v001.mp4",
+"inset_label": "FEET"
+},
+"grid": {
+"lead": 0.5,
+"beat_s": 0.652174,
+"bar0": 1,
+"bpb": 4
+},
+"limbs": [
+{
+"id": "R",
+"label": "RIGHT HAND",
+"short": "RH",
+"color": [
+92,
+200,
+255
+]
+},
+{
+"id": "L",
+"label": "LEFT HAND",
+"short": "LH",
+"color": [
+255,
+122,
+196
+]
+},
+{
+"id": "RF",
+"label": "RIGHT FOOT",
+"short": "RF",
+"color": [
+255,
+150,
+70
+]
+},
+{
+"id": "LF",
+"label": "LEFT FOOT",
+"short": "LF",
+"color": [
+170,
+140,
+255
+]
+}
+],
+"rows": [
+{
+"id": "crash",
+"label": "CRASH",
+"short": "CR"
+},
+{
+"id": "ride",
+"label": "RIDE",
+"short": "RD"
+},
+{
+"id": "hat",
+"label": "HI-HAT",
+"short": "HH"
+},
+{
+"id": "tom1",
+"label": "TOM 1",
+"short": "T1"
+},
+{
+"id": "tom2",
+"label": "TOM 2",
+"short": "T2"
+},
+{
+"id": "tom3",
+"label": "TOM 3",
+"short": "T3"
+},
+{
+"id": "snare",
+"label": "SNARE",
+"short": "SN"
+},
+{
+"id": "floor",
+"label": "FLOOR TOM",
+"short": "FT"
+},
+{
+"id": "kick",
+"label": "KICK",
+"short": "K"
+},
+{
+"id": "hatped",
+"label": "HAT PEDAL",
+"short": "PED"
+}
+],
+"near": {
+"kick": [
+"snare",
+"tom2",
+"tom3",
+"floor"
+],
+"snare": [
+"kick",
+"tom1",
+"tom2",
+"hat"
+],
+"tom1": [
+"snare",
+"tom2",
+"hat",
+"crash"
+],
+"tom2": [
+"kick",
+"snare",
+"tom1",
+"tom3"
+],
+"tom3": [
+"kick",
+"tom2",
+"floor",
+"ride"
+],
+"floor": [
+"kick",
+"tom3",
+"ride"
+],
+"hat": [
+"snare",
+"tom1",
+"crash"
+],
+"crash": [
+"tom1",
+"hat"
+],
+"ride": [
+"tom3",
+"floor"
+]
+},
+"zone_same": {
+"head": [
+"head",
+"centre",
+"outer head"
+],
+"rimshot": [
+"outer head",
+"head"
+],
+"cross": [
+"centre"
+],
+"closed": [
+"closed",
+"closed edge"
+],
+"open": [
+"open",
+"open edge"
+],
+"edge": [
+"edge"
+],
+"bow": [
+"bow",
+"edge"
+],
+"bell": [
+"bell"
+],
+"beater": [
+"beater"
+],
+"pedal": [
+"pedal"
+]
+},
+"source": [
+{
+"id": "D:0",
+"t": 0.5231,
+"dur": 0.0,
+"row": "snare",
+"vel": 127,
+"note": 40,
+"name": "snare rim",
+"zone": "rimshot",
+"bar": 1.009,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 0,
+"offset_ms": 10.2,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 0.5333,
+"timing": "perfect",
+"vel_est": 127,
+"softer": false,
+"zone_hit": "outer head",
+"zone_off": false
+}
+},
+{
+"id": "D:1",
+"t": 0.66304,
+"dur": 0.0,
+"row": "snare",
+"vel": 89,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 1.062,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 1,
+"offset_ms": 3.7,
+"limb": "R",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 0.6667,
+"timing": "perfect",
+"vel_est": 98,
+"softer": false,
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:2",
+"t": 0.81658,
+"dur": 0.0,
+"row": "snare",
+"vel": 99,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 1.121,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 2,
+"offset_ms": -16.6,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 0.8,
+"timing": "perfect",
+"vel_est": 119,
+"softer": false,
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:3",
+"t": 0.95788,
+"dur": 0.0,
+"row": "snare",
+"vel": 127,
+"note": 40,
+"name": "snare rim",
+"zone": "rimshot",
+"bar": 1.176,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 3,
+"offset_ms": 17.1,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 0.975,
+"timing": "perfect",
+"vel_est": 119,
+"softer": false,
+"zone_hit": "outer head",
+"zone_off": false
+}
+},
+{
+"id": "D:4",
+"t": 1.14402,
+"dur": 0.0,
+"row": "tom1",
+"vel": 127,
+"note": 48,
+"name": "tom 1 (48)",
+"zone": "head",
+"bar": 1.247,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 4,
+"offset_ms": -10.7,
+"limb": "R",
+"sub": null,
+"row_hit": "tom1",
+"t_hit": 1.1333,
+"timing": "perfect",
+"vel_est": 127,
+"softer": false,
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:5",
+"t": 1.2894,
+"dur": 0.0,
+"row": "snare",
+"vel": 54,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 1.303,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 5,
+"offset_ms": 10.6,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 1.3,
+"timing": "perfect",
+"vel_est": 63,
+"softer": false,
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:6",
+"t": 1.47011,
+"dur": 0.0,
+"row": "snare",
+"vel": 127,
+"note": 40,
+"name": "snare rim",
+"zone": "rimshot",
+"bar": 1.372,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 6,
+"offset_ms": -3.4,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 1.4667,
+"timing": "perfect",
+"vel_est": 100,
+"softer": false,
+"zone_hit": "outer head",
+"zone_off": false
+}
+},
+{
+"id": "D:7",
+"t": 1.51766,
+"dur": 0.0,
+"row": "snare",
+"vel": 127,
+"note": 40,
+"name": "snare rim",
+"zone": "rimshot",
+"bar": 1.39,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 7,
+"offset_ms": 15.6,
+"limb": "R",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 1.5333,
+"timing": "perfect",
+"vel_est": 127,
+"softer": false,
+"zone_hit": "outer head",
+"zone_off": false
+}
+},
+{
+"id": "D:8",
+"t": 1.61685,
+"dur": 0.0,
+"row": "snare",
+"vel": 90,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 1.428,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 8,
+"offset_ms": 16.5,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 1.6333,
+"timing": "perfect",
+"vel_est": 104,
+"softer": false,
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:9",
+"t": 1.79891,
+"dur": 0.0,
+"row": "snare",
+"vel": 97,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 1.498,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 9,
+"offset_ms": 1.1,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 1.8,
+"timing": "perfect",
+"vel_est": 115,
+"softer": false,
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:10",
+"t": 1.96739,
+"dur": 0.0,
+"row": "snare",
+"vel": 127,
+"note": 40,
+"name": "snare rim",
+"zone": "rimshot",
+"bar": 1.562,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 10,
+"offset_ms": -0.7,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 1.9667,
+"timing": "perfect",
+"vel_est": 127,
+"softer": false,
+"zone_hit": "outer head",
+"zone_off": false
+}
+},
+{
+"id": "D:11",
+"t": 2.15353,
+"dur": 0.0,
+"row": "tom1",
+"vel": 127,
+"note": 48,
+"name": "tom 1 (48)",
+"zone": "head",
+"bar": 1.634,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": "collision",
+"how": "re-dealt: the other hand plays it (R-448)",
+"why": null,
+"stage": "loop",
+"check": "C-COL-1 body"
+},
+"verdict": {
+"cls": "hit",
+"contact": 11,
+"offset_ms": 13.2,
+"limb": "R",
+"sub": null,
+"row_hit": "tom1",
+"t_hit": 2.1667,
+"timing": "perfect",
+"vel_est": 127,
+"softer": false,
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:12",
+"t": 2.47147,
+"dur": 0.0,
+"row": "snare",
+"vel": 127,
+"note": 40,
+"name": "snare rim",
+"zone": "rimshot",
+"bar": 1.756,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 12,
+"offset_ms": -4.8,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 2.4667,
+"timing": "perfect",
+"vel_est": 127,
+"softer": false,
+"zone_hit": "outer head",
+"zone_off": false
+}
+},
+{
+"id": "D:13",
+"t": 2.49321,
+"dur": 0.0,
+"row": "snare",
+"vel": 127,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 1.764,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 13,
+"offset_ms": 6.8,
+"limb": "R",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 2.5,
+"timing": "perfect",
+"vel_est": 127,
+"softer": false,
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:14",
+"t": 2.63859,
+"dur": 0.0,
+"row": "snare",
+"vel": 80,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 1.82,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 14,
+"offset_ms": -5.3,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 2.6333,
+"timing": "perfect",
+"vel_est": 88,
+"softer": false,
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:15",
+"t": 2.78261,
+"dur": 0.0,
+"row": "snare",
+"vel": 127,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 1.875,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 15,
+"offset_ms": -15.9,
+"limb": "R",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 2.7667,
+"timing": "perfect",
+"vel_est": 127,
+"softer": false,
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:16",
+"t": 2.93614,
+"dur": 0.0,
+"row": "snare",
+"vel": 127,
+"note": 40,
+"name": "snare rim",
+"zone": "rimshot",
+"bar": 1.934,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 16,
+"offset_ms": -2.8,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 2.9333,
+"timing": "perfect",
+"vel_est": 127,
+"softer": false,
+"zone_hit": "outer head",
+"zone_off": false
+}
+}
+],
+"contacts": [
+{
+"t": 0.5333,
+"t_off": 0.5417,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "outer head",
+"radius_frac": 0.74,
+"speed": 7.56,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.008,
+"path_m": 0.001,
+"sounding": true,
+"frame": 64,
+"i": 0,
+"matched": "D:0",
+"vel_est": 127
+},
+{
+"t": 0.6667,
+"t_off": 0.6667,
+"row": "snare",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.38,
+"speed": 4.68,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 80,
+"i": 1,
+"matched": "D:1",
+"vel_est": 98
+},
+{
+"t": 0.8,
+"t_off": 0.8,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.42,
+"speed": 5.88,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 96,
+"i": 2,
+"matched": "D:2",
+"vel_est": 119
+},
+{
+"t": 0.975,
+"t_off": 0.975,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "outer head",
+"radius_frac": 0.64,
+"speed": 5.88,
+"unit": "m/s",
+"depth_mm": 6.0,
+"dwell_s": 0.008,
+"path_m": 0.006,
+"sounding": true,
+"frame": 117,
+"i": 3,
+"matched": "D:3",
+"vel_est": 119
+},
+{
+"t": 1.1333,
+"t_off": 1.1333,
+"row": "tom1",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.35,
+"speed": 7.634,
+"unit": "m/s",
+"depth_mm": -0.2,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 136,
+"i": 4,
+"matched": "D:4",
+"vel_est": 127
+},
+{
+"t": 1.3,
+"t_off": 1.3,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.44,
+"speed": 2.64,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 156,
+"i": 5,
+"matched": "D:5",
+"vel_est": 63
+},
+{
+"t": 1.4667,
+"t_off": 1.4667,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "outer head",
+"radius_frac": 0.78,
+"speed": 4.8,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 176,
+"i": 6,
+"matched": "D:6",
+"vel_est": 100
+},
+{
+"t": 1.5333,
+"t_off": 1.5333,
+"row": "snare",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "outer head",
+"radius_frac": 0.78,
+"speed": 7.2,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 184,
+"i": 7,
+"matched": "D:7",
+"vel_est": 127
+},
+{
+"t": 1.6333,
+"t_off": 1.6333,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.45,
+"speed": 5.04,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 196,
+"i": 8,
+"matched": "D:8",
+"vel_est": 104
+},
+{
+"t": 1.8,
+"t_off": 1.8,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.4,
+"speed": 5.64,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 216,
+"i": 9,
+"matched": "D:9",
+"vel_est": 115
+},
+{
+"t": 1.9667,
+"t_off": 1.9667,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "outer head",
+"radius_frac": 0.62,
+"speed": 6.36,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 236,
+"i": 10,
+"matched": "D:10",
+"vel_est": 127
+},
+{
+"t": 2.1667,
+"t_off": 2.175,
+"row": "tom1",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.46,
+"speed": 7.634,
+"unit": "m/s",
+"depth_mm": -0.6,
+"dwell_s": 0.008,
+"path_m": 0.001,
+"sounding": true,
+"frame": 260,
+"i": 11,
+"matched": "D:11",
+"vel_est": 127
+},
+{
+"t": 2.4667,
+"t_off": 2.4667,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "outer head",
+"radius_frac": 0.72,
+"speed": 7.32,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 296,
+"i": 12,
+"matched": "D:12",
+"vel_est": 127
+},
+{
+"t": 2.5,
+"t_off": 2.5,
+"row": "snare",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.42,
+"speed": 6.84,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 300,
+"i": 13,
+"matched": "D:13",
+"vel_est": 127
+},
+{
+"t": 2.6333,
+"t_off": 2.6333,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.46,
+"speed": 4.08,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 316,
+"i": 14,
+"matched": "D:14",
+"vel_est": 88
+},
+{
+"t": 2.7667,
+"t_off": 2.7667,
+"row": "snare",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.46,
+"speed": 6.36,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 332,
+"i": 15,
+"matched": "D:15",
+"vel_est": 127
+},
+{
+"t": 2.9333,
+"t_off": 2.9333,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "outer head",
+"radius_frac": 0.62,
+"speed": 6.36,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 352,
+"i": 16,
+"matched": "D:16",
+"vel_est": 127
+}
+],
+"silent": [
+{
+"t": 1.1583,
+"row": "hatped",
+"limb": "LF",
+"label": "heel tap"
+},
+{
+"t": 2.4583,
+"row": "hatped",
+"limb": "LF",
+"label": "heel tap"
+}
+],
+"source_file": "inspector/data/drums2/body_remedy_clip_v001.json",
+"measure": {
+"resolution_ms": 8.3,
+"tip_touch_mm": 3.0,
+"rim_margin_mm": 4.0,
+"shaft_min_mm": 1.0,
+"shaft_sounding_mm": 3.0,
+"note": "tip, shaft, beater and hi-hat contacts found on every piece from the solved 120 Hz motion; speed = approach along the piece's normal"
+},
+"events": [
+{
+"t": 0.5333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:0",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 0.6667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:1",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 0.8,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:2",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 0.975,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:3",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.1333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:4",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.3,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:5",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.4667,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:6",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.5333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:7",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.6333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:8",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.8,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:9",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.9667,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:10",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.1667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:11",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.4667,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:12",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.5,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:13",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.6333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:14",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.7667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:15",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.9333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:16",
+"softer": false,
+"simplified": false,
+"gesture": null
+}
+],
+"windows": {
+"perfect_ms": 33.3,
+"good_ms": 66.7,
+"match_ms": 100.0,
+"statement": "PERFECT <= 33 ms (1 frame) \u00b7 GOOD <= 67 ms (2) \u00b7 EARLY / LATE <= 100 ms (3) \u00b7 beyond: MISSED + EXTRA"
+},
+"tally": {
+"all": {
+"perfect": 17,
+"good": 0,
+"early": 0,
+"late": 0,
+"softer": 0,
+"simplified": 0,
+"wrong": 0,
+"missed": 0,
+"extra": 0,
+"brush": 0,
+"missed_by": {},
+"hits": 17,
+"notes": 17,
+"accuracy_pct": 100.0,
+"splay_frames": 0,
+"role_flips": 0,
+"swaps": 0,
+"steals": 3,
+"bounce_splits": 2,
+"zone_frames": 33,
+"straight_arm_frames": 0
+},
+"by_limb": {
+"R": {
+"perfect": 6,
+"good": 0,
+"early": 0,
+"late": 0,
+"softer": 0,
+"simplified": 0,
+"wrong": 0,
+"missed": 0,
+"extra": 0,
+"brush": 0,
+"missed_by": {},
+"hits": 6,
+"notes": 6,
+"accuracy_pct": 100.0
+},
+"L": {
+"perfect": 11,
+"good": 0,
+"early": 0,
+"late": 0,
+"softer": 0,
+"simplified": 0,
+"wrong": 0,
+"missed": 0,
+"extra": 0,
+"brush": 0,
+"missed_by": {},
+"hits": 11,
+"notes": 11,
+"accuracy_pct": 100.0
+}
+},
+"layers": 0,
+"by_sub": null,
+"offset_ms": {
+"n": 17,
+"mean": 2.0,
+"median": 1.1,
+"min": -16.6,
+"max": 17.1,
+"abs_max": 17.1
+},
+"gestures": 0,
+"notes_in_gestures": 0,
+"articulations": 0,
+"in_drag": 0,
+"short": 0,
+"zone_off": 0
+},
+"plan_vs_measured": {
+"plan": {
+"played": 17,
+"misplayed": 0,
+"cut": 0
+},
+"measured": {
+"sounded_on_its_row": 17,
+"wrong": 0,
+"missed": 0
+},
+"disagreements": [],
+"softer": {
+"plan": 0,
+"measured": 0,
+"plan_softer_measured_softer": 0,
+"measured_softer_not_in_plan": []
+}
+},
+"vel_models": {
+"m/s": {
+"n": 17,
+"r": 0.85,
+"speed_per_velocity": 0.05829,
+"speed_at_zero": -1.0423,
+"median_abs_error_velocity": 14.4,
+"usable": true,
+"why": null
+}
+},
+"judge_version": "judge_v2 (review3/judge.py + pedal-first matching + notes before the clip excluded) + R-557 splay tally",
+"judge_v2_fixes": {},
+"splay": {
+"frames": 0,
+"frames_total": 114,
+"inward_L": 0,
+"inward_R": 0,
+"parallel": 0,
+"pieces": {},
+"runs": [],
+"yaw_L_median": -51.5,
+"yaw_R_median": 63.7
+},
+"difficulty": {
+"easy notes": 17,
+"easy wrong": 0,
+"easy missed": 0
+},
+"habits": {
+"roles": {},
+"fill_bars": [
+0
+],
+"bounce_only_fill_bars": [],
+"bounces": [
+{
+"t": 1.47011,
+"piece": "snare",
+"hands": "L+R",
+"notes": 3
+},
+{
+"t": 2.47147,
+"piece": "snare",
+"hands": "L+R",
+"notes": 2
+}
+],
+"role_flips": [],
+"swaps": [],
+"steals": [
+{
+"t": 0.81658,
+"piece": "snare",
+"hand": "L",
+"free": "R",
+"own_next": 0.141,
+"other_next": 0.327
+},
+{
+"t": 1.2894,
+"piece": "snare",
+"hand": "L",
+"free": "R",
+"own_next": 0.181,
+"other_next": 0.228
+},
+{
+"t": 1.79891,
+"piece": "snare",
+"hand": "L",
+"free": "R",
+"own_next": 0.168,
+"other_next": 0.355
+}
+],
+"bounce_splits": [
+{
+"t": 1.47011,
+"piece": "snare",
+"notes": 3,
+"hands": "L+R"
+},
+{
+"t": 2.47147,
+"piece": "snare",
+"notes": 2,
+"hands": "L+R"
+}
+],
+"counts": {
+"role_flips": 0,
+"swaps": 0,
+"steals": 3,
+"bounce_splits": 2,
+"bounces": 2,
+"fill_bars": 1,
+"bounce_only_fill_bars": 0,
+"hand_notes": 17
+}
+},
+"remedy": {
+"key": "clip",
+"tag": "v001",
+"control": false,
+"preset": "hh_out30_down65",
+"passes": 5,
+"seconds": 166.4,
+"fate": {
+"midi_notes": 17,
+"layers": 0,
+"played": 17,
+"misplayed": 0,
+"cut": 0,
+"misplayed_by": {},
+"cut_by": {},
+"misplayed_how": {},
+"redealt": 1,
+"pct_played": 100.0,
+"pct_misplayed": 0.0,
+"pct_cut": 0.0
+},
+"stats": {
+"P1 raise the arc tried": 2,
+"P1 raise the arc reverted": 2
+},
+"boosts_kept": {},
+"loop": [
+{
+"pass_": 0,
+"phys_frames": {
+"collision": 2
+},
+"not_struck": 0,
+"changes": 1,
+"solve_s": 33,
+"plan_cuts": 0,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [],
+"remedies": [
+{
+"row": "P1 raise the arc",
+"t": 2.067,
+"limb": "L",
+"step_m": 0.03
+}
+]
+},
+{
+"pass_": 1,
+"phys_frames": {
+"collision": 4
+},
+"not_struck": 0,
+"changes": 2,
+"solve_s": 32,
+"plan_cuts": 0,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [],
+"remedies": [
+{
+"row": "P1 raise the arc",
+"t": 2.071,
+"limb": "L",
+"step_m": 0.06
+}
+]
+},
+{
+"pass_": 2,
+"phys_frames": {
+"collision": 5
+},
+"not_struck": 0,
+"changes": 2,
+"solve_s": 33,
+"plan_cuts": 0,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [],
+"remedies": []
+},
+{
+"pass_": 3,
+"phys_frames": {},
+"not_struck": 0,
+"changes": 0,
+"solve_s": 32,
+"plan_cuts": 0,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry"
+},
+{
+"pass_": 4,
+"phys_frames": {},
+"not_struck": 0,
+"changes": 0,
+"solve_s": 33,
+"plan_cuts": 0,
+"a1p": 13,
+"excused": 0,
+"phase": "accent"
+}
+],
+"played_pct": 100.0,
+"collision_cuts": 0,
+"hand_shift": 0,
+"played_clip_hard_frames": 0,
+"played_clip_collisions": {},
+"freezes": [],
+"crossed": [],
+"window": {
+"key": "clip",
+"bpb": 4.0,
+"b0": 1,
+"b1": 1
+},
+"rows": [
+"A1p",
+"D558",
+"G",
+"P1",
+"P2",
+"SPL",
+"T1",
+"W1",
+"W2"
+],
+"cap": 16,
+"per_pass": [],
+"cone": {
+"L 0.533 snare": {
+"vel": 127,
+"gap": 1.0,
+"lift_plan_mm": 325.0,
+"alpha_free_max_deg": 79.9,
+"cone_scale": 0.45,
+"arm_extra": 0.34
+},
+"L 0.8 snare": {
+"vel": 99,
+"gap": 0.267,
+"lift_plan_mm": 226.4,
+"alpha_free_max_deg": 38.0,
+"cone_scale": 0.83,
+"arm_extra": 0.34
+},
+"L 0.967 snare": {
+"vel": 127,
+"gap": 0.167,
+"lift_plan_mm": 325.0,
+"alpha_free_max_deg": 74.2,
+"cone_scale": 0.45,
+"arm_extra": 0.34
+},
+"L 1.467 snare": {
+"vel": 127,
+"gap": 0.167,
+"lift_plan_mm": 325.0,
+"alpha_free_max_deg": 77.2,
+"cone_scale": 0.45,
+"arm_extra": 0.34
+},
+"L 1.633 snare": {
+"vel": 90,
+"gap": 0.167,
+"lift_plan_mm": 197.9,
+"alpha_free_max_deg": 29.4,
+"cone_scale": 1.0,
+"arm_extra": 0.0
+},
+"L 1.8 snare": {
+"vel": 97,
+"gap": 0.167,
+"lift_plan_mm": 219.9,
+"alpha_free_max_deg": 35.0,
+"cone_scale": 0.9,
+"arm_extra": 0.34
+},
+"L 1.967 snare": {
+"vel": 127,
+"gap": 0.167,
+"lift_plan_mm": 325.0,
+"alpha_free_max_deg": 57.1,
+"cone_scale": 0.55,
+"arm_extra": 0.34
+},
+"L 2.167 tom1": {
+"vel": 127,
+"gap": 0.2,
+"lift_plan_mm": 325.0,
+"alpha_free_max_deg": 80.3,
+"cone_scale": 0.45,
+"arm_extra": 0.0
+},
+"L 2.467 snare": {
+"vel": 127,
+"gap": 0.5,
+"lift_plan_mm": 325.0,
+"alpha_free_max_deg": 79.9,
+"cone_scale": 0.45,
+"arm_extra": 0.34
+},
+"L 2.933 snare": {
+"vel": 127,
+"gap": 0.3,
+"lift_plan_mm": 325.0,
+"alpha_free_max_deg": 79.8,
+"cone_scale": 0.45,
+"arm_extra": 0.34
+},
+"R 1.133 tom1": {
+"vel": 127,
+"gap": 0.467,
+"lift_plan_mm": 325.0,
+"alpha_free_max_deg": 52.6,
+"cone_scale": 0.6,
+"arm_extra": 0.34
+},
+"R 1.533 snare": {
+"vel": 127,
+"gap": 0.4,
+"lift_plan_mm": 325.0,
+"alpha_free_max_deg": 80.6,
+"cone_scale": 0.45,
+"arm_extra": 0.34
+},
+"R 2.5 snare": {
+"vel": 127,
+"gap": 0.333,
+"lift_plan_mm": 325.0,
+"alpha_free_max_deg": 79.0,
+"cone_scale": 0.45,
+"arm_extra": 0.34
+},
+"R 2.767 snare": {
+"vel": 127,
+"gap": 0.267,
+"lift_plan_mm": 325.0,
+"alpha_free_max_deg": 81.7,
+"cone_scale": 0.45,
+"arm_extra": 0.34
+},
+"R 2.167 tom1": {
+"vel": 127,
+"gap": 0.633,
+"lift_plan_mm": 325.0,
+"alpha_free_max_deg": 48.3,
+"cone_scale": 0.66,
+"arm_extra": 0.34
+}
+},
+"strokes": {
+"L": [
+{
+"f": 64,
+"t": 0.5333,
+"vel": 127,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 283.2,
+"d_alpha_deg": 29.3,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 5.84,
+"tip_speed_abs_m_s": 5.99,
+"share": {
+"alpha": 0.47,
+"wrist": 0.2,
+"forearm_rot": 0.13,
+"arm": 0.2
+},
+"gap_s": null
+},
+{
+"f": 96,
+"t": 0.8,
+"vel": 99,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 228.1,
+"d_alpha_deg": 26.6,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.61,
+"tip_speed_abs_m_s": 3.83,
+"share": {
+"alpha": 0.54,
+"wrist": 0.23,
+"forearm_rot": 0.15,
+"arm": 0.08
+},
+"gap_s": 0.267
+},
+{
+"f": 116,
+"t": 0.9667,
+"vel": 127,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 219.8,
+"d_alpha_deg": 29.1,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 4.61,
+"tip_speed_abs_m_s": 4.76,
+"share": {
+"alpha": 0.59,
+"wrist": 0.29,
+"forearm_rot": 0.19,
+"arm": -0.07
+},
+"gap_s": 0.167
+},
+{
+"f": 156,
+"t": 1.3,
+"vel": 54,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 101.4,
+"d_alpha_deg": 12.7,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 0.9,
+"tip_speed_abs_m_s": 0.97,
+"share": {
+"alpha": 0.59,
+"wrist": 0.27,
+"forearm_rot": 0.2,
+"arm": -0.05
+},
+"gap_s": 0.333
+},
+{
+"f": 176,
+"t": 1.4667,
+"vel": 127,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 178.8,
+"d_alpha_deg": 24.9,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.42,
+"tip_speed_abs_m_s": 3.52,
+"share": {
+"alpha": 0.64,
+"wrist": 0.3,
+"forearm_rot": 0.2,
+"arm": -0.13
+},
+"gap_s": 0.167
+},
+{
+"f": 196,
+"t": 1.6333,
+"vel": 90,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 203.5,
+"d_alpha_deg": 28.5,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.03,
+"tip_speed_abs_m_s": 3.12,
+"share": {
+"alpha": 0.62,
+"wrist": 0.3,
+"forearm_rot": 0.2,
+"arm": -0.13
+},
+"gap_s": 0.167
+},
+{
+"f": 216,
+"t": 1.8,
+"vel": 97,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 219.4,
+"d_alpha_deg": 29.1,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.45,
+"tip_speed_abs_m_s": 3.55,
+"share": {
+"alpha": 0.59,
+"wrist": 0.28,
+"forearm_rot": 0.19,
+"arm": -0.06
+},
+"gap_s": 0.167
+},
+{
+"f": 236,
+"t": 1.9667,
+"vel": 127,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 231.0,
+"d_alpha_deg": 30.5,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 4.65,
+"tip_speed_abs_m_s": 4.8,
+"share": {
+"alpha": 0.59,
+"wrist": 0.28,
+"forearm_rot": 0.18,
+"arm": -0.04
+},
+"gap_s": 0.167
+},
+{
+"f": 296,
+"t": 2.4667,
+"vel": 127,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 266.3,
+"d_alpha_deg": 29.8,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 5.3,
+"tip_speed_abs_m_s": 5.43,
+"share": {
+"alpha": 0.5,
+"wrist": 0.22,
+"forearm_rot": 0.14,
+"arm": 0.13
+},
+"gap_s": 0.5
+},
+{
+"f": 316,
+"t": 2.6333,
+"vel": 80,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 168.3,
+"d_alpha_deg": 16.0,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.72,
+"tip_speed_abs_m_s": 2.79,
+"share": {
+"alpha": 0.44,
+"wrist": 0.23,
+"forearm_rot": 0.16,
+"arm": 0.16
+},
+"gap_s": 0.167
+},
+{
+"f": 352,
+"t": 2.9333,
+"vel": 127,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 234.4,
+"d_alpha_deg": 27.5,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 4.75,
+"tip_speed_abs_m_s": 4.9,
+"share": {
+"alpha": 0.53,
+"wrist": 0.23,
+"forearm_rot": 0.15,
+"arm": 0.08
+},
+"gap_s": 0.3
+}
+],
+"R": [
+{
+"f": 80,
+"t": 0.6667,
+"vel": 89,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 195.1,
+"d_alpha_deg": 28.3,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.39,
+"tip_speed_abs_m_s": 3.59,
+"share": {
+"alpha": 0.67,
+"wrist": 0.28,
+"forearm_rot": 0.18,
+"arm": -0.13
+},
+"gap_s": null
+},
+{
+"f": 136,
+"t": 1.1333,
+"vel": 127,
+"piece": "tom1",
+"kind": "hit",
+"lift_mm": 289.1,
+"d_alpha_deg": 29.7,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 5.7,
+"tip_speed_abs_m_s": 6.41,
+"share": {
+"alpha": 0.47,
+"wrist": 0.18,
+"forearm_rot": 0.11,
+"arm": 0.24
+},
+"gap_s": 0.467
+},
+{
+"f": 184,
+"t": 1.5333,
+"vel": 127,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 272.6,
+"d_alpha_deg": 28.3,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 5.31,
+"tip_speed_abs_m_s": 5.46,
+"share": {
+"alpha": 0.47,
+"wrist": 0.2,
+"forearm_rot": 0.13,
+"arm": 0.2
+},
+"gap_s": 0.4
+},
+{
+"f": 260,
+"t": 2.1667,
+"vel": 127,
+"piece": "tom1",
+"kind": "hit",
+"lift_mm": 289.3,
+"d_alpha_deg": 26.3,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 5.83,
+"tip_speed_abs_m_s": 6.6,
+"share": {
+"alpha": 0.42,
+"wrist": 0.16,
+"forearm_rot": 0.1,
+"arm": 0.32
+},
+"gap_s": 0.633
+},
+{
+"f": 300,
+"t": 2.5,
+"vel": 127,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 289.3,
+"d_alpha_deg": 24.3,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 5.12,
+"tip_speed_abs_m_s": 5.21,
+"share": {
+"alpha": 0.38,
+"wrist": 0.17,
+"forearm_rot": 0.11,
+"arm": 0.34
+},
+"gap_s": 0.333
+},
+{
+"f": 332,
+"t": 2.7667,
+"vel": 127,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 232.0,
+"d_alpha_deg": 28.2,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 4.72,
+"tip_speed_abs_m_s": 4.96,
+"share": {
+"alpha": 0.56,
+"wrist": 0.23,
+"forearm_rot": 0.15,
+"arm": 0.06
+},
+"gap_s": 0.267
+}
+]
+},
+"auto_a1": {
+"L 0.533 snare": 0.34,
+"L 0.8 snare": 0.34,
+"L 0.967 snare": 0.34,
+"L 1.467 snare": 0.34,
+"L 1.8 snare": 0.34,
+"L 1.967 snare": 0.34,
+"L 2.467 snare": 0.34,
+"L 2.933 snare": 0.34,
+"R 1.133 tom1": 0.34,
+"R 1.533 snare": 0.34,
+"R 2.167 tom1": 0.34,
+"R 2.5 snare": 0.34,
+"R 2.767 snare": 0.34
+},
+"vetoed": [],
+"sweep_ids": [],
+"hard_ids": [],
+"sweep_arcs_given_back": [],
+"grip": {
+"stick_in_hand_deg": 60,
+"head_point": "rig.yaml",
+"elbow_k": 1,
+"homes": {
+"strokes": 85
+},
+"finger_fit": {
+"L": {
+"index": {
+"curl_at_alpha": {
+"-10": 0.857,
+"0": 0.858,
+"15": 0.857,
+"35": 0.797
+},
+"gap_mm_at_0": 0.0
+},
+"thumb": {
+"curl_at_alpha": {
+"-10": 0.1,
+"0": 0.098,
+"15": 0.074,
+"35": -0.021
+},
+"gap_mm_at_0": 0.0
+},
+"middle": {
+"curl_at_alpha": {
+"-10": 0.999,
+"0": 0.953,
+"15": 0.863,
+"35": 0.741
+},
+"gap_mm_at_0": 0.0
+},
+"ring": {
+"curl_at_alpha": {
+"-10": 0.984,
+"0": 0.908,
+"15": 0.809,
+"35": 0.724
+},
+"gap_mm_at_0": 0.0
+},
+"pinky": {
+"curl_at_alpha": {
+"-10": 1.0,
+"0": 0.976,
+"15": 0.868,
+"35": 0.76
+},
+"gap_mm_at_0": 1.4
+}
+},
+"R": {
+"index": {
+"curl_at_alpha": {
+"-10": 0.857,
+"0": 0.858,
+"15": 0.857,
+"35": 0.797
+},
+"gap_mm_at_0": 0.0
+},
+"thumb": {
+"curl_at_alpha": {
+"-10": 0.1,
+"0": 0.098,
+"15": 0.074,
+"35": -0.021
+},
+"gap_mm_at_0": 0.0
+},
+"middle": {
+"curl_at_alpha": {
+"-10": 0.999,
+"0": 0.953,
+"15": 0.863,
+"35": 0.741
+},
+"gap_mm_at_0": 0.0
+},
+"ring": {
+"curl_at_alpha": {
+"-10": 0.984,
+"0": 0.908,
+"15": 0.809,
+"35": 0.724
+},
+"gap_mm_at_0": 0.0
+},
+"pinky": {
+"curl_at_alpha": {
+"-10": 1.0,
+"0": 0.976,
+"15": 0.868,
+"35": 0.76
+},
+"gap_mm_at_0": 1.4
+}
+}
+}
+},
+"judge": "v2",
+"grid_override": {},
+"hand_pref": null,
+"regions": {
+"L 2.167 tom1 arc": [
+1.975,
+2.117
+],
+"L 0.533 snare arm": [
+0.233,
+0.553
+],
+"L 0.8 snare arm": [
+0.5,
+0.82
+],
+"L 0.967 snare arm": [
+0.667,
+0.987
+],
+"L 1.467 snare arm": [
+1.167,
+1.487
+],
+"L 1.8 snare arm": [
+1.5,
+1.82
+],
+"L 1.967 snare arm": [
+1.667,
+1.987
+],
+"L 2.467 snare arm": [
+2.167,
+2.487
+],
+"L 2.933 snare arm": [
+2.633,
+2.953
+],
+"R 1.133 tom1 arm": [
+0.833,
+1.153
+],
+"R 1.533 snare arm": [
+1.233,
+1.553
+],
+"R 2.167 tom1 arm": [
+1.867,
+2.187
+],
+"R 2.5 snare arm": [
+2.2,
+2.52
+],
+"R 2.767 snare arm": [
+2.467,
+2.787
+]
+}
+},
+"library": {
+"name": "midi2motion",
+"version": "1.0.0",
+"midi": "101_funk-rock_92_fill_4-4.mid",
+"layout": "standard",
+"preset": "hh_out30_down65",
+"bars": [
+1,
+1
+],
+"meter": 4.0,
+"tag": "v001",
+"rows": [
+"A1p",
+"D558",
+"G",
+"P1",
+"P2",
+"SPL",
+"T1",
+"W1",
+"W2"
+],
+"splay_weight": 0.5,
+"max_passes": 16,
+"grip_deg": null,
+"elbow_k": null,
+"deal": "beam",
+"seconds": 166.5,
+"adopted": true
+}
+}

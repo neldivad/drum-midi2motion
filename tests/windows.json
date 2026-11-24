@@ -1,0 +1,8 @@
+{
+ "note": "the three parity windows: the same windows the nelvids drums library tests against its lab (Groove MIDI Dataset, CC BY 4.0). file = under tests/data/.",
+ "windows": [
+  {"name": "groove", "file": "groove.mid", "bars": "2-5", "meter": "4", "what": "rock groove, 100 bpm, 4 bars"},
+  {"name": "fill", "file": "fill.mid", "bars": "1-1", "meter": "4", "what": "funk-rock fill, 92 bpm, 1 bar"},
+  {"name": "listen8", "file": "listen8.mid", "bars": "54-61", "meter": "4", "what": "rock shuffle, 125 bpm, 8 bars"}
+ ]
+}

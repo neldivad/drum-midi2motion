@@ -1,0 +1,11918 @@
+{
+"schema": "review3.judgement/1",
+"clip": "drums_remedy_clip_v001",
+"instrument": "drums",
+"title": "DRUMS  hh_out30_down65  closure bars 97-103",
+"fps": 30,
+"hz": 120,
+"frames": 341,
+"duration": 11.3333,
+"audio": "nelperform_37zoay6k/inspector/none.opus",
+"videos": {
+"full": "work/drums2/remedy_clip_v001_perf_v001.mp4",
+"close": "work/drums2/remedy_clip_v001_close_v001.mp4",
+"inset": "work/drums2/remedy_clip_v001_feet_v001.mp4",
+"inset_label": "FEET"
+},
+"grid": {
+"lead": 0.5,
+"beat_s": 0.363636,
+"bar0": 97,
+"bpb": 4
+},
+"limbs": [
+{
+"id": "R",
+"label": "RIGHT HAND",
+"short": "RH",
+"color": [
+92,
+200,
+255
+]
+},
+{
+"id": "L",
+"label": "LEFT HAND",
+"short": "LH",
+"color": [
+255,
+122,
+196
+]
+},
+{
+"id": "RF",
+"label": "RIGHT FOOT",
+"short": "RF",
+"color": [
+255,
+150,
+70
+]
+},
+{
+"id": "LF",
+"label": "LEFT FOOT",
+"short": "LF",
+"color": [
+170,
+140,
+255
+]
+}
+],
+"rows": [
+{
+"id": "crash",
+"label": "CRASH",
+"short": "CR"
+},
+{
+"id": "ride",
+"label": "RIDE",
+"short": "RD"
+},
+{
+"id": "hat",
+"label": "HI-HAT",
+"short": "HH"
+},
+{
+"id": "tom1",
+"label": "TOM 1",
+"short": "T1"
+},
+{
+"id": "tom2",
+"label": "TOM 2",
+"short": "T2"
+},
+{
+"id": "tom3",
+"label": "TOM 3",
+"short": "T3"
+},
+{
+"id": "snare",
+"label": "SNARE",
+"short": "SN"
+},
+{
+"id": "floor",
+"label": "FLOOR TOM",
+"short": "FT"
+},
+{
+"id": "kick",
+"label": "KICK",
+"short": "K"
+},
+{
+"id": "hatped",
+"label": "HAT PEDAL",
+"short": "PED"
+}
+],
+"near": {
+"kick": [
+"snare",
+"tom2",
+"tom3",
+"floor"
+],
+"snare": [
+"kick",
+"tom1",
+"tom2",
+"hat"
+],
+"tom1": [
+"snare",
+"tom2",
+"hat",
+"crash"
+],
+"tom2": [
+"kick",
+"snare",
+"tom1",
+"tom3"
+],
+"tom3": [
+"kick",
+"tom2",
+"floor",
+"ride"
+],
+"floor": [
+"kick",
+"tom3",
+"ride"
+],
+"hat": [
+"snare",
+"tom1",
+"crash"
+],
+"crash": [
+"tom1",
+"hat"
+],
+"ride": [
+"tom3",
+"floor"
+]
+},
+"zone_same": {
+"head": [
+"head",
+"centre",
+"outer head"
+],
+"rimshot": [
+"outer head",
+"head"
+],
+"cross": [
+"centre"
+],
+"closed": [
+"closed",
+"closed edge"
+],
+"open": [
+"open",
+"open edge"
+],
+"edge": [
+"edge"
+],
+"bow": [
+"bow",
+"edge"
+],
+"bell": [
+"bell"
+],
+"beater": [
+"beater"
+],
+"pedal": [
+"pedal"
+]
+},
+"source": [
+{
+"id": "D:18",
+"t": 0.04924,
+"dur": 0.0,
+"row": "ride",
+"vel": 73,
+"note": 53,
+"name": "ride bell",
+"zone": "bell",
+"bar": 96.69,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "R",
+"limit": "speed ceiling",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-1 arm R"
+},
+"verdict": {
+"cls": "missed",
+"limb": "R",
+"sub": null,
+"limit": "speed ceiling",
+"reason": "speed ceiling",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:19",
+"t": 0.10606,
+"dur": 0.0,
+"row": "ride",
+"vel": 112,
+"note": 53,
+"name": "ride bell",
+"zone": "bell",
+"bar": 96.729,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "reach",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-IK-2 arm L"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "reach",
+"reason": "reach",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:20",
+"t": 0.5,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 97.0,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 0,
+"offset_ms": 0.0,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 0.5,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:21",
+"t": 0.5,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 97.0,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "R",
+"limit": "speed ceiling",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-1 arm R"
+},
+"verdict": {
+"cls": "missed",
+"limb": "R",
+"sub": null,
+"limit": "speed ceiling",
+"reason": "speed ceiling",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:22",
+"t": 0.5,
+"dur": 0.0,
+"row": "crash",
+"vel": 112,
+"note": 49,
+"name": "crash",
+"zone": "edge",
+"bar": 97.0,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 arm L"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:23",
+"t": 0.59091,
+"dur": 0.0,
+"row": "hat",
+"vel": 52,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 97.062,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": "speed ceiling",
+"how": "re-dealt: the other hand plays it (R-448)",
+"why": null,
+"stage": "loop",
+"check": "C-CONT-1 arm R"
+},
+"verdict": {
+"cls": "hit",
+"contact": 2,
+"offset_ms": 9.1,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 0.6,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:24",
+"t": 0.68182,
+"dur": 0.0,
+"row": "hat",
+"vel": 70,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 97.125,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "end-point speed",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-END-1 arm L"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "end-point speed",
+"reason": "end-point speed",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:25",
+"t": 0.77273,
+"dur": 0.0,
+"row": "hat",
+"vel": 72,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 97.188,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 3,
+"offset_ms": -6.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 0.7667,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:26",
+"t": 0.86364,
+"dur": 0.0,
+"row": "snare",
+"vel": 79,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 97.25,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "collision",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-COL-1 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "collision",
+"reason": "collision",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:27",
+"t": 0.86364,
+"dur": 0.0,
+"row": "hat",
+"vel": 116,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 97.25,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 4,
+"offset_ms": 3.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 0.8667,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:28",
+"t": 0.95454,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 97.312,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 5,
+"offset_ms": 12.2,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 0.9667,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:29",
+"t": 1.04545,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 97.375,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 6,
+"offset_ms": -12.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 1.0333,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:30",
+"t": 1.13636,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 97.438,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 7,
+"offset_ms": -3.1,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 1.1333,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:31",
+"t": 1.22727,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 97.5,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 9,
+"offset_ms": 6.0,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 1.2333,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:32",
+"t": 1.22727,
+"dur": 0.0,
+"row": "hat",
+"vel": 116,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 97.5,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 8,
+"offset_ms": 6.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 1.2333,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:33",
+"t": 1.31818,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 97.562,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 10,
+"offset_ms": 15.1,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 1.3333,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:34",
+"t": 1.40909,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 97.625,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 11,
+"offset_ms": -9.1,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 1.4,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:35",
+"t": 1.5,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 97.688,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "R",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "R",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:36",
+"t": 1.59091,
+"dur": 0.0,
+"row": "snare",
+"vel": 87,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 97.75,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 13,
+"offset_ms": 9.1,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 1.6,
+"timing": "perfect",
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:37",
+"t": 1.59091,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 97.75,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 12,
+"offset_ms": 9.1,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 1.6,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:38",
+"t": 1.68182,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 97.812,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 14,
+"offset_ms": -15.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 1.6667,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:39",
+"t": 1.77273,
+"dur": 0.0,
+"row": "hat",
+"vel": 90,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 97.875,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 15,
+"offset_ms": -6.0,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 1.7667,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:40",
+"t": 1.86363,
+"dur": 0.0,
+"row": "hatped",
+"vel": 68,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 97.938,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 16,
+"offset_ms": 3.1,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 1.8667,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:41",
+"t": 1.95454,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 98.0,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 17,
+"offset_ms": 12.2,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 1.9667,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:42",
+"t": 1.95454,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 98.0,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "speed ceiling",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-1 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "speed ceiling",
+"reason": "speed ceiling",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:43",
+"t": 2.04545,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 98.062,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "R",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "R",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:44",
+"t": 2.13636,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 98.125,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 18,
+"offset_ms": -3.1,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 2.1333,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:45",
+"t": 2.22727,
+"dur": 0.0,
+"row": "hat",
+"vel": 83,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 98.188,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 19,
+"offset_ms": 6.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 2.2333,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:46",
+"t": 2.31818,
+"dur": 0.0,
+"row": "snare",
+"vel": 93,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 98.25,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 21,
+"offset_ms": 15.1,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 2.3333,
+"timing": "perfect",
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:47",
+"t": 2.31818,
+"dur": 0.0,
+"row": "hat",
+"vel": 116,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 98.25,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 20,
+"offset_ms": 15.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 2.3333,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:48",
+"t": 2.40909,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 98.312,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 22,
+"offset_ms": -9.1,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 2.4,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:49",
+"t": 2.5,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 98.375,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 23,
+"offset_ms": 0.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 2.5,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:50",
+"t": 2.59091,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 98.438,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:51",
+"t": 2.68182,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 98.5,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 25,
+"offset_ms": -15.1,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 2.6667,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:52",
+"t": 2.68182,
+"dur": 0.0,
+"row": "hat",
+"vel": 116,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 98.5,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 24,
+"offset_ms": -15.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 2.6667,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:53",
+"t": 2.77273,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 98.562,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 26,
+"offset_ms": -6.0,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 2.7667,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:54",
+"t": 2.86363,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 98.625,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 27,
+"offset_ms": 3.1,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 2.8667,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:55",
+"t": 2.95454,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 98.688,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "R",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "R",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:56",
+"t": 3.04545,
+"dur": 0.0,
+"row": "snare",
+"vel": 78,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 98.75,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "speed ceiling",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-1 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "speed ceiling",
+"reason": "speed ceiling",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:57",
+"t": 3.04545,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 98.75,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 28,
+"offset_ms": -12.2,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 3.0333,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:58",
+"t": 3.13636,
+"dur": 0.0,
+"row": "hat",
+"vel": 72,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 98.812,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 29,
+"offset_ms": -3.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 3.1333,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:59",
+"t": 3.22727,
+"dur": 0.0,
+"row": "hat",
+"vel": 90,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 98.875,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 30,
+"offset_ms": 6.0,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 3.2333,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:60",
+"t": 3.31818,
+"dur": 0.0,
+"row": "hatped",
+"vel": 68,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 98.938,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 31,
+"offset_ms": 15.1,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 3.3333,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:61",
+"t": 3.40909,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 99.0,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 32,
+"offset_ms": -9.1,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 3.4,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:62",
+"t": 3.40909,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 99.0,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:63",
+"t": 3.5,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 99.062,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 33,
+"offset_ms": 0.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 3.5,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:64",
+"t": 3.59091,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 99.125,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 34,
+"offset_ms": 9.1,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 3.6,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:65",
+"t": 3.68182,
+"dur": 0.0,
+"row": "hat",
+"vel": 83,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 99.188,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 35,
+"offset_ms": -15.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 3.6667,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:66",
+"t": 3.77272,
+"dur": 0.0,
+"row": "snare",
+"vel": 84,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 99.25,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 37,
+"offset_ms": -6.0,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 3.7667,
+"timing": "perfect",
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:67",
+"t": 3.77272,
+"dur": 0.0,
+"row": "hat",
+"vel": 116,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 99.25,
+"judged": true,
+"plan": {
+"fate": "misplayed",
+"limb": "R",
+"limit": "continuity",
+"how": "softer",
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 arm R"
+},
+"verdict": {
+"cls": "hit",
+"contact": 36,
+"offset_ms": -6.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 3.7667,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:68",
+"t": 3.86363,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 99.312,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 38,
+"offset_ms": 3.1,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 3.8667,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:69",
+"t": 3.95454,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 99.375,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 39,
+"offset_ms": 12.2,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 3.9667,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:70",
+"t": 4.04545,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 99.438,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 40,
+"offset_ms": -12.2,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 4.0333,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:71",
+"t": 4.13636,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 99.5,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 42,
+"offset_ms": -3.1,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 4.1333,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:72",
+"t": 4.13636,
+"dur": 0.0,
+"row": "hat",
+"vel": 116,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 99.5,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 41,
+"offset_ms": -3.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 4.1333,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:73",
+"t": 4.22727,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 99.562,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 43,
+"offset_ms": 6.0,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 4.2333,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:74",
+"t": 4.31818,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 99.625,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 44,
+"offset_ms": 15.1,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 4.3333,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:75",
+"t": 4.40909,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 99.688,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "R",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "R",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:76",
+"t": 4.5,
+"dur": 0.0,
+"row": "snare",
+"vel": 85,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 99.75,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 46,
+"offset_ms": 0.0,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 4.5,
+"timing": "perfect",
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:77",
+"t": 4.5,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 99.75,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 45,
+"offset_ms": 0.0,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 4.5,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:78",
+"t": 4.5909,
+"dur": 0.0,
+"row": "hat",
+"vel": 72,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 99.812,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 47,
+"offset_ms": 9.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 4.6,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:79",
+"t": 4.68181,
+"dur": 0.0,
+"row": "hat",
+"vel": 90,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 99.875,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:80",
+"t": 4.77272,
+"dur": 0.0,
+"row": "hatped",
+"vel": 68,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 99.938,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 48,
+"offset_ms": -6.0,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 4.7667,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:81",
+"t": 4.86363,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 100.0,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 50,
+"offset_ms": 3.1,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 4.8667,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:82",
+"t": 4.86363,
+"dur": 0.0,
+"row": "hat",
+"vel": 93,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 100.0,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 49,
+"offset_ms": 3.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 4.8667,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:83",
+"t": 4.95454,
+"dur": 0.0,
+"row": "hat",
+"vel": 63,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 100.062,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 51,
+"offset_ms": 12.2,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 4.9667,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:84",
+"t": 5.04545,
+"dur": 0.0,
+"row": "hat",
+"vel": 63,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 100.125,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "R",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "R",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:85",
+"t": 5.13636,
+"dur": 0.0,
+"row": "hatped",
+"vel": 72,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 100.188,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 52,
+"offset_ms": -3.1,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 5.1333,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:86",
+"t": 5.22727,
+"dur": 0.0,
+"row": "snare",
+"vel": 77,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 100.25,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 54,
+"offset_ms": 6.0,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 5.2333,
+"timing": "perfect",
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:87",
+"t": 5.22727,
+"dur": 0.0,
+"row": "hat",
+"vel": 58,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 100.25,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 53,
+"offset_ms": 6.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 5.2333,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:88",
+"t": 5.31818,
+"dur": 0.0,
+"row": "hat",
+"vel": 74,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 100.312,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "R",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "R",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:89",
+"t": 5.40909,
+"dur": 0.0,
+"row": "hat",
+"vel": 94,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 100.375,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 55,
+"offset_ms": -9.1,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 5.4,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:90",
+"t": 5.5,
+"dur": 0.0,
+"row": "hat",
+"vel": 61,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 100.438,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 57,
+"offset_ms": 0.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 5.5,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:91",
+"t": 5.5909,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 100.5,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 59,
+"offset_ms": 9.1,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 5.6,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:92",
+"t": 5.5909,
+"dur": 0.0,
+"row": "hat",
+"vel": 101,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 100.5,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 58,
+"offset_ms": 9.1,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 5.6,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:93",
+"t": 5.77272,
+"dur": 0.0,
+"row": "snare",
+"vel": 83,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 100.625,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 62,
+"offset_ms": -6.0,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 5.7667,
+"timing": "perfect",
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:94",
+"t": 5.77272,
+"dur": 0.0,
+"row": "hat",
+"vel": 101,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 100.625,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 61,
+"offset_ms": -6.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 5.7667,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:95",
+"t": 5.86363,
+"dur": 0.0,
+"row": "snare",
+"vel": 77,
+"note": 40,
+"name": "snare rim",
+"zone": "rimshot",
+"bar": 100.688,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 63,
+"offset_ms": 3.1,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 5.8667,
+"timing": "perfect",
+"zone_hit": "outer head",
+"zone_off": false
+}
+},
+{
+"id": "D:96",
+"t": 5.95454,
+"dur": 0.0,
+"row": "snare",
+"vel": 67,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 100.75,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 65,
+"offset_ms": 12.2,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 5.9667,
+"timing": "perfect",
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:97",
+"t": 5.95454,
+"dur": 0.0,
+"row": "hat",
+"vel": 101,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 100.75,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 64,
+"offset_ms": 12.2,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 5.9667,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:98",
+"t": 6.13636,
+"dur": 0.0,
+"row": "snare",
+"vel": 76,
+"note": 40,
+"name": "snare rim",
+"zone": "rimshot",
+"bar": 100.875,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 67,
+"offset_ms": -3.1,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 6.1333,
+"timing": "perfect",
+"zone_hit": "outer head",
+"zone_off": false
+}
+},
+{
+"id": "D:99",
+"t": 6.13636,
+"dur": 0.0,
+"row": "hat",
+"vel": 91,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 100.875,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 68,
+"offset_ms": 5.3,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 6.1417,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:100",
+"t": 6.31818,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 101.0,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 69,
+"offset_ms": 15.1,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 6.3333,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:101",
+"t": 6.31818,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 101.0,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "R",
+"limit": "speed ceiling",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-1 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "R",
+"sub": null,
+"limit": "speed ceiling",
+"reason": "speed ceiling",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:102",
+"t": 6.31818,
+"dur": 0.0,
+"row": "crash",
+"vel": 127,
+"note": 49,
+"name": "crash",
+"zone": "edge",
+"bar": 101.0,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:103",
+"t": 6.40909,
+"dur": 0.0,
+"row": "hat",
+"vel": 52,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 101.062,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 70,
+"offset_ms": -9.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 6.4,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:104",
+"t": 6.49999,
+"dur": 0.0,
+"row": "hat",
+"vel": 70,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 101.125,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 71,
+"offset_ms": 0.0,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 6.5,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:105",
+"t": 6.5909,
+"dur": 0.0,
+"row": "hat",
+"vel": 72,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 101.188,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 72,
+"offset_ms": 9.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 6.6,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:106",
+"t": 6.68181,
+"dur": 0.0,
+"row": "snare",
+"vel": 70,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 101.25,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:107",
+"t": 6.68181,
+"dur": 0.0,
+"row": "hat",
+"vel": 116,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 101.25,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "R",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "R",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:108",
+"t": 6.77272,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 101.312,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 73,
+"offset_ms": -6.0,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 6.7667,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:109",
+"t": 6.86363,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 101.375,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 74,
+"offset_ms": 3.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 6.8667,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:110",
+"t": 6.95454,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 101.438,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:111",
+"t": 7.04545,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 101.5,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 76,
+"offset_ms": -12.2,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 7.0333,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:112",
+"t": 7.04545,
+"dur": 0.0,
+"row": "hat",
+"vel": 116,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 101.5,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 75,
+"offset_ms": -12.2,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 7.0333,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:113",
+"t": 7.13636,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 101.562,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 77,
+"offset_ms": -3.1,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 7.1333,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:114",
+"t": 7.22727,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 101.625,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 78,
+"offset_ms": 6.0,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 7.2333,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:115",
+"t": 7.31817,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 101.688,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "R",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "R",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:116",
+"t": 7.40908,
+"dur": 0.0,
+"row": "snare",
+"vel": 75,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 101.75,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "speed ceiling",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-1 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "speed ceiling",
+"reason": "speed ceiling",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:117",
+"t": 7.40908,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 101.75,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 79,
+"offset_ms": -9.1,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 7.4,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:118",
+"t": 7.49999,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 101.812,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 80,
+"offset_ms": 0.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 7.5,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:119",
+"t": 7.5909,
+"dur": 0.0,
+"row": "hat",
+"vel": 90,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 101.875,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 81,
+"offset_ms": 9.1,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 7.6,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:120",
+"t": 7.68181,
+"dur": 0.0,
+"row": "hatped",
+"vel": 68,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 101.938,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 82,
+"offset_ms": -15.1,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 7.6667,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:121",
+"t": 7.77272,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 102.0,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 84,
+"offset_ms": -6.0,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 7.7667,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:122",
+"t": 7.77272,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 102.0,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 83,
+"offset_ms": -6.0,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 7.7667,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:123",
+"t": 7.86363,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 102.062,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 86,
+"offset_ms": 3.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 7.8667,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:124",
+"t": 7.95454,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 102.125,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 87,
+"offset_ms": 12.2,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 7.9667,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:125",
+"t": 8.04545,
+"dur": 0.0,
+"row": "hat",
+"vel": 83,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 102.188,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 88,
+"offset_ms": -12.2,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 8.0333,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:126",
+"t": 8.13636,
+"dur": 0.0,
+"row": "snare",
+"vel": 84,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 102.25,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 90,
+"offset_ms": -3.1,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 8.1333,
+"timing": "perfect",
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:127",
+"t": 8.13636,
+"dur": 0.0,
+"row": "hat",
+"vel": 116,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 102.25,
+"judged": true,
+"plan": {
+"fate": "misplayed",
+"limb": "R",
+"limit": "continuity",
+"how": "softer",
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 arm R"
+},
+"verdict": {
+"cls": "hit",
+"contact": 89,
+"offset_ms": -3.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 8.1333,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:128",
+"t": 8.22726,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 102.312,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 91,
+"offset_ms": 6.0,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 8.2333,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:129",
+"t": 8.31817,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 102.375,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 92,
+"offset_ms": 15.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 8.3333,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:130",
+"t": 8.40908,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 102.438,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 93,
+"offset_ms": -9.1,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 8.4,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:131",
+"t": 8.49999,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 102.5,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 95,
+"offset_ms": 0.0,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 8.5,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:132",
+"t": 8.49999,
+"dur": 0.0,
+"row": "hat",
+"vel": 116,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 102.5,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 94,
+"offset_ms": 0.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 8.5,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:133",
+"t": 8.5909,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 102.562,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 96,
+"offset_ms": 9.1,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 8.6,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:134",
+"t": 8.68181,
+"dur": 0.0,
+"row": "hat",
+"vel": 73,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 102.625,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 97,
+"offset_ms": -15.1,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 8.6667,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:135",
+"t": 8.77272,
+"dur": 0.0,
+"row": "hat",
+"vel": 92,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 102.688,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "R",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "R",
+"sub": null,
+"limit": "continuity",
+"reason": "continuity",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:136",
+"t": 8.86363,
+"dur": 0.0,
+"row": "snare",
+"vel": 90,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 102.75,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "collision",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-COL-1 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "collision",
+"reason": "collision",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:137",
+"t": 8.86363,
+"dur": 0.0,
+"row": "hatped",
+"vel": 80,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 102.75,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 98,
+"offset_ms": 3.1,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 8.8667,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:138",
+"t": 8.95454,
+"dur": 0.0,
+"row": "hat",
+"vel": 72,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 102.812,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "R",
+"limit": "continuity",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-CONT-2 body"
+},
+"verdict": {
+"cls": "wrong",
+"contact": 99,
+"offset_ms": 74.7,
+"limb": "R",
+"sub": null,
+"row_hit": "crash",
+"t_hit": 9.0292,
+"timing": "late",
+"plan_disagrees": true,
+"plan_note": "the R-417 log cut this note (continuity); the motion still sounds its row here (another note's stroke covers it)"
+}
+},
+{
+"id": "D:139",
+"t": 9.04545,
+"dur": 0.0,
+"row": "hat",
+"vel": 90,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 102.875,
+"judged": true,
+"plan": {
+"fate": "misplayed",
+"limb": "L",
+"limit": "collision",
+"how": "softer",
+"why": null,
+"stage": "loop",
+"check": "C-COL-1 body"
+},
+"verdict": {
+"cls": "hit",
+"contact": 101,
+"offset_ms": -12.2,
+"limb": "L",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 9.0333,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:140",
+"t": 9.13636,
+"dur": 0.0,
+"row": "hatped",
+"vel": 68,
+"note": 44,
+"name": "hat pedal",
+"zone": "pedal",
+"bar": 102.938,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "LF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 102,
+"offset_ms": -3.1,
+"limb": "LF",
+"sub": null,
+"row_hit": "hatped",
+"t_hit": 9.1333,
+"timing": "perfect",
+"zone_hit": "pedal",
+"zone_off": false
+}
+},
+{
+"id": "D:141",
+"t": 9.22726,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 103.0,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 104,
+"offset_ms": 6.0,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 9.2333,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:142",
+"t": 9.22726,
+"dur": 0.0,
+"row": "snare",
+"vel": 97,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 103.0,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "collision",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-COL-1 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "collision",
+"reason": "collision",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:143",
+"t": 9.22726,
+"dur": 0.0,
+"row": "crash",
+"vel": 127,
+"note": 49,
+"name": "crash",
+"zone": "edge",
+"bar": 103.0,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 103,
+"offset_ms": 6.0,
+"limb": "R",
+"sub": null,
+"row_hit": "crash",
+"t_hit": 9.2333,
+"timing": "perfect",
+"zone_hit": "edge",
+"zone_off": false
+}
+},
+{
+"id": "D:144",
+"t": 9.49999,
+"dur": 0.0,
+"row": "hat",
+"vel": 101,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 103.188,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 105,
+"offset_ms": 0.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 9.5,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:145",
+"t": 9.77272,
+"dur": 0.0,
+"row": "snare",
+"vel": 94,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 103.375,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "collision",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-COL-1 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "collision",
+"reason": "collision",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:146",
+"t": 9.77272,
+"dur": 0.0,
+"row": "hat",
+"vel": 101,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 103.375,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 106,
+"offset_ms": -6.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 9.7667,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:147",
+"t": 9.95454,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 103.5,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 109,
+"offset_ms": 12.2,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 9.9667,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:148",
+"t": 9.95454,
+"dur": 0.0,
+"row": "hat",
+"vel": 48,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 103.5,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 108,
+"offset_ms": 12.2,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 9.9667,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:149",
+"t": 10.13635,
+"dur": 0.0,
+"row": "snare",
+"vel": 100,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 103.625,
+"judged": true,
+"plan": {
+"fate": "cut",
+"limb": "L",
+"limit": "collision",
+"how": null,
+"why": null,
+"stage": "loop",
+"check": "C-COL-1 body"
+},
+"verdict": {
+"cls": "missed",
+"limb": "L",
+"sub": null,
+"limit": "collision",
+"reason": "collision",
+"plan_disagrees": false
+}
+},
+{
+"id": "D:150",
+"t": 10.13635,
+"dur": 0.0,
+"row": "hat",
+"vel": 93,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 103.625,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 110,
+"offset_ms": -3.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 10.1333,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:151",
+"t": 10.31817,
+"dur": 0.0,
+"row": "snare",
+"vel": 100,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 103.75,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 113,
+"offset_ms": 15.1,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 10.3333,
+"timing": "perfect",
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:152",
+"t": 10.31817,
+"dur": 0.0,
+"row": "hat",
+"vel": 61,
+"note": 42,
+"name": "hat closed",
+"zone": "closed",
+"bar": 103.75,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 112,
+"offset_ms": 15.1,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 10.3333,
+"timing": "perfect",
+"zone_hit": "closed",
+"zone_off": false
+}
+},
+{
+"id": "D:153",
+"t": 10.49999,
+"dur": 0.0,
+"row": "hat",
+"vel": 112,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 103.875,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 114,
+"offset_ms": 0.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 10.5,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+},
+{
+"id": "D:154",
+"t": 10.68181,
+"dur": 0.0,
+"row": "kick",
+"vel": 112,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 104.0,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 115,
+"offset_ms": -15.1,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 10.6667,
+"timing": "perfect",
+"vel_est": 112,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:155",
+"t": 10.68181,
+"dur": 0.0,
+"row": "snare",
+"vel": 97,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 104.0,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 116,
+"offset_ms": -15.1,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 10.6667,
+"timing": "perfect",
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:156",
+"t": 11.04544,
+"dur": 0.0,
+"row": "kick",
+"vel": 123,
+"note": 36,
+"name": "kick",
+"zone": "beater",
+"bar": 104.25,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "RF",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 117,
+"offset_ms": -12.1,
+"limb": "RF",
+"sub": null,
+"row_hit": "kick",
+"t_hit": 11.0333,
+"timing": "perfect",
+"vel_est": 123,
+"softer": false,
+"zone_hit": "beater",
+"zone_off": false
+}
+},
+{
+"id": "D:157",
+"t": 11.22726,
+"dur": 0.0,
+"row": "snare",
+"vel": 94,
+"note": 38,
+"name": "snare",
+"zone": "head",
+"bar": 104.375,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "L",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 119,
+"offset_ms": 6.0,
+"limb": "L",
+"sub": null,
+"row_hit": "snare",
+"t_hit": 11.2333,
+"timing": "perfect",
+"zone_hit": "head",
+"zone_off": false
+}
+},
+{
+"id": "D:158",
+"t": 11.22726,
+"dur": 0.0,
+"row": "hat",
+"vel": 112,
+"note": 46,
+"name": "hat open",
+"zone": "open",
+"bar": 104.375,
+"judged": true,
+"plan": {
+"fate": "played",
+"limb": "R",
+"limit": null,
+"how": null,
+"why": null,
+"stage": null,
+"check": null
+},
+"verdict": {
+"cls": "hit",
+"contact": 118,
+"offset_ms": 6.0,
+"limb": "R",
+"sub": null,
+"row_hit": "hat",
+"t_hit": 11.2333,
+"timing": "perfect",
+"zone_hit": "open",
+"zone_off": false
+}
+}
+],
+"contacts": [
+{
+"t": 0.5,
+"t_off": 0.5,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 60,
+"i": 0,
+"matched": "D:20",
+"vel_est": 112
+},
+{
+"t": 0.5667,
+"t_off": 0.5667,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 26.28,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": true,
+"frame": 68,
+"i": 1,
+"matched": null,
+"role": "articulation",
+"cause": "the foot shuts the hi-hat for the closed stroke that follows within 80 ms: an articulation of that stroke, not a note"
+},
+{
+"t": 0.6,
+"t_off": 0.6083,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.67,
+"speed": 2.16,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.008,
+"path_m": 0.002,
+"sounding": true,
+"frame": 72,
+"hat_open": 0.0,
+"i": 2,
+"matched": "D:23"
+},
+{
+"t": 0.7667,
+"t_off": 0.7667,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.73,
+"speed": 3.84,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 92,
+"hat_open": 0.0,
+"i": 3,
+"matched": "D:25"
+},
+{
+"t": 0.8667,
+"t_off": 0.8667,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.69,
+"speed": 6.48,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 104,
+"hat_open": 1.0,
+"i": 4,
+"matched": "D:27"
+},
+{
+"t": 0.9667,
+"t_off": 0.9667,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 116,
+"pedal_note_first": "D:28",
+"i": 5,
+"matched": "D:28"
+},
+{
+"t": 1.0333,
+"t_off": 1.0333,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.76,
+"speed": 3.72,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 124,
+"hat_open": 0.0,
+"i": 6,
+"matched": "D:29"
+},
+{
+"t": 1.1333,
+"t_off": 1.1417,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.73,
+"speed": 4.56,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.008,
+"path_m": 0.002,
+"sounding": true,
+"frame": 136,
+"hat_open": 0.0,
+"i": 7,
+"matched": "D:30"
+},
+{
+"t": 1.2333,
+"t_off": 1.2333,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.7,
+"speed": 3.48,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 148,
+"hat_open": 1.0,
+"i": 8,
+"matched": "D:32"
+},
+{
+"t": 1.2333,
+"t_off": 1.2333,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 148,
+"i": 9,
+"matched": "D:31",
+"vel_est": 112
+},
+{
+"t": 1.3333,
+"t_off": 1.3333,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 160,
+"pedal_note_first": "D:33",
+"i": 10,
+"matched": "D:33"
+},
+{
+"t": 1.4,
+"t_off": 1.4,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.76,
+"speed": 3.6,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 168,
+"hat_open": 0.0,
+"i": 11,
+"matched": "D:34"
+},
+{
+"t": 1.6,
+"t_off": 1.6,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 0.76,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 192,
+"pedal_note_first": "D:37",
+"i": 12,
+"matched": "D:37"
+},
+{
+"t": 1.6,
+"t_off": 1.6,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.46,
+"speed": 3.6,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 192,
+"i": 13,
+"matched": "D:36"
+},
+{
+"t": 1.6667,
+"t_off": 1.6667,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.74,
+"speed": 3.48,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 200,
+"hat_open": 0.0,
+"i": 14,
+"matched": "D:38"
+},
+{
+"t": 1.7667,
+"t_off": 1.7667,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.79,
+"speed": 2.88,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 212,
+"hat_open": 1.0,
+"i": 15,
+"matched": "D:39"
+},
+{
+"t": 1.8667,
+"t_off": 1.8667,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 224,
+"i": 16,
+"matched": "D:40"
+},
+{
+"t": 1.9667,
+"t_off": 1.9667,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 236,
+"i": 17,
+"matched": "D:41",
+"vel_est": 112
+},
+{
+"t": 2.1333,
+"t_off": 2.1333,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.69,
+"speed": 3.6,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 256,
+"hat_open": 0.0,
+"i": 18,
+"matched": "D:44"
+},
+{
+"t": 2.2333,
+"t_off": 2.2333,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.73,
+"speed": 4.56,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 268,
+"hat_open": 0.0,
+"i": 19,
+"matched": "D:45"
+},
+{
+"t": 2.3333,
+"t_off": 2.3333,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.67,
+"speed": 6.48,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 280,
+"hat_open": 1.0,
+"i": 20,
+"matched": "D:47"
+},
+{
+"t": 2.3333,
+"t_off": 2.3333,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.38,
+"speed": 3.24,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 280,
+"i": 21,
+"matched": "D:46"
+},
+{
+"t": 2.4,
+"t_off": 2.4,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 39.0,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 288,
+"i": 22,
+"matched": "D:48"
+},
+{
+"t": 2.5,
+"t_off": 2.5,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.75,
+"speed": 3.84,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 300,
+"hat_open": 0.0,
+"i": 23,
+"matched": "D:49"
+},
+{
+"t": 2.6667,
+"t_off": 2.6667,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.74,
+"speed": 3.36,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 320,
+"hat_open": 1.0,
+"i": 24,
+"matched": "D:52"
+},
+{
+"t": 2.6667,
+"t_off": 2.6667,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 320,
+"i": 25,
+"matched": "D:51",
+"vel_est": 112
+},
+{
+"t": 2.7667,
+"t_off": 2.7667,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 332,
+"i": 26,
+"matched": "D:53"
+},
+{
+"t": 2.8667,
+"t_off": 2.8667,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.76,
+"speed": 3.48,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 344,
+"hat_open": 0.0,
+"i": 27,
+"matched": "D:54"
+},
+{
+"t": 3.0333,
+"t_off": 3.0333,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 0.76,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 364,
+"i": 28,
+"matched": "D:57"
+},
+{
+"t": 3.1333,
+"t_off": 3.1333,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.67,
+"speed": 3.36,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 376,
+"hat_open": 0.0,
+"i": 29,
+"matched": "D:58"
+},
+{
+"t": 3.2333,
+"t_off": 3.2333,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.75,
+"speed": 4.08,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 388,
+"hat_open": 1.0,
+"i": 30,
+"matched": "D:59"
+},
+{
+"t": 3.3333,
+"t_off": 3.3333,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 400,
+"i": 31,
+"matched": "D:60"
+},
+{
+"t": 3.4,
+"t_off": 3.4,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 408,
+"i": 32,
+"matched": "D:61",
+"vel_est": 112
+},
+{
+"t": 3.5,
+"t_off": 3.5,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.74,
+"speed": 3.6,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 420,
+"hat_open": 0.0,
+"i": 33,
+"matched": "D:63"
+},
+{
+"t": 3.6,
+"t_off": 3.6,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.75,
+"speed": 3.6,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 432,
+"hat_open": 0.0,
+"i": 34,
+"matched": "D:64"
+},
+{
+"t": 3.6667,
+"t_off": 3.6667,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.7,
+"speed": 4.44,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 440,
+"hat_open": 0.0,
+"i": 35,
+"matched": "D:65"
+},
+{
+"t": 3.7667,
+"t_off": 3.7667,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.8,
+"speed": 5.04,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 452,
+"hat_open": 1.0,
+"i": 36,
+"matched": "D:67"
+},
+{
+"t": 3.7667,
+"t_off": 3.7667,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.46,
+"speed": 3.72,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 452,
+"i": 37,
+"matched": "D:66"
+},
+{
+"t": 3.8667,
+"t_off": 3.8667,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 464,
+"i": 38,
+"matched": "D:68"
+},
+{
+"t": 3.9667,
+"t_off": 3.9667,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.77,
+"speed": 3.72,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 476,
+"hat_open": 0.0,
+"i": 39,
+"matched": "D:69"
+},
+{
+"t": 4.0333,
+"t_off": 4.0417,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.74,
+"speed": 2.64,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.008,
+"path_m": 0.001,
+"sounding": true,
+"frame": 484,
+"hat_open": 0.0,
+"i": 40,
+"matched": "D:70"
+},
+{
+"t": 4.1333,
+"t_off": 4.1333,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.69,
+"speed": 3.48,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 496,
+"hat_open": 1.0,
+"i": 41,
+"matched": "D:72"
+},
+{
+"t": 4.1333,
+"t_off": 4.1333,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 496,
+"i": 42,
+"matched": "D:71",
+"vel_est": 112
+},
+{
+"t": 4.2333,
+"t_off": 4.2333,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 508,
+"i": 43,
+"matched": "D:73"
+},
+{
+"t": 4.3333,
+"t_off": 4.3333,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.78,
+"speed": 3.6,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 520,
+"hat_open": 0.0,
+"i": 44,
+"matched": "D:74"
+},
+{
+"t": 4.5,
+"t_off": 4.5,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 0.76,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 540,
+"i": 45,
+"matched": "D:77"
+},
+{
+"t": 4.5,
+"t_off": 4.5,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.43,
+"speed": 2.76,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 540,
+"i": 46,
+"matched": "D:76"
+},
+{
+"t": 4.6,
+"t_off": 4.6,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.68,
+"speed": 3.36,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 552,
+"hat_open": 0.0,
+"i": 47,
+"matched": "D:78"
+},
+{
+"t": 4.7667,
+"t_off": 4.7667,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 19.08,
+"unit": "1/s",
+"from_open": 0.7,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 572,
+"i": 48,
+"matched": "D:80"
+},
+{
+"t": 4.8667,
+"t_off": 4.8667,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.76,
+"speed": 4.2,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 584,
+"hat_open": 0.0,
+"i": 49,
+"matched": "D:82"
+},
+{
+"t": 4.8667,
+"t_off": 4.8667,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 584,
+"i": 50,
+"matched": "D:81",
+"vel_est": 112
+},
+{
+"t": 4.9667,
+"t_off": 4.9667,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.72,
+"speed": 2.76,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 596,
+"hat_open": 0.0,
+"i": 51,
+"matched": "D:83"
+},
+{
+"t": 5.1333,
+"t_off": 5.1333,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 18.12,
+"unit": "1/s",
+"from_open": 0.72,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 616,
+"i": 52,
+"matched": "D:85"
+},
+{
+"t": 5.2333,
+"t_off": 5.2333,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.7,
+"speed": 2.4,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 628,
+"hat_open": 0.0,
+"i": 53,
+"matched": "D:87"
+},
+{
+"t": 5.2333,
+"t_off": 5.2333,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.46,
+"speed": 3.0,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 628,
+"i": 54,
+"matched": "D:86"
+},
+{
+"t": 5.4,
+"t_off": 5.4,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.72,
+"speed": 2.4,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 648,
+"hat_open": 1.0,
+"i": 55,
+"matched": "D:89"
+},
+{
+"t": 5.4667,
+"t_off": 5.4667,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 36.84,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": true,
+"frame": 656,
+"i": 56,
+"matched": null,
+"role": "articulation",
+"cause": "the foot shuts the hi-hat for the closed stroke that follows within 80 ms: an articulation of that stroke, not a note"
+},
+{
+"t": 5.5,
+"t_off": 5.5,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.71,
+"speed": 2.64,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 660,
+"hat_open": 0.0,
+"i": 57,
+"matched": "D:90"
+},
+{
+"t": 5.6,
+"t_off": 5.6,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.79,
+"speed": 2.76,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 672,
+"hat_open": 1.0,
+"i": 58,
+"matched": "D:92"
+},
+{
+"t": 5.6,
+"t_off": 5.6,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 672,
+"i": 59,
+"matched": "D:91",
+"vel_est": 112
+},
+{
+"t": 5.7333,
+"t_off": 5.7333,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 36.84,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": true,
+"frame": 688,
+"i": 60,
+"matched": null,
+"role": "articulation",
+"cause": "the foot shuts the hi-hat for the closed stroke that follows within 80 ms: an articulation of that stroke, not a note"
+},
+{
+"t": 5.7667,
+"t_off": 5.7667,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.64,
+"speed": 3.84,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 692,
+"hat_open": 0.0,
+"i": 61,
+"matched": "D:94"
+},
+{
+"t": 5.7667,
+"t_off": 5.7667,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.41,
+"speed": 3.84,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 692,
+"i": 62,
+"matched": "D:93"
+},
+{
+"t": 5.8667,
+"t_off": 5.8667,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "outer head",
+"radius_frac": 0.72,
+"speed": 5.88,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 704,
+"i": 63,
+"matched": "D:95"
+},
+{
+"t": 5.9667,
+"t_off": 5.9667,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.76,
+"speed": 2.76,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 716,
+"hat_open": 1.0,
+"i": 64,
+"matched": "D:97"
+},
+{
+"t": 5.9667,
+"t_off": 5.9667,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.4,
+"speed": 4.92,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 716,
+"i": 65,
+"matched": "D:96"
+},
+{
+"t": 6.1,
+"t_off": 6.1,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 26.28,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": true,
+"frame": 732,
+"i": 66,
+"matched": null,
+"role": "articulation",
+"cause": "the foot shuts the hi-hat for the closed stroke that follows within 80 ms: an articulation of that stroke, not a note"
+},
+{
+"t": 6.1333,
+"t_off": 6.1333,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "outer head",
+"radius_frac": 0.67,
+"speed": 3.72,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 736,
+"i": 67,
+"matched": "D:98"
+},
+{
+"t": 6.1417,
+"t_off": 6.1417,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.65,
+"speed": 4.32,
+"unit": "m/s",
+"depth_mm": 1.0,
+"dwell_s": 0.008,
+"path_m": 0.001,
+"sounding": true,
+"frame": 737,
+"hat_open": 0.0,
+"i": 68,
+"matched": "D:99"
+},
+{
+"t": 6.3333,
+"t_off": 6.3333,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 760,
+"i": 69,
+"matched": "D:100",
+"vel_est": 112
+},
+{
+"t": 6.4,
+"t_off": 6.4,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.7,
+"speed": 2.28,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 768,
+"hat_open": 0.0,
+"i": 70,
+"matched": "D:103"
+},
+{
+"t": 6.5,
+"t_off": 6.5,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.72,
+"speed": 3.24,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 780,
+"hat_open": 0.0,
+"i": 71,
+"matched": "D:104"
+},
+{
+"t": 6.6,
+"t_off": 6.6,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.73,
+"speed": 3.36,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 792,
+"hat_open": 0.0,
+"i": 72,
+"matched": "D:105"
+},
+{
+"t": 6.7667,
+"t_off": 6.7667,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 19.08,
+"unit": "1/s",
+"from_open": 0.76,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 812,
+"i": 73,
+"matched": "D:108"
+},
+{
+"t": 6.8667,
+"t_off": 6.8667,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.67,
+"speed": 3.72,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 824,
+"hat_open": 0.0,
+"i": 74,
+"matched": "D:109"
+},
+{
+"t": 7.0333,
+"t_off": 7.0333,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.71,
+"speed": 3.36,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 844,
+"hat_open": 1.0,
+"i": 75,
+"matched": "D:112"
+},
+{
+"t": 7.0333,
+"t_off": 7.0333,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 844,
+"i": 76,
+"matched": "D:111",
+"vel_est": 112
+},
+{
+"t": 7.1333,
+"t_off": 7.1333,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 856,
+"i": 77,
+"matched": "D:113"
+},
+{
+"t": 7.2333,
+"t_off": 7.2333,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.71,
+"speed": 3.48,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 868,
+"hat_open": 0.0,
+"i": 78,
+"matched": "D:114"
+},
+{
+"t": 7.4,
+"t_off": 7.4,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 0.76,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 888,
+"i": 79,
+"matched": "D:117"
+},
+{
+"t": 7.5,
+"t_off": 7.5,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.66,
+"speed": 3.48,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 900,
+"hat_open": 0.0,
+"i": 80,
+"matched": "D:118"
+},
+{
+"t": 7.6,
+"t_off": 7.6,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.77,
+"speed": 4.2,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 912,
+"hat_open": 1.0,
+"i": 81,
+"matched": "D:119"
+},
+{
+"t": 7.6667,
+"t_off": 7.6667,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 39.0,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 920,
+"i": 82,
+"matched": "D:120"
+},
+{
+"t": 7.7667,
+"t_off": 7.7667,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.8,
+"speed": 4.2,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 932,
+"hat_open": 1.0,
+"i": 83,
+"matched": "D:122"
+},
+{
+"t": 7.7667,
+"t_off": 7.7667,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 932,
+"i": 84,
+"matched": "D:121",
+"vel_est": 112
+},
+{
+"t": 7.8333,
+"t_off": 7.8333,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 39.0,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": true,
+"frame": 940,
+"i": 85,
+"matched": null,
+"role": "articulation",
+"cause": "the foot shuts the hi-hat for the closed stroke that follows within 80 ms: an articulation of that stroke, not a note"
+},
+{
+"t": 7.8667,
+"t_off": 7.8667,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.73,
+"speed": 3.6,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 944,
+"hat_open": 0.0,
+"i": 86,
+"matched": "D:123"
+},
+{
+"t": 7.9667,
+"t_off": 7.9667,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.77,
+"speed": 3.6,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 956,
+"hat_open": 0.0,
+"i": 87,
+"matched": "D:124"
+},
+{
+"t": 8.0333,
+"t_off": 8.0333,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.74,
+"speed": 4.44,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 964,
+"hat_open": 0.0,
+"i": 88,
+"matched": "D:125"
+},
+{
+"t": 8.1333,
+"t_off": 8.1333,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.78,
+"speed": 5.04,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 976,
+"hat_open": 1.0,
+"i": 89,
+"matched": "D:127"
+},
+{
+"t": 8.1333,
+"t_off": 8.1333,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.3,
+"speed": 3.48,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 976,
+"i": 90,
+"matched": "D:126"
+},
+{
+"t": 8.2333,
+"t_off": 8.2333,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 988,
+"i": 91,
+"matched": "D:128"
+},
+{
+"t": 8.3333,
+"t_off": 8.3333,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.66,
+"speed": 3.72,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 1000,
+"hat_open": 0.0,
+"i": 92,
+"matched": "D:129"
+},
+{
+"t": 8.4,
+"t_off": 8.4083,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.75,
+"speed": 2.52,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.008,
+"path_m": 0.002,
+"sounding": true,
+"frame": 1008,
+"hat_open": 0.0,
+"i": 93,
+"matched": "D:130"
+},
+{
+"t": 8.5,
+"t_off": 8.5083,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.77,
+"speed": 3.36,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.008,
+"path_m": 0.002,
+"sounding": true,
+"frame": 1020,
+"hat_open": 1.0,
+"i": 94,
+"matched": "D:132"
+},
+{
+"t": 8.5,
+"t_off": 8.5,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 1020,
+"i": 95,
+"matched": "D:131",
+"vel_est": 112
+},
+{
+"t": 8.6,
+"t_off": 8.6,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 1032,
+"pedal_note_first": "D:133",
+"i": 96,
+"matched": "D:133"
+},
+{
+"t": 8.6667,
+"t_off": 8.6667,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.77,
+"speed": 3.48,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 1040,
+"hat_open": 0.0,
+"i": 97,
+"matched": "D:134"
+},
+{
+"t": 8.8667,
+"t_off": 8.8667,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 0.76,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 1064,
+"i": 98,
+"matched": "D:137"
+},
+{
+"t": 9.0292,
+"t_off": 9.0333,
+"row": "crash",
+"limb": "R",
+"part": "tip",
+"kind": "pass-through",
+"zone": "edge",
+"radius_frac": 0.91,
+"speed": 3.152,
+"unit": "m/s",
+"depth_mm": 10.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 1084,
+"ctx": {
+"direction": "from below",
+"inside_rim_mm": 19.1
+},
+"i": 99,
+"matched": "D:138"
+},
+{
+"t": 9.0333,
+"t_off": 9.0333,
+"row": "crash",
+"limb": "R",
+"part": "shaft",
+"kind": "shaft strike",
+"zone": "shaft at 94 % of the stick",
+"speed": 0.652,
+"unit": "m/s into the piece",
+"depth_mm": 5.4,
+"dwell_s": 0.0,
+"sounding": true,
+"frame": 1084,
+"i": 100,
+"matched": null,
+"role": "extra",
+"between": {
+"prev": {
+"t": 9.0292,
+"row": "CRASH",
+"ago_s": 0.004
+},
+"next": {
+"t": 9.2333,
+"row": "CRASH",
+"in_s": 0.2
+}
+},
+"cause": "a passing stroke: the R stick's shaft (at 94 % of the stick) is 5.4 mm inside the CRASH's edge for 0 ms while the hand travels from CRASH (0.004 s before) and lifts for CRASH (0.2 s later)"
+},
+{
+"t": 9.0333,
+"t_off": 9.0417,
+"row": "hat",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.64,
+"speed": 2.16,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.008,
+"path_m": 0.002,
+"sounding": true,
+"frame": 1084,
+"hat_open": 1.0,
+"i": 101,
+"matched": "D:139"
+},
+{
+"t": 9.1333,
+"t_off": 9.1333,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 25.2,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": false,
+"frame": 1096,
+"i": 102,
+"matched": "D:140"
+},
+{
+"t": 9.2333,
+"t_off": 9.2417,
+"row": "crash",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "edge",
+"radius_frac": 0.8,
+"speed": 4.493,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.008,
+"path_m": 0.0,
+"sounding": true,
+"frame": 1108,
+"i": 103,
+"matched": "D:143"
+},
+{
+"t": 9.2333,
+"t_off": 9.2333,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 1108,
+"i": 104,
+"matched": "D:141",
+"vel_est": 112
+},
+{
+"t": 9.5,
+"t_off": 9.5,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.8,
+"speed": 2.76,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 1140,
+"hat_open": 0.0,
+"i": 105,
+"matched": "D:144"
+},
+{
+"t": 9.7667,
+"t_off": 9.775,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.8,
+"speed": 3.72,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.008,
+"path_m": 0.001,
+"sounding": true,
+"frame": 1172,
+"hat_open": 1.0,
+"i": 106,
+"matched": "D:146"
+},
+{
+"t": 9.9333,
+"t_off": 9.9333,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 26.28,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": true,
+"frame": 1192,
+"i": 107,
+"matched": null,
+"role": "articulation",
+"cause": "the foot shuts the hi-hat for the closed stroke that follows within 80 ms: an articulation of that stroke, not a note"
+},
+{
+"t": 9.9667,
+"t_off": 9.9667,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.69,
+"speed": 2.16,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 1196,
+"hat_open": 0.0,
+"i": 108,
+"matched": "D:148"
+},
+{
+"t": 9.9667,
+"t_off": 9.9667,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 1196,
+"i": 109,
+"matched": "D:147",
+"vel_est": 112
+},
+{
+"t": 10.1333,
+"t_off": 10.1333,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.7,
+"speed": 3.6,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 1216,
+"hat_open": 1.0,
+"i": 110,
+"matched": "D:150"
+},
+{
+"t": 10.3,
+"t_off": 10.3,
+"row": "hatped",
+"limb": "LF",
+"part": "pedal",
+"kind": "stroke",
+"zone": "pedal",
+"speed": 26.28,
+"unit": "1/s",
+"from_open": 1.0,
+"depth_mm": 0.0,
+"sounding": true,
+"under_stick": true,
+"frame": 1236,
+"i": 111,
+"matched": null,
+"role": "articulation",
+"cause": "the foot shuts the hi-hat for the closed stroke that follows within 80 ms: an articulation of that stroke, not a note"
+},
+{
+"t": 10.3333,
+"t_off": 10.3333,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "closed",
+"radius_frac": 0.71,
+"speed": 3.0,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 1240,
+"hat_open": 0.0,
+"i": 112,
+"matched": "D:152"
+},
+{
+"t": 10.3333,
+"t_off": 10.3417,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.45,
+"speed": 5.76,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.008,
+"path_m": 0.001,
+"sounding": true,
+"frame": 1240,
+"i": 113,
+"matched": "D:151"
+},
+{
+"t": 10.5,
+"t_off": 10.5083,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.65,
+"speed": 3.24,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.008,
+"path_m": 0.002,
+"sounding": true,
+"frame": 1260,
+"hat_open": 1.0,
+"i": 114,
+"matched": "D:153"
+},
+{
+"t": 10.6667,
+"t_off": 10.6667,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1162.8,
+"unit": "deg/s",
+"lift_deg": 52.0,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 1280,
+"i": 115,
+"matched": "D:154",
+"vel_est": 112
+},
+{
+"t": 10.6667,
+"t_off": 10.6667,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.44,
+"speed": 5.4,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 1280,
+"i": 116,
+"matched": "D:155"
+},
+{
+"t": 11.0333,
+"t_off": 11.0333,
+"row": "kick",
+"limb": "RF",
+"part": "beater",
+"kind": "stroke",
+"zone": "beater",
+"speed": 1228.8,
+"unit": "deg/s",
+"lift_deg": 54.9,
+"depth_mm": 0.0,
+"sounding": true,
+"frame": 1324,
+"i": 117,
+"matched": "D:156",
+"vel_est": 123
+},
+{
+"t": 11.2333,
+"t_off": 11.2333,
+"row": "hat",
+"limb": "R",
+"part": "tip",
+"kind": "stroke",
+"zone": "open",
+"radius_frac": 0.77,
+"speed": 3.36,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 1348,
+"hat_open": 1.0,
+"i": 118,
+"matched": "D:158"
+},
+{
+"t": 11.2333,
+"t_off": 11.2333,
+"row": "snare",
+"limb": "L",
+"part": "tip",
+"kind": "stroke",
+"zone": "head",
+"radius_frac": 0.34,
+"speed": 5.16,
+"unit": "m/s",
+"depth_mm": -0.0,
+"dwell_s": 0.0,
+"path_m": 0.0,
+"sounding": true,
+"frame": 1348,
+"i": 119,
+"matched": "D:157"
+}
+],
+"silent": [
+{
+"t": 11.05,
+"row": "hatped",
+"limb": "LF",
+"label": "heel tap"
+}
+],
+"source_file": "inspector/data/drums2/body_remedy_clip_v001.json",
+"measure": {
+"resolution_ms": 8.3,
+"tip_touch_mm": 3.0,
+"rim_margin_mm": 4.0,
+"shaft_min_mm": 1.0,
+"shaft_sounding_mm": 3.0,
+"note": "tip, shaft, beater and hi-hat contacts found on every piece from the solved 120 Hz motion; speed = approach along the piece's normal"
+},
+"events": [
+{
+"t": 0.1492,
+"cat": "missed",
+"limit": "speed ceiling",
+"limb": "R",
+"sub": null,
+"src": "D:18",
+"gesture": null
+},
+{
+"t": 0.2061,
+"cat": "missed",
+"limit": "reach",
+"limb": "L",
+"sub": null,
+"src": "D:19",
+"gesture": null
+},
+{
+"t": 0.5,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:20",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 0.6,
+"cat": "missed",
+"limit": "speed ceiling",
+"limb": "R",
+"sub": null,
+"src": "D:21",
+"gesture": null
+},
+{
+"t": 0.6,
+"cat": "missed",
+"limit": "continuity",
+"limb": "L",
+"sub": null,
+"src": "D:22",
+"gesture": null
+},
+{
+"t": 0.6,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:23",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 0.7667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:25",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 0.7818,
+"cat": "missed",
+"limit": "end-point speed",
+"limb": "L",
+"sub": null,
+"src": "D:24",
+"gesture": null
+},
+{
+"t": 0.8667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:27",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 0.9636,
+"cat": "missed",
+"limit": "collision",
+"limb": "L",
+"sub": null,
+"src": "D:26",
+"gesture": null
+},
+{
+"t": 0.9667,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:28",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.0333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:29",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.1333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:30",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.2333,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:31",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.2333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:32",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.3333,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:33",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.4,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:34",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.6,
+"cat": "missed",
+"limit": "continuity",
+"limb": "R",
+"sub": null,
+"src": "D:35",
+"gesture": null
+},
+{
+"t": 1.6,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:36",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.6,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:37",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.6667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:38",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.7667,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:39",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.8667,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:40",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 1.9667,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:41",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.0545,
+"cat": "missed",
+"limit": "speed ceiling",
+"limb": "L",
+"sub": null,
+"src": "D:42",
+"gesture": null
+},
+{
+"t": 2.1333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:44",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.1455,
+"cat": "missed",
+"limit": "continuity",
+"limb": "R",
+"sub": null,
+"src": "D:43",
+"gesture": null
+},
+{
+"t": 2.2333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:45",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.3333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:46",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.3333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:47",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.4,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:48",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.5,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:49",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.6667,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:51",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.6667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:52",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.6909,
+"cat": "missed",
+"limit": "continuity",
+"limb": "L",
+"sub": null,
+"src": "D:50",
+"gesture": null
+},
+{
+"t": 2.7667,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:53",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 2.8667,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:54",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 3.0333,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:57",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 3.0545,
+"cat": "missed",
+"limit": "continuity",
+"limb": "R",
+"sub": null,
+"src": "D:55",
+"gesture": null
+},
+{
+"t": 3.1333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:58",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 3.1455,
+"cat": "missed",
+"limit": "speed ceiling",
+"limb": "L",
+"sub": null,
+"src": "D:56",
+"gesture": null
+},
+{
+"t": 3.2333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:59",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 3.3333,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:60",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 3.4,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:61",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 3.5,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:63",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 3.5091,
+"cat": "missed",
+"limit": "continuity",
+"limb": "L",
+"sub": null,
+"src": "D:62",
+"gesture": null
+},
+{
+"t": 3.6,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:64",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 3.6667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:65",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 3.7667,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:66",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 3.7667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:67",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 3.8667,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:68",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 3.9667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:69",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 4.0333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:70",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 4.1333,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:71",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 4.1333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:72",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 4.2333,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:73",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 4.3333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:74",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 4.5,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:76",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 4.5,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:77",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 4.5091,
+"cat": "missed",
+"limit": "continuity",
+"limb": "R",
+"sub": null,
+"src": "D:75",
+"gesture": null
+},
+{
+"t": 4.6,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:78",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 4.7667,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:80",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 4.7818,
+"cat": "missed",
+"limit": "continuity",
+"limb": "L",
+"sub": null,
+"src": "D:79",
+"gesture": null
+},
+{
+"t": 4.8667,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:81",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 4.8667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:82",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 4.9667,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:83",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 5.1333,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:85",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 5.1455,
+"cat": "missed",
+"limit": "continuity",
+"limb": "R",
+"sub": null,
+"src": "D:84",
+"gesture": null
+},
+{
+"t": 5.2333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:86",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 5.2333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:87",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 5.4,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:89",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 5.4182,
+"cat": "missed",
+"limit": "continuity",
+"limb": "R",
+"sub": null,
+"src": "D:88",
+"gesture": null
+},
+{
+"t": 5.5,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:90",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 5.6,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:91",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 5.6,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:92",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 5.7667,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:93",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 5.7667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:94",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 5.8667,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:95",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 5.9667,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:96",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 5.9667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:97",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 6.1333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:98",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 6.1417,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:99",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 6.3333,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:100",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 6.4,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:103",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 6.4182,
+"cat": "missed",
+"limit": "speed ceiling",
+"limb": "R",
+"sub": null,
+"src": "D:101",
+"gesture": null
+},
+{
+"t": 6.4182,
+"cat": "missed",
+"limit": "continuity",
+"limb": "L",
+"sub": null,
+"src": "D:102",
+"gesture": null
+},
+{
+"t": 6.5,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:104",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 6.6,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:105",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 6.7667,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:108",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 6.7818,
+"cat": "missed",
+"limit": "continuity",
+"limb": "L",
+"sub": null,
+"src": "D:106",
+"gesture": null
+},
+{
+"t": 6.7818,
+"cat": "missed",
+"limit": "continuity",
+"limb": "R",
+"sub": null,
+"src": "D:107",
+"gesture": null
+},
+{
+"t": 6.8667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:109",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 7.0333,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:111",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 7.0333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:112",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 7.0545,
+"cat": "missed",
+"limit": "continuity",
+"limb": "L",
+"sub": null,
+"src": "D:110",
+"gesture": null
+},
+{
+"t": 7.1333,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:113",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 7.2333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:114",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 7.4,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:117",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 7.4182,
+"cat": "missed",
+"limit": "continuity",
+"limb": "R",
+"sub": null,
+"src": "D:115",
+"gesture": null
+},
+{
+"t": 7.5,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:118",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 7.5091,
+"cat": "missed",
+"limit": "speed ceiling",
+"limb": "L",
+"sub": null,
+"src": "D:116",
+"gesture": null
+},
+{
+"t": 7.6,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:119",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 7.6667,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:120",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 7.7667,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:121",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 7.7667,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:122",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 7.8667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:123",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 7.9667,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:124",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 8.0333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:125",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 8.1333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:126",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 8.1333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:127",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 8.2333,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:128",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 8.3333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:129",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 8.4,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:130",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 8.5,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:131",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 8.5,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:132",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 8.6,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:133",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 8.6667,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:134",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 8.8667,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:137",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 8.8727,
+"cat": "missed",
+"limit": "continuity",
+"limb": "R",
+"sub": null,
+"src": "D:135",
+"gesture": null
+},
+{
+"t": 8.9636,
+"cat": "missed",
+"limit": "collision",
+"limb": "L",
+"sub": null,
+"src": "D:136",
+"gesture": null
+},
+{
+"t": 9.0292,
+"cat": "wrong",
+"limb": "R",
+"sub": null,
+"src": "D:138",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 9.0333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:139",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 9.0333,
+"cat": "extra",
+"limb": "R",
+"sub": null,
+"contact": 100
+},
+{
+"t": 9.1333,
+"cat": "perfect",
+"limb": "LF",
+"sub": null,
+"src": "D:140",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 9.2333,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:141",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 9.2333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:143",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 9.3273,
+"cat": "missed",
+"limit": "collision",
+"limb": "L",
+"sub": null,
+"src": "D:142",
+"gesture": null
+},
+{
+"t": 9.5,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:144",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 9.7667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:146",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 9.8727,
+"cat": "missed",
+"limit": "collision",
+"limb": "L",
+"sub": null,
+"src": "D:145",
+"gesture": null
+},
+{
+"t": 9.9667,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:147",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 9.9667,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:148",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 10.1333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:150",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 10.2364,
+"cat": "missed",
+"limit": "collision",
+"limb": "L",
+"sub": null,
+"src": "D:149",
+"gesture": null
+},
+{
+"t": 10.3333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:151",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 10.3333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:152",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 10.5,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:153",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 10.6667,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:154",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 10.6667,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:155",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 11.0333,
+"cat": "perfect",
+"limb": "RF",
+"sub": null,
+"src": "D:156",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 11.2333,
+"cat": "perfect",
+"limb": "L",
+"sub": null,
+"src": "D:157",
+"softer": false,
+"simplified": false,
+"gesture": null
+},
+{
+"t": 11.2333,
+"cat": "perfect",
+"limb": "R",
+"sub": null,
+"src": "D:158",
+"softer": false,
+"simplified": false,
+"gesture": null
+}
+],
+"windows": {
+"perfect_ms": 33.3,
+"good_ms": 66.7,
+"match_ms": 100.0,
+"statement": "PERFECT <= 33 ms (1 frame) \u00b7 GOOD <= 67 ms (2) \u00b7 EARLY / LATE <= 100 ms (3) \u00b7 beyond: MISSED + EXTRA"
+},
+"tally": {
+"all": {
+"perfect": 111,
+"good": 0,
+"early": 0,
+"late": 0,
+"softer": 0,
+"simplified": 0,
+"wrong": 1,
+"missed": 29,
+"extra": 1,
+"brush": 0,
+"missed_by": {
+"speed ceiling": 6,
+"reach": 1,
+"continuity": 16,
+"end-point speed": 1,
+"collision": 5
+},
+"hits": 111,
+"notes": 141,
+"accuracy_pct": 78.7,
+"splay_frames": 217,
+"role_flips": 0,
+"swaps": 13,
+"steals": 0,
+"bounce_splits": 8,
+"zone_frames": 42,
+"straight_arm_frames": 0
+},
+"by_limb": {
+"R": {
+"perfect": 40,
+"good": 0,
+"early": 0,
+"late": 0,
+"softer": 0,
+"simplified": 0,
+"wrong": 1,
+"missed": 12,
+"extra": 1,
+"brush": 0,
+"missed_by": {
+"speed ceiling": 3,
+"continuity": 9
+},
+"hits": 40,
+"notes": 53,
+"accuracy_pct": 75.5
+},
+"L": {
+"perfect": 34,
+"good": 0,
+"early": 0,
+"late": 0,
+"softer": 0,
+"simplified": 0,
+"wrong": 0,
+"missed": 17,
+"extra": 0,
+"brush": 0,
+"missed_by": {
+"reach": 1,
+"continuity": 7,
+"end-point speed": 1,
+"collision": 5,
+"speed ceiling": 3
+},
+"hits": 34,
+"notes": 51,
+"accuracy_pct": 66.7
+},
+"RF": {
+"perfect": 16,
+"good": 0,
+"early": 0,
+"late": 0,
+"softer": 0,
+"simplified": 0,
+"wrong": 0,
+"missed": 0,
+"extra": 0,
+"brush": 0,
+"missed_by": {},
+"hits": 16,
+"notes": 16,
+"accuracy_pct": 100.0
+},
+"LF": {
+"perfect": 21,
+"good": 0,
+"early": 0,
+"late": 0,
+"softer": 0,
+"simplified": 0,
+"wrong": 0,
+"missed": 0,
+"extra": 0,
+"brush": 0,
+"missed_by": {},
+"hits": 21,
+"notes": 21,
+"accuracy_pct": 100.0
+}
+},
+"layers": 0,
+"by_sub": null,
+"offset_ms": {
+"n": 112,
+"mean": 1.2,
+"median": 0.0,
+"min": -15.1,
+"max": 74.7,
+"abs_max": 74.7
+},
+"gestures": 0,
+"notes_in_gestures": 0,
+"articulations": 7,
+"in_drag": 0,
+"short": 0,
+"zone_off": 0
+},
+"plan_vs_measured": {
+"plan": {
+"played": 108,
+"misplayed": 3,
+"cut": 30
+},
+"measured": {
+"sounded_on_its_row": 111,
+"wrong": 1,
+"missed": 29
+},
+"disagreements": [
+{
+"id": "D:138",
+"t": 8.95454,
+"row": "HI-HAT",
+"plan": "cut",
+"plan_limit": "continuity",
+"measured": "wrong",
+"note": "the R-417 log cut this note (continuity); the motion still sounds its row here (another note's stroke covers it)"
+}
+],
+"softer": {
+"plan": 3,
+"measured": 0,
+"plan_softer_measured_softer": 0,
+"measured_softer_not_in_plan": []
+}
+},
+"vel_models": {
+"1/s": {
+"n": 21,
+"r": -0.02,
+"usable": false,
+"why": "the measured approach speed does not rise with the MIDI velocity: softer is not judged for this kind of contact"
+},
+"deg/s": {
+"n": 16,
+"r": 1.0,
+"speed_per_velocity": 6.0,
+"speed_at_zero": 490.8,
+"median_abs_error_velocity": 0.0,
+"usable": true,
+"why": null
+},
+"m/s": {
+"n": 74,
+"r": 0.38,
+"speed_per_velocity": 0.0206,
+"speed_at_zero": 1.8799,
+"median_abs_error_velocity": 22.9,
+"usable": false,
+"why": "the measured approach speed follows the MIDI velocity too loosely (median error over 20 velocity steps): softer is not judged for this kind of contact"
+},
+"m/s into the piece": {
+"n": 0,
+"usable": false,
+"why": "too few hits or no spread"
+}
+},
+"judge_version": "judge_v2 (review3/judge.py + pedal-first matching + notes before the clip excluded) + R-557 splay tally",
+"judge_v2_fixes": {
+"pedal closes given back to their pedal note": 4
+},
+"splay": {
+"frames": 217,
+"frames_total": 341,
+"inward_L": 216,
+"inward_R": 2,
+"parallel": 0,
+"pieces": {
+"L hat": 213,
+"L snare": 3,
+"R tom3": 1,
+"R kick": 1
+},
+"runs": [
+{
+"f0": 11,
+"f1": 44,
+"kind": "mixed"
+},
+{
+"f0": 50,
+"f1": 66,
+"kind": "inward L"
+},
+{
+"f0": 80,
+"f1": 85,
+"kind": "inward L"
+},
+{
+"f0": 91,
+"f1": 109,
+"kind": "inward L"
+},
+{
+"f0": 117,
+"f1": 131,
+"kind": "inward L"
+},
+{
+"f0": 143,
+"f1": 151,
+"kind": "inward L"
+},
+{
+"f0": 160,
+"f1": 169,
+"kind": "inward L"
+},
+{
+"f0": 189,
+"f1": 240,
+"kind": "inward L"
+},
+{
+"f0": 248,
+"f1": 302,
+"kind": "inward L"
+}
+],
+"yaw_L_median": -22.6,
+"yaw_R_median": 82.8
+},
+"difficulty": {
+"easy notes": 52,
+"easy wrong": 1,
+"easy missed": 16,
+"hard notes": 52,
+"hard wrong": 0,
+"hard missed": 13
+},
+"habits": {
+"roles": {
+"hat": "R",
+"snare": "L"
+},
+"fill_bars": [
+5
+],
+"bounce_only_fill_bars": [],
+"bounces": [
+{
+"t": 0.5,
+"piece": "hat",
+"hands": "L+R",
+"notes": 2
+},
+{
+"t": 0.68182,
+"piece": "hat",
+"hands": "L+R",
+"notes": 2
+},
+{
+"t": 1.95454,
+"piece": "hat",
+"hands": "L+R",
+"notes": 3
+},
+{
+"t": 3.40909,
+"piece": "hat",
+"hands": "L+R",
+"notes": 3
+},
+{
+"t": 4.86363,
+"piece": "hat",
+"hands": "L+R",
+"notes": 3
+},
+{
+"t": 5.40909,
+"piece": "hat",
+"hands": "L+R",
+"notes": 2
+},
+{
+"t": 6.31818,
+"piece": "hat",
+"hands": "R",
+"notes": 2
+},
+{
+"t": 6.49999,
+"piece": "hat",
+"hands": "L+R",
+"notes": 2
+},
+{
+"t": 7.77272,
+"piece": "hat",
+"hands": "L+R",
+"notes": 3
+},
+{
+"t": 5.77272,
+"piece": "snare",
+"hands": "L",
+"notes": 3
+}
+],
+"role_flips": [],
+"swaps": [
+{
+"t": 1.13636,
+"piece": "hat",
+"hand": "L",
+"role": "R",
+"notes": 1
+},
+{
+"t": 1.40909,
+"piece": "hat",
+"hand": "L",
+"role": "R",
+"notes": 1
+},
+{
+"t": 1.77273,
+"piece": "hat",
+"hand": "L",
+"role": "R",
+"notes": 2
+},
+{
+"t": 2.59091,
+"piece": "hat",
+"hand": "L",
+"role": "R",
+"notes": 1
+},
+{
+"t": 2.86363,
+"piece": "hat",
+"hand": "L",
+"role": "R",
+"notes": 1
+},
+{
+"t": 3.22727,
+"piece": "hat",
+"hand": "L",
+"role": "R",
+"notes": 2
+},
+{
+"t": 4.04545,
+"piece": "hat",
+"hand": "L",
+"role": "R",
+"notes": 1
+},
+{
+"t": 4.31818,
+"piece": "hat",
+"hand": "L",
+"role": "R",
+"notes": 1
+},
+{
+"t": 4.68181,
+"piece": "hat",
+"hand": "L",
+"role": "R",
+"notes": 1
+},
+{
+"t": 5.5909,
+"piece": "hat",
+"hand": "L",
+"role": "R",
+"notes": 1
+},
+{
+"t": 6.95454,
+"piece": "hat",
+"hand": "L",
+"role": "R",
+"notes": 1
+},
+{
+"t": 7.22727,
+"piece": "hat",
+"hand": "L",
+"role": "R",
+"notes": 1
+},
+{
+"t": 7.5909,
+"piece": "hat",
+"hand": "L",
+"role": "R",
+"notes": 2
+}
+],
+"steals": [],
+"bounce_splits": [
+{
+"t": 0.5,
+"piece": "hat",
+"notes": 2,
+"hands": "L+R"
+},
+{
+"t": 0.68182,
+"piece": "hat",
+"notes": 2,
+"hands": "L+R"
+},
+{
+"t": 1.95454,
+"piece": "hat",
+"notes": 3,
+"hands": "L+R"
+},
+{
+"t": 3.40909,
+"piece": "hat",
+"notes": 3,
+"hands": "L+R"
+},
+{
+"t": 4.86363,
+"piece": "hat",
+"notes": 3,
+"hands": "L+R"
+},
+{
+"t": 5.40909,
+"piece": "hat",
+"notes": 2,
+"hands": "L+R"
+},
+{
+"t": 6.49999,
+"piece": "hat",
+"notes": 2,
+"hands": "L+R"
+},
+{
+"t": 7.77272,
+"piece": "hat",
+"notes": 3,
+"hands": "L+R"
+}
+],
+"counts": {
+"role_flips": 0,
+"swaps": 13,
+"steals": 0,
+"bounce_splits": 8,
+"bounces": 10,
+"fill_bars": 1,
+"bounce_only_fill_bars": 0,
+"hand_notes": 104
+}
+},
+"remedy": {
+"key": "clip",
+"tag": "v001",
+"control": false,
+"preset": "hh_out30_down65",
+"passes": 17,
+"seconds": 1328.4,
+"fate": {
+"midi_notes": 141,
+"layers": 0,
+"played": 108,
+"misplayed": 3,
+"cut": 30,
+"misplayed_by": {
+"continuity": 2,
+"collision": 1
+},
+"cut_by": {
+"speed ceiling": 6,
+"reach": 1,
+"continuity": 17,
+"end-point speed": 1,
+"collision": 5
+},
+"misplayed_how": {
+"softer": 3
+},
+"redealt": 1,
+"pct_played": 76.6,
+"pct_misplayed": 2.1,
+"pct_cut": 21.3
+},
+"stats": {
+"W1 lift the waiting stick tried": 13,
+"P1 raise the arc tried": 17,
+"W1 lift the waiting stick kept": 3,
+"P1 raise the arc kept": 9,
+"P1 raise the arc reverted": 8,
+"W1 lift the waiting stick reverted": 10,
+"guard G3 skipped a larger step": 1,
+"guard excused run": 5,
+"guard G2 fired": 2,
+"guard reverted P1 raise the arc": 1,
+"guard reverted W1 lift the waiting stick": 2,
+"P2 rise first, then over tried": 1,
+"P2 rise first, then over kept": 1
+},
+"boosts_kept": {
+"L 0.5 crash": {
+"wait": 0.02
+},
+"L 5.233 snare": {
+"arc": 0.03
+},
+"L 7.4 snare": {
+"arc": 0.03
+},
+"L 9.233 snare": {
+"arc": 0.06
+},
+"L 9.767 snare": {
+"arc": 0.06,
+"wait": 0.02
+},
+"L 10.133 snare": {
+"wait": 0.04,
+"arc": 0.0
+},
+"L 0.867 snare": {
+"wait": 0.02
+},
+"L 4.5 snare": {
+"arc": 0.03
+},
+"L 0.867 tom1": {
+"wait": 0.02,
+"arc": 0.03
+},
+"L 10.333 snare": {
+"wait": 0.02
+},
+"R 9.233 crash": {
+"arc": 0.03,
+"over": 0.03,
+"wait": 0.0
+},
+"R 9.5 hat": {
+"arc": 0.06
+}
+},
+"loop": [
+{
+"pass_": 0,
+"phys_frames": {
+"reach": 15,
+"continuity": 36,
+"end-point speed": 17,
+"speed ceiling": 8,
+"collision": 11
+},
+"not_struck": 1,
+"changes": 31,
+"solve_s": 75,
+"plan_cuts": 0,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [
+{
+"limit": "not struck on its frame",
+"check": "sync",
+"frames": [
+12,
+12
+],
+"n": 1
+}
+],
+"remedies": [
+{
+"row": "W1 lift the waiting stick",
+"t": 0.25,
+"limb": "L",
+"step_m": 0.02
+},
+{
+"row": "P1 raise the arc",
+"t": 5.183,
+"limb": "L",
+"step_m": 0.03
+},
+{
+"row": "P1 raise the arc",
+"t": 7.35,
+"limb": "L",
+"step_m": 0.03
+},
+{
+"row": "P1 raise the arc",
+"t": 9.075,
+"limb": "L",
+"step_m": 0.03
+},
+{
+"row": "P1 raise the arc",
+"t": 9.325,
+"limb": "L",
+"step_m": 0.03
+},
+{
+"row": "W1 lift the waiting stick",
+"t": 9.946,
+"limb": "L",
+"step_m": 0.02
+}
+]
+},
+{
+"pass_": 1,
+"phys_frames": {
+"reach": 16,
+"continuity": 33,
+"end-point speed": 17,
+"speed ceiling": 8,
+"collision": 6
+},
+"not_struck": 1,
+"changes": 29,
+"solve_s": 74,
+"plan_cuts": 0,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [
+{
+"limit": "not struck on its frame",
+"check": "sync",
+"frames": [
+12,
+12
+],
+"n": 1
+}
+],
+"remedies": [
+{
+"row": "P1 raise the arc",
+"t": 9.075,
+"limb": "L",
+"step_m": 0.06
+},
+{
+"row": "P1 raise the arc",
+"t": 9.325,
+"limb": "L",
+"step_m": 0.06
+},
+{
+"row": "W1 lift the waiting stick",
+"t": 9.946,
+"limb": "L",
+"step_m": 0.04
+}
+]
+},
+{
+"pass_": 2,
+"phys_frames": {
+"reach": 24,
+"speed ceiling": 3,
+"continuity": 4,
+"collision": 33
+},
+"not_struck": 0,
+"changes": 9,
+"solve_s": 66,
+"plan_cuts": 22,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [
+{
+"limit": "reach",
+"check": "C-IK-2 arm L",
+"frames": [
+31,
+54
+],
+"n": 24
+}
+],
+"remedies": [
+{
+"row": "W1 lift the waiting stick",
+"t": 0.183,
+"limb": "L",
+"step_m": 0.02
+},
+{
+"row": "W1 lift the waiting stick",
+"t": 0.604,
+"limb": "L",
+"step_m": 0.04
+},
+{
+"row": "P1 raise the arc",
+"t": 4.454,
+"limb": "L",
+"step_m": 0.03
+},
+{
+"row": "W1 lift the waiting stick",
+"t": 9.933,
+"limb": "L",
+"step_m": 0.06
+}
+]
+},
+{
+"pass_": 3,
+"phys_frames": {
+"reach": 8,
+"end-point speed": 11,
+"continuity": 2,
+"collision": 6
+},
+"not_struck": 0,
+"changes": 6,
+"solve_s": 67,
+"plan_cuts": 23,
+"a1p": 0,
+"excused": 2,
+"phase": "geometry",
+"unresolved": [
+{
+"limit": "reach",
+"check": "C-IK-2 arm L",
+"frames": [
+1,
+8
+],
+"n": 8
+},
+{
+"limit": "collision",
+"check": "C-COL-1 body",
+"frames": [
+1118,
+1120
+],
+"n": 3
+}
+],
+"remedies": [
+{
+"row": "P1 raise the arc",
+"t": 9.921,
+"limb": "L",
+"step_m": 0.03
+}
+]
+},
+{
+"pass_": 4,
+"phys_frames": {
+"reach": 8,
+"end-point speed": 11,
+"continuity": 2,
+"collision": 6
+},
+"not_struck": 0,
+"changes": 6,
+"solve_s": 67,
+"plan_cuts": 24,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [
+{
+"limit": "reach",
+"check": "C-IK-2 arm L",
+"frames": [
+1,
+8
+],
+"n": 8
+}
+],
+"remedies": [
+{
+"row": "W1 lift the waiting stick",
+"t": 9.108,
+"limb": "L",
+"step_m": 0.02
+},
+{
+"row": "W1 lift the waiting stick",
+"t": 9.325,
+"limb": "L",
+"step_m": 0.04
+}
+]
+},
+{
+"pass_": 5,
+"phys_frames": {
+"reach": 24,
+"speed ceiling": 1,
+"collision": 30
+},
+"not_struck": 0,
+"changes": 5,
+"solve_s": 67,
+"plan_cuts": 25,
+"a1p": 0,
+"excused": 1,
+"phase": "geometry",
+"unresolved": [
+{
+"limit": "reach",
+"check": "C-IK-2 arm L",
+"frames": [
+31,
+54
+],
+"n": 24
+},
+{
+"limit": "collision",
+"check": "C-COL-1 body",
+"frames": [
+18,
+26
+],
+"n": 9
+},
+{
+"limit": "collision",
+"check": "C-COL-1 body",
+"frames": [
+1118,
+1120
+],
+"n": 3
+}
+],
+"remedies": [
+{
+"row": "W1 lift the waiting stick",
+"t": 9.108,
+"limb": "L",
+"step_m": 0.06
+}
+]
+},
+{
+"pass_": 6,
+"phys_frames": {
+"reach": 24,
+"speed ceiling": 1,
+"collision": 29
+},
+"not_struck": 0,
+"changes": 5,
+"solve_s": 70,
+"plan_cuts": 26,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [
+{
+"limit": "reach",
+"check": "C-IK-2 arm L",
+"frames": [
+30,
+53
+],
+"n": 24
+},
+{
+"limit": "collision",
+"check": "C-COL-1 body",
+"frames": [
+18,
+26
+],
+"n": 9
+},
+{
+"limit": "collision",
+"check": "C-COL-1 body",
+"frames": [
+1118,
+1120
+],
+"n": 3
+}
+],
+"remedies": []
+},
+{
+"pass_": 7,
+"phys_frames": {
+"reach": 18,
+"speed ceiling": 3,
+"collision": 49
+},
+"not_struck": 0,
+"changes": 5,
+"solve_s": 75,
+"plan_cuts": 27,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [
+{
+"limit": "reach",
+"check": "C-IK-2 arm L",
+"frames": [
+34,
+51
+],
+"n": 18
+},
+{
+"limit": "collision",
+"check": "C-COL-1 body",
+"frames": [
+1118,
+1120
+],
+"n": 3
+}
+],
+"remedies": [
+{
+"row": "W1 lift the waiting stick",
+"t": 0.254,
+"limb": "L",
+"step_m": 0.02
+},
+{
+"row": "P1 raise the arc",
+"t": 0.742,
+"limb": "L",
+"step_m": 0.03
+},
+{
+"row": "P1 raise the arc",
+"t": 10.037,
+"limb": "L",
+"step_m": 0.06
+}
+]
+},
+{
+"pass_": 8,
+"phys_frames": {
+"joint range": 1,
+"collision": 22
+},
+"not_struck": 0,
+"changes": 4,
+"solve_s": 65,
+"plan_cuts": 28,
+"a1p": 0,
+"excused": 1,
+"phase": "geometry",
+"unresolved": [
+{
+"limit": "collision",
+"check": "C-COL-1 body",
+"frames": [
+1093,
+1093
+],
+"n": 1
+},
+{
+"limit": "collision",
+"check": "C-COL-1 body",
+"frames": [
+1118,
+1120
+],
+"n": 3
+}
+],
+"remedies": [
+{
+"row": "P1 raise the arc",
+"t": 0.787,
+"limb": "L",
+"step_m": 0.06
+},
+{
+"row": "P1 raise the arc",
+"t": 0.992,
+"limb": "L",
+"step_m": 0.03
+}
+]
+},
+{
+"pass_": 9,
+"phys_frames": {
+"collision": 18
+},
+"not_struck": 0,
+"changes": 6,
+"solve_s": 67,
+"plan_cuts": 29,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [],
+"remedies": [
+{
+"row": "P1 raise the arc",
+"t": 0.996,
+"limb": "L",
+"step_m": 0.06
+},
+{
+"row": "W1 lift the waiting stick",
+"t": 9.108,
+"limb": "L",
+"step_m": 0.02
+},
+{
+"row": "W1 lift the waiting stick",
+"t": 9.325,
+"limb": "L",
+"step_m": 0.04
+}
+]
+},
+{
+"pass_": 10,
+"phys_frames": {
+"collision": 4
+},
+"not_struck": 0,
+"changes": 3,
+"solve_s": 73,
+"plan_cuts": 30,
+"a1p": 0,
+"excused": 2,
+"phase": "geometry",
+"unresolved": [],
+"remedies": []
+},
+{
+"pass_": 11,
+"phys_frames": {
+"collision": 4
+},
+"not_struck": 0,
+"changes": 2,
+"solve_s": 92,
+"plan_cuts": 30,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [],
+"remedies": [
+{
+"row": "P1 raise the arc",
+"t": 9.108,
+"limb": "R",
+"step_m": 0.03
+},
+{
+"row": "P1 raise the arc",
+"t": 9.325,
+"limb": "R",
+"step_m": 0.03
+}
+]
+},
+{
+"pass_": 12,
+"phys_frames": {
+"collision": 1
+},
+"not_struck": 0,
+"changes": 1,
+"solve_s": 92,
+"plan_cuts": 30,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [],
+"remedies": [
+{
+"row": "P1 raise the arc",
+"t": 9.108,
+"limb": "R",
+"step_m": 0.06
+}
+]
+},
+{
+"pass_": 13,
+"phys_frames": {
+"collision": 1
+},
+"not_struck": 0,
+"changes": 2,
+"solve_s": 88,
+"plan_cuts": 30,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [],
+"remedies": []
+},
+{
+"pass_": 14,
+"phys_frames": {
+"collision": 2
+},
+"not_struck": 0,
+"changes": 2,
+"solve_s": 91,
+"plan_cuts": 30,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [],
+"remedies": [
+{
+"row": "P2 rise first, then over",
+"t": 9.033,
+"limb": "R",
+"step_m": 0.03
+},
+{
+"row": "P1 raise the arc",
+"t": 9.342,
+"limb": "R",
+"step_m": 0.06
+}
+]
+},
+{
+"pass_": 15,
+"phys_frames": {
+"collision": 1
+},
+"not_struck": 0,
+"changes": 1,
+"solve_s": 81,
+"plan_cuts": 30,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry",
+"unresolved": [],
+"remedies": [
+{
+"row": "W1 lift the waiting stick",
+"t": 9.033,
+"limb": "R",
+"step_m": 0.02
+}
+]
+},
+{
+"pass_": 16,
+"phys_frames": {
+"collision": 1
+},
+"not_struck": 0,
+"changes": 0,
+"solve_s": 76,
+"plan_cuts": 30,
+"a1p": 0,
+"excused": 0,
+"phase": "geometry"
+}
+],
+"played_pct": 78.7,
+"collision_cuts": 5,
+"hand_shift": 0,
+"played_clip_hard_frames": 1,
+"played_clip_collisions": {
+"stick.R x crash": {
+"frames": 1,
+"max_mm": 5.1
+}
+},
+"freezes": [
+{
+"limb": "L",
+"t0": 9.2273,
+"t1": 10.1364,
+"span_s": 0.91,
+"notes": 3,
+"mostly": "collision",
+"ids": [
+"D:142",
+"D:145",
+"D:149"
+],
+"rows": [
+"snare"
+]
+}
+],
+"crossed": [
+{
+"id": "D:19",
+"t": 0.1061,
+"zone": "bell",
+"fate": "cut"
+}
+],
+"window": {
+"key": "clip",
+"bpb": 4.0,
+"b0": 97,
+"b1": 103
+},
+"rows": [
+"A1p",
+"D558",
+"G",
+"P1",
+"P2",
+"SPL",
+"T1",
+"W1",
+"W2"
+],
+"cap": 16,
+"per_pass": [],
+"cone": {
+"L 0.1 ride": {
+"vel": 112,
+"gap": 0.133,
+"lift_plan_mm": 270.3,
+"alpha_free_max_deg": 36.0,
+"cone_scale": 0.88,
+"arm_extra": 0.0
+},
+"L 0.5 crash": {
+"vel": 112,
+"gap": 0.4,
+"lift_plan_mm": 270.3,
+"alpha_free_max_deg": 61.7,
+"cone_scale": 0.51,
+"arm_extra": 0.0
+},
+"L 1.133 hat": {
+"vel": 92,
+"gap": 0.533,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 34.3,
+"cone_scale": 0.92,
+"arm_extra": 0.0
+},
+"L 1.767 hat": {
+"vel": 90,
+"gap": 0.167,
+"lift_plan_mm": 197.9,
+"alpha_free_max_deg": 52.5,
+"cone_scale": 0.6,
+"arm_extra": 0.0
+},
+"L 1.967 hat": {
+"vel": 92,
+"gap": 0.2,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 32.2,
+"cone_scale": 1.0,
+"arm_extra": 0.0
+},
+"L 2.333 snare": {
+"vel": 93,
+"gap": 0.2,
+"lift_plan_mm": 207.2,
+"alpha_free_max_deg": 49.9,
+"cone_scale": 0.63,
+"arm_extra": 0.0
+},
+"L 2.6 hat": {
+"vel": 92,
+"gap": 0.267,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 54.6,
+"cone_scale": 0.58,
+"arm_extra": 0.0
+},
+"L 3.233 hat": {
+"vel": 90,
+"gap": 0.367,
+"lift_plan_mm": 197.9,
+"alpha_free_max_deg": 36.9,
+"cone_scale": 0.86,
+"arm_extra": 0.0
+},
+"L 3.4 hat": {
+"vel": 92,
+"gap": 0.167,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 26.3,
+"cone_scale": 1.0,
+"arm_extra": 0.0
+},
+"L 4.033 hat": {
+"vel": 92,
+"gap": 0.267,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 58.3,
+"cone_scale": 0.54,
+"arm_extra": 0.0
+},
+"L 4.667 hat": {
+"vel": 90,
+"gap": 0.167,
+"lift_plan_mm": 197.9,
+"alpha_free_max_deg": 38.2,
+"cone_scale": 0.83,
+"arm_extra": 0.0
+},
+"L 5.4 hat": {
+"vel": 94,
+"gap": 0.167,
+"lift_plan_mm": 210.4,
+"alpha_free_max_deg": 70.8,
+"cone_scale": 0.45,
+"arm_extra": 0.0
+},
+"L 5.6 hat": {
+"vel": 101,
+"gap": 0.2,
+"lift_plan_mm": 232.9,
+"alpha_free_max_deg": 68.3,
+"cone_scale": 0.46,
+"arm_extra": 0.0
+},
+"L 6.333 crash": {
+"vel": 127,
+"gap": 0.2,
+"lift_plan_mm": 325.0,
+"alpha_free_max_deg": 67.8,
+"cone_scale": 0.47,
+"arm_extra": 0.0
+},
+"L 6.967 hat": {
+"vel": 92,
+"gap": 0.3,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 50.8,
+"cone_scale": 0.62,
+"arm_extra": 0.0
+},
+"L 7.6 hat": {
+"vel": 90,
+"gap": 0.367,
+"lift_plan_mm": 197.9,
+"alpha_free_max_deg": 37.5,
+"cone_scale": 0.84,
+"arm_extra": 0.0
+},
+"L 7.767 hat": {
+"vel": 92,
+"gap": 0.167,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 38.0,
+"cone_scale": 0.83,
+"arm_extra": 0.0
+},
+"L 8.4 hat": {
+"vel": 92,
+"gap": 0.267,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 61.0,
+"cone_scale": 0.52,
+"arm_extra": 0.0
+},
+"L 8.867 snare": {
+"vel": 90,
+"gap": 0.2,
+"lift_plan_mm": 197.9,
+"alpha_free_max_deg": 41.8,
+"cone_scale": 0.76,
+"arm_extra": 0.0
+},
+"L 9.033 hat": {
+"vel": 90,
+"gap": 0.167,
+"lift_plan_mm": 197.9,
+"alpha_free_max_deg": 55.0,
+"cone_scale": 0.58,
+"arm_extra": 0.0
+},
+"L 9.233 snare": {
+"vel": 97,
+"gap": 0.2,
+"lift_plan_mm": 219.9,
+"alpha_free_max_deg": 79.4,
+"cone_scale": 0.45,
+"arm_extra": 0.0
+},
+"L 9.767 snare": {
+"vel": 94,
+"gap": 0.9,
+"lift_plan_mm": 210.4,
+"alpha_free_max_deg": 35.7,
+"cone_scale": 0.89,
+"arm_extra": 0.0
+},
+"L 10.133 snare": {
+"vel": 100,
+"gap": 1.267,
+"lift_plan_mm": 229.7,
+"alpha_free_max_deg": 32.3,
+"cone_scale": 1.0,
+"arm_extra": 0.0
+},
+"L 10.333 snare": {
+"vel": 100,
+"gap": 1.3,
+"lift_plan_mm": 229.7,
+"alpha_free_max_deg": 32.5,
+"cone_scale": 1.0,
+"arm_extra": 0.0
+},
+"L 10.667 snare": {
+"vel": 97,
+"gap": 0.333,
+"lift_plan_mm": 219.9,
+"alpha_free_max_deg": 32.3,
+"cone_scale": 1.0,
+"arm_extra": 0.0
+},
+"L 11.233 snare": {
+"vel": 94,
+"gap": 0.567,
+"lift_plan_mm": 210.4,
+"alpha_free_max_deg": 30.0,
+"cone_scale": 1.0,
+"arm_extra": 0.0
+},
+"R 0.5 hat": {
+"vel": 92,
+"gap": 0.567,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 39.4,
+"cone_scale": 0.8,
+"arm_extra": 0.0
+},
+"R 0.867 hat": {
+"vel": 116,
+"gap": 0.1,
+"lift_plan_mm": 284.5,
+"alpha_free_max_deg": 23.0,
+"cone_scale": 1.0,
+"arm_extra": 0.0
+},
+"R 1.233 hat": {
+"vel": 116,
+"gap": 0.2,
+"lift_plan_mm": 284.5,
+"alpha_free_max_deg": 68.2,
+"cone_scale": 0.46,
+"arm_extra": 0.0
+},
+"R 1.5 hat": {
+"vel": 92,
+"gap": 0.267,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 37.0,
+"cone_scale": 0.85,
+"arm_extra": 0.0
+},
+"R 2.333 hat": {
+"vel": 116,
+"gap": 0.1,
+"lift_plan_mm": 284.5,
+"alpha_free_max_deg": 21.0,
+"cone_scale": 1.0,
+"arm_extra": 0.0
+},
+"R 2.667 hat": {
+"vel": 116,
+"gap": 0.167,
+"lift_plan_mm": 284.5,
+"alpha_free_max_deg": 71.6,
+"cone_scale": 0.45,
+"arm_extra": 0.0
+},
+"R 2.967 hat": {
+"vel": 92,
+"gap": 0.3,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 35.6,
+"cone_scale": 0.89,
+"arm_extra": 0.0
+},
+"R 3.767 hat": {
+"vel": 116,
+"gap": 0.1,
+"lift_plan_mm": 284.5,
+"alpha_free_max_deg": 20.1,
+"cone_scale": 1.0,
+"arm_extra": 0.0
+},
+"R 4.133 hat": {
+"vel": 116,
+"gap": 0.167,
+"lift_plan_mm": 284.5,
+"alpha_free_max_deg": 67.7,
+"cone_scale": 0.47,
+"arm_extra": 0.0
+},
+"R 4.4 hat": {
+"vel": 92,
+"gap": 0.267,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 37.0,
+"cone_scale": 0.85,
+"arm_extra": 0.0
+},
+"R 4.867 hat": {
+"vel": 93,
+"gap": 0.267,
+"lift_plan_mm": 207.2,
+"alpha_free_max_deg": 38.0,
+"cone_scale": 0.83,
+"arm_extra": 0.0
+},
+"R 5.767 hat": {
+"vel": 101,
+"gap": 0.267,
+"lift_plan_mm": 232.9,
+"alpha_free_max_deg": 49.7,
+"cone_scale": 0.64,
+"arm_extra": 0.0
+},
+"R 5.967 hat": {
+"vel": 101,
+"gap": 0.2,
+"lift_plan_mm": 232.9,
+"alpha_free_max_deg": 69.1,
+"cone_scale": 0.46,
+"arm_extra": 0.0
+},
+"R 6.133 hat": {
+"vel": 91,
+"gap": 0.167,
+"lift_plan_mm": 201.0,
+"alpha_free_max_deg": 35.0,
+"cone_scale": 0.9,
+"arm_extra": 0.0
+},
+"R 6.333 hat": {
+"vel": 92,
+"gap": 0.2,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 42.3,
+"cone_scale": 0.75,
+"arm_extra": 0.0
+},
+"R 6.667 hat": {
+"vel": 116,
+"gap": 0.267,
+"lift_plan_mm": 284.5,
+"alpha_free_max_deg": 69.2,
+"cone_scale": 0.46,
+"arm_extra": 0.0
+},
+"R 7.033 hat": {
+"vel": 116,
+"gap": 0.167,
+"lift_plan_mm": 284.5,
+"alpha_free_max_deg": 68.5,
+"cone_scale": 0.46,
+"arm_extra": 0.0
+},
+"R 7.333 hat": {
+"vel": 92,
+"gap": 0.3,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 40.1,
+"cone_scale": 0.79,
+"arm_extra": 0.0
+},
+"R 8.133 hat": {
+"vel": 116,
+"gap": 0.1,
+"lift_plan_mm": 284.5,
+"alpha_free_max_deg": 20.1,
+"cone_scale": 1.0,
+"arm_extra": 0.0
+},
+"R 8.5 hat": {
+"vel": 116,
+"gap": 0.167,
+"lift_plan_mm": 284.5,
+"alpha_free_max_deg": 73.4,
+"cone_scale": 0.45,
+"arm_extra": 0.0
+},
+"R 8.767 hat": {
+"vel": 92,
+"gap": 0.267,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 36.9,
+"cone_scale": 0.86,
+"arm_extra": 0.0
+},
+"R 9.233 crash": {
+"vel": 127,
+"gap": 0.733,
+"lift_plan_mm": 325.0,
+"alpha_free_max_deg": 62.6,
+"cone_scale": 0.5,
+"arm_extra": 0.0
+},
+"R 9.5 hat": {
+"vel": 101,
+"gap": 0.267,
+"lift_plan_mm": 232.9,
+"alpha_free_max_deg": 68.3,
+"cone_scale": 0.46,
+"arm_extra": 0.0
+},
+"R 9.767 hat": {
+"vel": 101,
+"gap": 0.267,
+"lift_plan_mm": 232.9,
+"alpha_free_max_deg": 49.7,
+"cone_scale": 0.64,
+"arm_extra": 0.0
+},
+"R 10.133 hat": {
+"vel": 93,
+"gap": 0.167,
+"lift_plan_mm": 207.2,
+"alpha_free_max_deg": 44.1,
+"cone_scale": 0.72,
+"arm_extra": 0.0
+},
+"R 10.5 hat": {
+"vel": 112,
+"gap": 0.167,
+"lift_plan_mm": 270.3,
+"alpha_free_max_deg": 73.0,
+"cone_scale": 0.45,
+"arm_extra": 0.0
+},
+"R 11.233 hat": {
+"vel": 112,
+"gap": 0.733,
+"lift_plan_mm": 270.3,
+"alpha_free_max_deg": 65.0,
+"cone_scale": 0.49,
+"arm_extra": 0.0
+},
+"R 3.4 hat": {
+"vel": 92,
+"gap": 0.267,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 36.2,
+"cone_scale": 0.87,
+"arm_extra": 0.0
+},
+"L 0.5 hat": {
+"vel": 92,
+"gap": 0.533,
+"lift_plan_mm": 204.1,
+"alpha_free_max_deg": 39.4,
+"cone_scale": 0.8,
+"arm_extra": 0.0
+},
+"L 6.667 hat": {
+"vel": 116,
+"gap": 0.167,
+"lift_plan_mm": 284.5,
+"alpha_free_max_deg": 64.2,
+"cone_scale": 0.49,
+"arm_extra": 0.0
+},
+"R 9.033 hat": {
+"vel": 90,
+"gap": 0.533,
+"lift_plan_mm": 197.9,
+"alpha_free_max_deg": 30.9,
+"cone_scale": 1.0,
+"arm_extra": 0.0
+}
+},
+"strokes": {
+"L": [
+{
+"f": 72,
+"t": 0.6,
+"vel": 52,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 249.2,
+"d_alpha_deg": 6.1,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.47,
+"tip_speed_abs_m_s": 1.47,
+"share": {
+"alpha": 0.11,
+"wrist": 0.04,
+"forearm_rot": 0.04,
+"arm": 0.81
+},
+"gap_s": 0.633
+},
+{
+"f": 136,
+"t": 1.1333,
+"vel": 92,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 188.5,
+"d_alpha_deg": 32.4,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.36,
+"tip_speed_abs_m_s": 3.36,
+"share": {
+"alpha": 0.7,
+"wrist": 0.3,
+"forearm_rot": 0.2,
+"arm": -0.2
+},
+"gap_s": 0.533
+},
+{
+"f": 168,
+"t": 1.4,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 148.7,
+"d_alpha_deg": 26.0,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.2,
+"tip_speed_abs_m_s": 2.2,
+"share": {
+"alpha": 0.75,
+"wrist": 0.32,
+"forearm_rot": 0.22,
+"arm": -0.29
+},
+"gap_s": 0.267
+},
+{
+"f": 192,
+"t": 1.6,
+"vel": 87,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 221.0,
+"d_alpha_deg": 25.1,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.18,
+"tip_speed_abs_m_s": 2.58,
+"share": {
+"alpha": 0.51,
+"wrist": 0.21,
+"forearm_rot": 0.15,
+"arm": 0.13
+},
+"gap_s": 0.2
+},
+{
+"f": 212,
+"t": 1.7667,
+"vel": 90,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 117.4,
+"d_alpha_deg": 20.5,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.08,
+"tip_speed_abs_m_s": 2.08,
+"share": {
+"alpha": 0.78,
+"wrist": 0.36,
+"forearm_rot": 0.26,
+"arm": -0.4
+},
+"gap_s": 0.167
+},
+{
+"f": 256,
+"t": 2.1333,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 150.8,
+"d_alpha_deg": 25.7,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.17,
+"tip_speed_abs_m_s": 2.17,
+"share": {
+"alpha": 0.73,
+"wrist": 0.3,
+"forearm_rot": 0.21,
+"arm": -0.25
+},
+"gap_s": 0.367
+},
+{
+"f": 280,
+"t": 2.3333,
+"vel": 93,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 208.1,
+"d_alpha_deg": 21.5,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.32,
+"tip_speed_abs_m_s": 2.52,
+"share": {
+"alpha": 0.47,
+"wrist": 0.2,
+"forearm_rot": 0.14,
+"arm": 0.19
+},
+"gap_s": 0.2
+},
+{
+"f": 344,
+"t": 2.8667,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 153.3,
+"d_alpha_deg": 27.3,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.43,
+"tip_speed_abs_m_s": 2.44,
+"share": {
+"alpha": 0.76,
+"wrist": 0.31,
+"forearm_rot": 0.22,
+"arm": -0.29
+},
+"gap_s": 0.533
+},
+{
+"f": 388,
+"t": 3.2333,
+"vel": 90,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 169.7,
+"d_alpha_deg": 30.0,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.96,
+"tip_speed_abs_m_s": 2.96,
+"share": {
+"alpha": 0.73,
+"wrist": 0.31,
+"forearm_rot": 0.21,
+"arm": -0.26
+},
+"gap_s": 0.367
+},
+{
+"f": 432,
+"t": 3.6,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 150.8,
+"d_alpha_deg": 25.6,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.05,
+"tip_speed_abs_m_s": 2.05,
+"share": {
+"alpha": 0.73,
+"wrist": 0.3,
+"forearm_rot": 0.21,
+"arm": -0.24
+},
+"gap_s": 0.367
+},
+{
+"f": 452,
+"t": 3.7667,
+"vel": 84,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 241.8,
+"d_alpha_deg": 31.8,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.56,
+"tip_speed_abs_m_s": 2.8,
+"share": {
+"alpha": 0.57,
+"wrist": 0.24,
+"forearm_rot": 0.16,
+"arm": 0.03
+},
+"gap_s": 0.167
+},
+{
+"f": 484,
+"t": 4.0333,
+"vel": 92,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 110.9,
+"d_alpha_deg": 17.2,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.99,
+"tip_speed_abs_m_s": 2.0,
+"share": {
+"alpha": 0.7,
+"wrist": 0.31,
+"forearm_rot": 0.23,
+"arm": -0.24
+},
+"gap_s": 0.267
+},
+{
+"f": 520,
+"t": 4.3333,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 148.8,
+"d_alpha_deg": 26.2,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.04,
+"tip_speed_abs_m_s": 2.04,
+"share": {
+"alpha": 0.75,
+"wrist": 0.32,
+"forearm_rot": 0.22,
+"arm": -0.3
+},
+"gap_s": 0.3
+},
+{
+"f": 540,
+"t": 4.5,
+"vel": 85,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 217.1,
+"d_alpha_deg": 23.2,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.98,
+"tip_speed_abs_m_s": 2.17,
+"share": {
+"alpha": 0.48,
+"wrist": 0.19,
+"forearm_rot": 0.13,
+"arm": 0.19
+},
+"gap_s": 0.167
+},
+{
+"f": 596,
+"t": 4.9667,
+"vel": 63,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 128.1,
+"d_alpha_deg": 23.6,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.87,
+"tip_speed_abs_m_s": 1.87,
+"share": {
+"alpha": 0.81,
+"wrist": 0.34,
+"forearm_rot": 0.24,
+"arm": -0.38
+},
+"gap_s": 0.467
+},
+{
+"f": 628,
+"t": 5.2333,
+"vel": 77,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 222.5,
+"d_alpha_deg": 26.5,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.65,
+"tip_speed_abs_m_s": 2.0,
+"share": {
+"alpha": 0.53,
+"wrist": 0.23,
+"forearm_rot": 0.15,
+"arm": 0.09
+},
+"gap_s": 0.267
+},
+{
+"f": 648,
+"t": 5.4,
+"vel": 94,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 91.3,
+"d_alpha_deg": 14.8,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.57,
+"tip_speed_abs_m_s": 1.57,
+"share": {
+"alpha": 0.74,
+"wrist": 0.36,
+"forearm_rot": 0.26,
+"arm": -0.36
+},
+"gap_s": 0.167
+},
+{
+"f": 672,
+"t": 5.6,
+"vel": 101,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 107.6,
+"d_alpha_deg": 16.2,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.84,
+"tip_speed_abs_m_s": 1.84,
+"share": {
+"alpha": 0.68,
+"wrist": 0.31,
+"forearm_rot": 0.23,
+"arm": -0.22
+},
+"gap_s": 0.2
+},
+{
+"f": 692,
+"t": 5.7667,
+"vel": 83,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 253.4,
+"d_alpha_deg": 30.2,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.01,
+"tip_speed_abs_m_s": 2.21,
+"share": {
+"alpha": 0.51,
+"wrist": 0.2,
+"forearm_rot": 0.14,
+"arm": 0.15
+},
+"gap_s": 0.167
+},
+{
+"f": 704,
+"t": 5.8667,
+"vel": 77,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 164.6,
+"d_alpha_deg": 23.5,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.92,
+"tip_speed_abs_m_s": 4.02,
+"share": {
+"alpha": 0.66,
+"wrist": 0.29,
+"forearm_rot": 0.2,
+"arm": -0.14
+},
+"gap_s": 0.1
+},
+{
+"f": 716,
+"t": 5.9667,
+"vel": 67,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 137.9,
+"d_alpha_deg": 17.6,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.37,
+"tip_speed_abs_m_s": 3.47,
+"share": {
+"alpha": 0.59,
+"wrist": 0.28,
+"forearm_rot": 0.19,
+"arm": -0.06
+},
+"gap_s": 0.1
+},
+{
+"f": 736,
+"t": 6.1333,
+"vel": 76,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 157.0,
+"d_alpha_deg": 25.7,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.68,
+"tip_speed_abs_m_s": 2.79,
+"share": {
+"alpha": 0.75,
+"wrist": 0.33,
+"forearm_rot": 0.22,
+"arm": -0.3
+},
+"gap_s": 0.167
+},
+{
+"f": 780,
+"t": 6.5,
+"vel": 70,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 145.9,
+"d_alpha_deg": 27.9,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.28,
+"tip_speed_abs_m_s": 2.28,
+"share": {
+"alpha": 0.82,
+"wrist": 0.33,
+"forearm_rot": 0.23,
+"arm": -0.38
+},
+"gap_s": 0.367
+},
+{
+"f": 868,
+"t": 7.2333,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 148.9,
+"d_alpha_deg": 24.3,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.43,
+"tip_speed_abs_m_s": 2.44,
+"share": {
+"alpha": 0.71,
+"wrist": 0.3,
+"forearm_rot": 0.21,
+"arm": -0.22
+},
+"gap_s": 0.733
+},
+{
+"f": 912,
+"t": 7.6,
+"vel": 90,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 166.9,
+"d_alpha_deg": 29.4,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.59,
+"tip_speed_abs_m_s": 2.59,
+"share": {
+"alpha": 0.73,
+"wrist": 0.31,
+"forearm_rot": 0.22,
+"arm": -0.26
+},
+"gap_s": 0.367
+},
+{
+"f": 932,
+"t": 7.7667,
+"vel": 92,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 169.5,
+"d_alpha_deg": 30.6,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.91,
+"tip_speed_abs_m_s": 2.92,
+"share": {
+"alpha": 0.74,
+"wrist": 0.33,
+"forearm_rot": 0.23,
+"arm": -0.3
+},
+"gap_s": 0.167
+},
+{
+"f": 956,
+"t": 7.9667,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 151.2,
+"d_alpha_deg": 26.6,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.05,
+"tip_speed_abs_m_s": 2.05,
+"share": {
+"alpha": 0.75,
+"wrist": 0.32,
+"forearm_rot": 0.22,
+"arm": -0.3
+},
+"gap_s": 0.2
+},
+{
+"f": 976,
+"t": 8.1333,
+"vel": 84,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 237.4,
+"d_alpha_deg": 31.1,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.47,
+"tip_speed_abs_m_s": 2.72,
+"share": {
+"alpha": 0.57,
+"wrist": 0.24,
+"forearm_rot": 0.16,
+"arm": 0.03
+},
+"gap_s": 0.167
+},
+{
+"f": 1008,
+"t": 8.4,
+"vel": 92,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 106.0,
+"d_alpha_deg": 16.1,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.89,
+"tip_speed_abs_m_s": 1.89,
+"share": {
+"alpha": 0.69,
+"wrist": 0.31,
+"forearm_rot": 0.23,
+"arm": -0.23
+},
+"gap_s": 0.267
+},
+{
+"f": 1040,
+"t": 8.6667,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 148.7,
+"d_alpha_deg": 26.7,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.43,
+"tip_speed_abs_m_s": 2.44,
+"share": {
+"alpha": 0.76,
+"wrist": 0.33,
+"forearm_rot": 0.23,
+"arm": -0.31
+},
+"gap_s": 0.267
+},
+{
+"f": 1084,
+"t": 9.0333,
+"vel": 54,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 101.5,
+"d_alpha_deg": 14.3,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.55,
+"tip_speed_abs_m_s": 1.55,
+"share": {
+"alpha": 0.65,
+"wrist": 0.29,
+"forearm_rot": 0.21,
+"arm": -0.15
+},
+"gap_s": 0.367
+},
+{
+"f": 1240,
+"t": 10.3333,
+"vel": 100,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 249.8,
+"d_alpha_deg": 34.6,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 4.24,
+"tip_speed_abs_m_s": 4.47,
+"share": {
+"alpha": 0.62,
+"wrist": 0.25,
+"forearm_rot": 0.16,
+"arm": -0.02
+},
+"gap_s": 1.3
+},
+{
+"f": 1280,
+"t": 10.6667,
+"vel": 97,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 220.2,
+"d_alpha_deg": 35.8,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.94,
+"tip_speed_abs_m_s": 4.17,
+"share": {
+"alpha": 0.72,
+"wrist": 0.3,
+"forearm_rot": 0.2,
+"arm": -0.22
+},
+"gap_s": 0.333
+},
+{
+"f": 1348,
+"t": 11.2333,
+"vel": 94,
+"piece": "snare",
+"kind": "hit",
+"lift_mm": 210.6,
+"d_alpha_deg": 33.2,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.73,
+"tip_speed_abs_m_s": 3.8,
+"share": {
+"alpha": 0.69,
+"wrist": 0.29,
+"forearm_rot": 0.2,
+"arm": -0.18
+},
+"gap_s": 0.567
+}
+],
+"R": [
+{
+"f": 92,
+"t": 0.7667,
+"vel": 72,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 266.3,
+"d_alpha_deg": 7.4,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.59,
+"tip_speed_abs_m_s": 1.59,
+"share": {
+"alpha": 0.13,
+"wrist": 0.05,
+"forearm_rot": 0.05,
+"arm": 0.77
+},
+"gap_s": 0.833
+},
+{
+"f": 104,
+"t": 0.8667,
+"vel": 116,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 176.4,
+"d_alpha_deg": 32.7,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 4.78,
+"tip_speed_abs_m_s": 4.78,
+"share": {
+"alpha": 0.76,
+"wrist": 0.31,
+"forearm_rot": 0.21,
+"arm": -0.27
+},
+"gap_s": 0.1
+},
+{
+"f": 124,
+"t": 1.0333,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 152.5,
+"d_alpha_deg": 26.0,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.13,
+"tip_speed_abs_m_s": 2.13,
+"share": {
+"alpha": 0.73,
+"wrist": 0.32,
+"forearm_rot": 0.22,
+"arm": -0.27
+},
+"gap_s": 0.167
+},
+{
+"f": 148,
+"t": 1.2333,
+"vel": 116,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 130.6,
+"d_alpha_deg": 22.1,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.55,
+"tip_speed_abs_m_s": 2.55,
+"share": {
+"alpha": 0.74,
+"wrist": 0.32,
+"forearm_rot": 0.23,
+"arm": -0.3
+},
+"gap_s": 0.2
+},
+{
+"f": 200,
+"t": 1.6667,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 150.8,
+"d_alpha_deg": 23.4,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.43,
+"tip_speed_abs_m_s": 2.46,
+"share": {
+"alpha": 0.7,
+"wrist": 0.29,
+"forearm_rot": 0.2,
+"arm": -0.19
+},
+"gap_s": 0.433
+},
+{
+"f": 268,
+"t": 2.2333,
+"vel": 83,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 177.2,
+"d_alpha_deg": 29.2,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.25,
+"tip_speed_abs_m_s": 2.28,
+"share": {
+"alpha": 0.72,
+"wrist": 0.31,
+"forearm_rot": 0.21,
+"arm": -0.24
+},
+"gap_s": 0.567
+},
+{
+"f": 280,
+"t": 2.3333,
+"vel": 116,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 176.4,
+"d_alpha_deg": 29.3,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 4.78,
+"tip_speed_abs_m_s": 4.82,
+"share": {
+"alpha": 0.73,
+"wrist": 0.3,
+"forearm_rot": 0.2,
+"arm": -0.23
+},
+"gap_s": 0.1
+},
+{
+"f": 300,
+"t": 2.5,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 152.5,
+"d_alpha_deg": 25.0,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.92,
+"tip_speed_abs_m_s": 1.93,
+"share": {
+"alpha": 0.71,
+"wrist": 0.32,
+"forearm_rot": 0.22,
+"arm": -0.25
+},
+"gap_s": 0.167
+},
+{
+"f": 320,
+"t": 2.6667,
+"vel": 116,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 123.8,
+"d_alpha_deg": 19.5,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.44,
+"tip_speed_abs_m_s": 2.47,
+"share": {
+"alpha": 0.73,
+"wrist": 0.32,
+"forearm_rot": 0.22,
+"arm": -0.27
+},
+"gap_s": 0.167
+},
+{
+"f": 376,
+"t": 3.1333,
+"vel": 72,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 148.1,
+"d_alpha_deg": 23.0,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.38,
+"tip_speed_abs_m_s": 2.41,
+"share": {
+"alpha": 0.71,
+"wrist": 0.29,
+"forearm_rot": 0.2,
+"arm": -0.2
+},
+"gap_s": 0.467
+},
+{
+"f": 420,
+"t": 3.5,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 148.9,
+"d_alpha_deg": 26.1,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.06,
+"tip_speed_abs_m_s": 2.06,
+"share": {
+"alpha": 0.75,
+"wrist": 0.32,
+"forearm_rot": 0.22,
+"arm": -0.29
+},
+"gap_s": 0.367
+},
+{
+"f": 440,
+"t": 3.6667,
+"vel": 83,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 176.9,
+"d_alpha_deg": 33.8,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.49,
+"tip_speed_abs_m_s": 2.55,
+"share": {
+"alpha": 0.81,
+"wrist": 0.34,
+"forearm_rot": 0.23,
+"arm": -0.38
+},
+"gap_s": 0.167
+},
+{
+"f": 452,
+"t": 3.7667,
+"vel": 70,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 137.1,
+"d_alpha_deg": 21.5,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.75,
+"tip_speed_abs_m_s": 3.76,
+"share": {
+"alpha": 0.7,
+"wrist": 0.3,
+"forearm_rot": 0.21,
+"arm": -0.2
+},
+"gap_s": 0.1
+},
+{
+"f": 476,
+"t": 3.9667,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 151.3,
+"d_alpha_deg": 27.6,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.82,
+"tip_speed_abs_m_s": 1.82,
+"share": {
+"alpha": 0.77,
+"wrist": 0.32,
+"forearm_rot": 0.22,
+"arm": -0.32
+},
+"gap_s": 0.2
+},
+{
+"f": 496,
+"t": 4.1333,
+"vel": 116,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 128.5,
+"d_alpha_deg": 21.2,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.53,
+"tip_speed_abs_m_s": 2.53,
+"share": {
+"alpha": 0.73,
+"wrist": 0.32,
+"forearm_rot": 0.23,
+"arm": -0.28
+},
+"gap_s": 0.167
+},
+{
+"f": 552,
+"t": 4.6,
+"vel": 72,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 148.1,
+"d_alpha_deg": 24.0,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.28,
+"tip_speed_abs_m_s": 2.28,
+"share": {
+"alpha": 0.71,
+"wrist": 0.29,
+"forearm_rot": 0.2,
+"arm": -0.2
+},
+"gap_s": 0.467
+},
+{
+"f": 584,
+"t": 4.8667,
+"vel": 93,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 172.6,
+"d_alpha_deg": 31.1,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.04,
+"tip_speed_abs_m_s": 3.08,
+"share": {
+"alpha": 0.78,
+"wrist": 0.33,
+"forearm_rot": 0.22,
+"arm": -0.33
+},
+"gap_s": 0.267
+},
+{
+"f": 628,
+"t": 5.2333,
+"vel": 58,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 110.7,
+"d_alpha_deg": 17.1,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.68,
+"tip_speed_abs_m_s": 1.71,
+"share": {
+"alpha": 0.72,
+"wrist": 0.31,
+"forearm_rot": 0.22,
+"arm": -0.24
+},
+"gap_s": 0.367
+},
+{
+"f": 660,
+"t": 5.5,
+"vel": 61,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 117.8,
+"d_alpha_deg": 18.8,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.67,
+"tip_speed_abs_m_s": 1.67,
+"share": {
+"alpha": 0.72,
+"wrist": 0.31,
+"forearm_rot": 0.22,
+"arm": -0.25
+},
+"gap_s": 0.267
+},
+{
+"f": 692,
+"t": 5.7667,
+"vel": 101,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 148.3,
+"d_alpha_deg": 24.7,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.57,
+"tip_speed_abs_m_s": 2.6,
+"share": {
+"alpha": 0.75,
+"wrist": 0.32,
+"forearm_rot": 0.22,
+"arm": -0.29
+},
+"gap_s": 0.267
+},
+{
+"f": 716,
+"t": 5.9667,
+"vel": 101,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 105.3,
+"d_alpha_deg": 15.8,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.79,
+"tip_speed_abs_m_s": 1.79,
+"share": {
+"alpha": 0.68,
+"wrist": 0.31,
+"forearm_rot": 0.23,
+"arm": -0.22
+},
+"gap_s": 0.2
+},
+{
+"f": 736,
+"t": 6.1333,
+"vel": 91,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 184.8,
+"d_alpha_deg": 35.8,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.29,
+"tip_speed_abs_m_s": 3.32,
+"share": {
+"alpha": 0.8,
+"wrist": 0.34,
+"forearm_rot": 0.23,
+"arm": -0.37
+},
+"gap_s": 0.167
+},
+{
+"f": 768,
+"t": 6.4,
+"vel": 52,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 96.8,
+"d_alpha_deg": 14.1,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.25,
+"tip_speed_abs_m_s": 1.25,
+"share": {
+"alpha": 0.67,
+"wrist": 0.3,
+"forearm_rot": 0.22,
+"arm": -0.19
+},
+"gap_s": 0.267
+},
+{
+"f": 792,
+"t": 6.6,
+"vel": 72,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 145.8,
+"d_alpha_deg": 26.8,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.35,
+"tip_speed_abs_m_s": 2.36,
+"share": {
+"alpha": 0.78,
+"wrist": 0.33,
+"forearm_rot": 0.23,
+"arm": -0.34
+},
+"gap_s": 0.2
+},
+{
+"f": 824,
+"t": 6.8667,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 148.7,
+"d_alpha_deg": 25.6,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.82,
+"tip_speed_abs_m_s": 1.84,
+"share": {
+"alpha": 0.77,
+"wrist": 0.32,
+"forearm_rot": 0.22,
+"arm": -0.32
+},
+"gap_s": 0.267
+},
+{
+"f": 844,
+"t": 7.0333,
+"vel": 116,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 127.0,
+"d_alpha_deg": 20.4,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.5,
+"tip_speed_abs_m_s": 2.5,
+"share": {
+"alpha": 0.71,
+"wrist": 0.32,
+"forearm_rot": 0.23,
+"arm": -0.26
+},
+"gap_s": 0.167
+},
+{
+"f": 900,
+"t": 7.5,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 150.8,
+"d_alpha_deg": 23.6,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.43,
+"tip_speed_abs_m_s": 2.46,
+"share": {
+"alpha": 0.71,
+"wrist": 0.29,
+"forearm_rot": 0.2,
+"arm": -0.2
+},
+"gap_s": 0.467
+},
+{
+"f": 944,
+"t": 7.8667,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 148.9,
+"d_alpha_deg": 24.8,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.06,
+"tip_speed_abs_m_s": 2.08,
+"share": {
+"alpha": 0.75,
+"wrist": 0.32,
+"forearm_rot": 0.22,
+"arm": -0.28
+},
+"gap_s": 0.367
+},
+{
+"f": 964,
+"t": 8.0333,
+"vel": 83,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 176.9,
+"d_alpha_deg": 33.2,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.49,
+"tip_speed_abs_m_s": 2.53,
+"share": {
+"alpha": 0.8,
+"wrist": 0.34,
+"forearm_rot": 0.23,
+"arm": -0.38
+},
+"gap_s": 0.167
+},
+{
+"f": 976,
+"t": 8.1333,
+"vel": 70,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 137.1,
+"d_alpha_deg": 21.5,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.75,
+"tip_speed_abs_m_s": 3.76,
+"share": {
+"alpha": 0.7,
+"wrist": 0.3,
+"forearm_rot": 0.21,
+"arm": -0.2
+},
+"gap_s": 0.1
+},
+{
+"f": 1000,
+"t": 8.3333,
+"vel": 73,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 151.3,
+"d_alpha_deg": 26.1,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.82,
+"tip_speed_abs_m_s": 1.84,
+"share": {
+"alpha": 0.77,
+"wrist": 0.32,
+"forearm_rot": 0.22,
+"arm": -0.31
+},
+"gap_s": 0.2
+},
+{
+"f": 1020,
+"t": 8.5,
+"vel": 116,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 123.8,
+"d_alpha_deg": 18.3,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.44,
+"tip_speed_abs_m_s": 2.47,
+"share": {
+"alpha": 0.68,
+"wrist": 0.3,
+"forearm_rot": 0.21,
+"arm": -0.2
+},
+"gap_s": 0.167
+},
+{
+"f": 1108,
+"t": 9.2333,
+"vel": 127,
+"piece": "crash",
+"kind": "hit",
+"lift_mm": 164.4,
+"d_alpha_deg": 24.5,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 3.39,
+"tip_speed_abs_m_s": 3.48,
+"share": {
+"alpha": 0.58,
+"wrist": 0.24,
+"forearm_rot": 0.17,
+"arm": 0.0
+},
+"gap_s": 0.733
+},
+{
+"f": 1140,
+"t": 9.5,
+"vel": 101,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 327.6,
+"d_alpha_deg": 7.3,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.95,
+"tip_speed_abs_m_s": 1.96,
+"share": {
+"alpha": 0.1,
+"wrist": 0.04,
+"forearm_rot": 0.03,
+"arm": 0.83
+},
+"gap_s": 0.267
+},
+{
+"f": 1172,
+"t": 9.7667,
+"vel": 101,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 147.6,
+"d_alpha_deg": 24.7,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.76,
+"tip_speed_abs_m_s": 2.79,
+"share": {
+"alpha": 0.75,
+"wrist": 0.32,
+"forearm_rot": 0.22,
+"arm": -0.29
+},
+"gap_s": 0.267
+},
+{
+"f": 1196,
+"t": 9.9667,
+"vel": 48,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 92.2,
+"d_alpha_deg": 11.4,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 0.78,
+"tip_speed_abs_m_s": 0.78,
+"share": {
+"alpha": 0.58,
+"wrist": 0.27,
+"forearm_rot": 0.21,
+"arm": -0.05
+},
+"gap_s": 0.2
+},
+{
+"f": 1216,
+"t": 10.1333,
+"vel": 93,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 146.1,
+"d_alpha_deg": 27.2,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.61,
+"tip_speed_abs_m_s": 2.62,
+"share": {
+"alpha": 0.79,
+"wrist": 0.34,
+"forearm_rot": 0.24,
+"arm": -0.36
+},
+"gap_s": 0.167
+},
+{
+"f": 1240,
+"t": 10.3333,
+"vel": 61,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 120.9,
+"d_alpha_deg": 18.4,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 1.2,
+"tip_speed_abs_m_s": 1.22,
+"share": {
+"alpha": 0.7,
+"wrist": 0.3,
+"forearm_rot": 0.21,
+"arm": -0.22
+},
+"gap_s": 0.2
+},
+{
+"f": 1260,
+"t": 10.5,
+"vel": 112,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 119.3,
+"d_alpha_deg": 17.9,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.32,
+"tip_speed_abs_m_s": 2.35,
+"share": {
+"alpha": 0.69,
+"wrist": 0.31,
+"forearm_rot": 0.22,
+"arm": -0.22
+},
+"gap_s": 0.167
+},
+{
+"f": 1348,
+"t": 11.2333,
+"vel": 112,
+"piece": "hat",
+"kind": "hit",
+"lift_mm": 131.8,
+"d_alpha_deg": 16.3,
+"alpha_contact_deg": -3.8,
+"tip_speed_m_s": 2.5,
+"tip_speed_abs_m_s": 2.51,
+"share": {
+"alpha": 0.56,
+"wrist": 0.25,
+"forearm_rot": 0.18,
+"arm": 0.0
+},
+"gap_s": 0.733
+}
+]
+},
+"auto_a1": {},
+"vetoed": [],
+"sweep_ids": [],
+"hard_ids": [
+"D:101",
+"D:102",
+"D:103",
+"D:104",
+"D:105",
+"D:106",
+"D:107",
+"D:109",
+"D:110",
+"D:112",
+"D:122",
+"D:123",
+"D:124",
+"D:125",
+"D:129",
+"D:130",
+"D:132",
+"D:135",
+"D:25",
+"D:26",
+"D:27",
+"D:29",
+"D:30",
+"D:32",
+"D:42",
+"D:43",
+"D:44",
+"D:45",
+"D:49",
+"D:50",
+"D:52",
+"D:62",
+"D:63",
+"D:64",
+"D:65",
+"D:69",
+"D:70",
+"D:72",
+"D:82",
+"D:83",
+"D:84",
+"D:88",
+"D:89",
+"D:90",
+"D:92",
+"D:93",
+"D:94",
+"D:95",
+"D:96",
+"D:97",
+"D:98",
+"D:99"
+],
+"sweep_arcs_given_back": [],
+"grip": {
+"stick_in_hand_deg": 60,
+"head_point": "rig.yaml",
+"elbow_k": 1,
+"homes": {
+"strokes": 1592,
+"home outside the wrist ellipse": 32
+},
+"finger_fit": {
+"L": {
+"index": {
+"curl_at_alpha": {
+"-10": 0.857,
+"0": 0.858,
+"15": 0.857,
+"35": 0.797
+},
+"gap_mm_at_0": 0.0
+},
+"thumb": {
+"curl_at_alpha": {
+"-10": 0.1,
+"0": 0.098,
+"15": 0.074,
+"35": -0.021
+},
+"gap_mm_at_0": 0.0
+},
+"middle": {
+"curl_at_alpha": {
+"-10": 0.999,
+"0": 0.953,
+"15": 0.863,
+"35": 0.741
+},
+"gap_mm_at_0": 0.0
+},
+"ring": {
+"curl_at_alpha": {
+"-10": 0.984,
+"0": 0.908,
+"15": 0.809,
+"35": 0.724
+},
+"gap_mm_at_0": 0.0
+},
+"pinky": {
+"curl_at_alpha": {
+"-10": 1.0,
+"0": 0.976,
+"15": 0.868,
+"35": 0.76
+},
+"gap_mm_at_0": 1.4
+}
+},
+"R": {
+"index": {
+"curl_at_alpha": {
+"-10": 0.857,
+"0": 0.858,
+"15": 0.857,
+"35": 0.797
+},
+"gap_mm_at_0": 0.0
+},
+"thumb": {
+"curl_at_alpha": {
+"-10": 0.1,
+"0": 0.098,
+"15": 0.074,
+"35": -0.021
+},
+"gap_mm_at_0": 0.0
+},
+"middle": {
+"curl_at_alpha": {
+"-10": 0.999,
+"0": 0.953,
+"15": 0.863,
+"35": 0.741
+},
+"gap_mm_at_0": 0.0
+},
+"ring": {
+"curl_at_alpha": {
+"-10": 0.984,
+"0": 0.908,
+"15": 0.809,
+"35": 0.724
+},
+"gap_mm_at_0": 0.0
+},
+"pinky": {
+"curl_at_alpha": {
+"-10": 1.0,
+"0": 0.976,
+"15": 0.868,
+"35": 0.76
+},
+"gap_mm_at_0": 1.4
+}
+}
+}
+},
+"judge": "v2",
+"grid_override": {},
+"hand_pref": null,
+"regions": {
+"L 0.5 crash wait": [
+0.18,
+0.351
+],
+"L 5.233 snare arc": [
+4.975,
+5.175
+],
+"L 7.4 snare arc": [
+7.242,
+7.342
+],
+"L 9.233 snare arc": [
+8.958,
+9.133
+],
+"L 9.767 snare arc": [
+9.492,
+9.667
+],
+"L 10.133 snare wait": [
+8.747,
+9.982
+],
+"L 0.867 snare wait": [
+0.047,
+0.711
+],
+"L 4.5 snare arc": [
+4.342,
+4.45
+],
+"L 10.133 snare arc": [
+9.767,
+10.042
+],
+"L 9.767 snare wait": [
+8.947,
+9.614
+],
+"L 0.867 tom1 arc": [
+0.608,
+0.808
+],
+"L 1.133 hat arc": [
+0.867,
+1.05
+],
+"L 10.333 snare wait": [
+9.113,
+10.195
+],
+"R 9.233 crash arc": [
+8.908,
+9.158
+],
+"R 9.5 hat arc": [
+9.242,
+9.45
+],
+"R 9.233 crash over": [
+8.908,
+9.158
+],
+"R 9.233 crash wait": [
+8.58,
+9.103
+]
+}
+},
+"library": {
+"name": "midi2motion",
+"version": "1.0.0",
+"midi": "dumbrock.mid",
+"layout": "standard",
+"preset": "hh_out30_down65",
+"bars": [
+97,
+103
+],
+"meter": 4.0,
+"tag": "v001",
+"rows": [
+"A1p",
+"D558",
+"G",
+"P1",
+"P2",
+"SPL",
+"T1",
+"W1",
+"W2"
+],
+"splay_weight": 0.5,
+"max_passes": 16,
+"grip_deg": null,
+"elbow_k": null,
+"deal": "beam",
+"seconds": 1328.7,
+"adopted": true
+}
+}

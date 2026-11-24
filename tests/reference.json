@@ -1,0 +1,47 @@
+{
+ "listen8": {
+  "motion_sha256": "6132e18af52a25dadfeea4b2acfd311b1870e2eb94aa9264fa9eb64cc6cccb90",
+  "summary": {
+   "played_pct": 98.7,
+   "collision_cuts": 1,
+   "freezes": 0,
+   "hard_frames": 0,
+   "crossed": 0,
+   "passes": 7,
+   "notes": 155,
+   "missed": 2,
+   "wrong": 0,
+   "extra": 0
+  }
+ },
+ "groove": {
+  "motion_sha256": "12b7c1ada29e3f84bec945a976ba983c5b9b2ec01fd8accb1e84551be0be0f13",
+  "summary": {
+   "played_pct": 100.0,
+   "collision_cuts": 0,
+   "freezes": 0,
+   "hard_frames": 0,
+   "crossed": 0,
+   "passes": 2,
+   "notes": 80,
+   "missed": 0,
+   "wrong": 0,
+   "extra": 0
+  }
+ },
+ "fill": {
+  "motion_sha256": "8da51a04f1e9919784cecd25ad4180f8eed8073ec5be4543dd282a542a4efd8c",
+  "summary": {
+   "played_pct": 100.0,
+   "collision_cuts": 0,
+   "freezes": 0,
+   "hard_frames": 0,
+   "crossed": 0,
+   "passes": 5,
+   "notes": 17,
+   "missed": 0,
+   "wrong": 0,
+   "extra": 0
+  }
+ }
+}

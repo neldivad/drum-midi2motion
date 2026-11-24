@@ -1,0 +1,228 @@
+# rig.yaml: the one rig description (STANDARD.md S-0.1). Read by tools/arm_rig.py (solver), tools/checks.py, the bake that feeds
+# Blender, and the inspector (through the perf JSON's `rig` block). Angles in degrees, lengths in metres.
+# This proof builds ONE right arm + hand + drumstick as a DRIVING SKELETON; the android's own mesh has no twist bones (out of scope).
+version: 1
+solve_hz: 120          # S-0.2: solve and check at 120 Hz
+render_every: 4        # renders sample every 4th solved frame (30 fps)
+side: R
+rest: ../sibling/android_rest.json      # the android's rest pose (packaged copy; relative to this folder)
+
+# S-SK-1: VRM 1.0 humanoid names; twist bones are extra, non-humanoid bones. `android` = the bone of the android mesh that carries it in renders.
+bones:
+  - {name: rightShoulder,            parent: upperChest,              android: shoulder.R,  dof: [elevation, protraction]}
+  - {name: rightUpperArm,            parent: rightShoulder,           android: upper_arm.R, dof: [swing_flex, swing_abd, twist]}
+  - {name: rightUpperArm.twist.01,   parent: rightUpperArm,           twist_of: humeral, share: -0.5}     # shoulder end counter-rotates half the humeral twist (S-TW-2)
+  - {name: rightUpperArm.twist.02,   parent: rightUpperArm,           twist_of: humeral, share: 0.0}
+  - {name: rightLowerArm,            parent: rightUpperArm,           android: forearm.R,   dof: [hinge_x]}
+  - {name: rightLowerArm.twist.01,   parent: rightLowerArm,           twist_of: forearm, share: 0.3333}   # S-TW-1: 1/3, 2/3, the hand inherits all of it
+  - {name: rightLowerArm.twist.02,   parent: rightLowerArm,           twist_of: forearm, share: 0.6667}
+  - {name: rightHand,                parent: rightLowerArm,           android: hand.R,      dof: [twist_inherited, swing_flex, swing_dev, twist_residual]}
+  - {name: stick.R,                  parent: rightHand,               dof: [alpha, beta]}                 # a rigid body on the fulcrum joint (S-GRIP-1)
+fingers: [thumb, index, middle, ring, pinky]          # android names; VRM: Thumb{Metacarpal,Proximal,Distal}, {Index,Middle,Ring,Little}{Proximal,Intermediate,Distal}
+android_forearm_twist_share: 0.5    # the android mesh has ONE forearm bone: it takes half the pronation, the hand bone the rest (Unity's lowerArmTwist = 0.5). The driving skeleton keeps the real twist bones.
+
+# S-JT: hard limits (never exceeded) and comfort (the planner's free range). Signed channels: [min, max].
+limits:
+  clav_elev:   {hard: [-5, 30],    comfort: [-2, 20]}
+  clav_prot:   {hard: [-15, 15],   comfort: [-8, 10]}
+  sh_flex:     {hard: [-60, 169],  comfort: [-30, 118]}       # sagittal angle of the upper arm in the chest frame (+ forward); extension 60, flexion 169
+  sh_abd:      {hard: [-30, 90],   comfort: [-21, 75]}        # out of the sagittal plane (+ lateral); cross-body adduction 30. Abduction past 90 reads as flexion > 90 here
+  sh_twist:    {hard: [-90, 70],   comfort: [-45, 49]}        # humeral twist, + internal (70), - external (90). Comfort [ours]: 70 % internal, 50 % external
+  elbow:       {hard: [0, 145],    comfort: [20, 120]}        # hinge, no hyperextension
+  pron:        {hard: [-85, 77],   comfort: [-60, 54]}        # forearm twist: + pronation, - supination; 0 = thumb up
+  wrist_twist: {hard: [-10, 10],   comfort: [-5, 5]}          # the wrist never rolls: what the forearm could not take (S-TW-1)
+  wrist:                                                      # 2-DoF swing, elliptical per quadrant (S-JT, Neumann/Ryu)
+    hard:    {flex: 70, ext: 60, ulnar: 35, radial: 15}
+    comfort: {flex: 40, ext: 40, ulnar: 25, radial: 15}       # Ryu: 40/40 and 40 combined deviation; split 25 ulnar / 15 radial [ours]
+  finger_mcp:  {hard: [-20, 80]}
+  finger_pip:  {hard: [0, 100]}                               # 2026-11-16 (fingers round): 104-107 measured (FINGERS.md §3); was 90, the smaller of two unread compilations
+  finger_dip:  {hard: [0, 67]}                                # = 2/3 of the PIP's 100; 66-70 measured; was 65
+  dip_over_pip: [0.5167, 0.8167]                              # 2/3 +- 0.15 whenever PIP > 20 (C-JT-3)
+  stick_alpha: {hard: [-10, 35]}                              # S-GRIP-2
+  stick_beta:  {hard: [-8, 8]}
+margin_deg: 0.5
+
+# C-CONT-1 speed ceilings (deg/s). Piano/keys clips use 60 % of the arm ceilings.
+ceilings:
+  clav_elev: 200
+  clav_prot: 200
+  sh_swing: 720
+  sh_twist: 900
+  swivel: 600
+  elbow: 1000
+  pron: 1200
+  wrist_swing: 1500
+  finger: 1500
+  stick_alpha: 3000
+  stick_beta: 3000
+keys_ceiling_scale: 0.6
+# R-417 (2026-11-16): the HARD speed caps: what a human arm has been measured doing (CMU 79_18, the one-arm proof's calibration log: shoulder swing 945, elbow 1,265, swivel 1,075 deg/s, rounded up);
+# channels CMU was not measured on keep the standard's own ceiling at full scale. Over a hard cap = a physically impossible movement: the reducer cuts or misplays the note instead (tools/ladder/).
+# The ceilings above and the keys' 60 % band stay as the STYLE band: frames over it are reported as strain, never as a violation.
+hard_ceilings: {clav_elev: 200, clav_prot: 200, sh_swing: 1000, sh_twist: 900, swivel: 1100, elbow: 1300, pron: 1200, wrist_swing: 1500, finger: 1500, stick_alpha: 3000, stick_beta: 3000}
+steps:                 # C-CONT-2: |second difference| per frame at 120 Hz
+  limb: 3.0
+  finger: 5.0
+lipschitz: {gain: 1.5, floor_m_s: 0.3}       # C-CONT-3
+target: {accel_m_s2: 80.0, dspeed_m_s: 0.7}  # C-TGT-1
+reach: {flag: 0.97, max_ext: 0.995, min_elbow_fold_deg: 145}     # S-IK-4: beyond `flag` x (upper + forearm) is reported; the arm saturates smoothly at max_ext, never a straight-arm snap
+penetration_mm: 3.0                           # C-COL-1
+
+# R-441 (2026-11-17, drum round 2): world-space END-POINT caps, HARD (R-417), checked at 120 Hz on a 5-frame mean (42 ms: the filter the calibration used).
+# Every joint check can pass while shoulder, elbow and wrist move together and the end point jumps: these look at the end point's own path (tools/drums2/endpoints.py, C-END-1).
+#   shoulder, elbow, wrist, hand   measured on a real arm (CMU 79_18, the drum mime, tools/drums2/endpoint_calib.py -> out/drums2/endpoint_calib_v001.json): wrist 4.85 m/s, 150 m/s2; knuckles 5.36 m/s, 189 m/s2. Rounded up.
+#   tip           NOT in CMU. Speed: Dahl 2011's preparatory-height vs striking-velocity plot runs to 12 m/s (axes read, points not); README sec. 5 quotes ~10 m/s. Acceleration: [ours, UNVERIFIED]:
+#                 10 m/s gained inside a 60-110 ms downstroke is 90-170 m/s2 on average; 500 leaves the whip its peak. Exempt +-3 frames at the tip's own contact (the head reverses it in 5-8 ms).
+#   foot          [UNVERIFIED: no pedal-foot kinematics found]. The mime's feet reached 1.25 m/s and 83 m/s2 with no pedal: a floor, not a ceiling. Used: 2.5 m/s, 100 m/s2 x 1.5; exempt +-2 frames at a pedal contact.
+#   shift         a hand's travel between two strokes is planned as a minimum-jerk reach (Flash & Hogan 1985: peak speed 1.875 D/T, peak acceleration 5.7735 D/T^2); it FITS when the
+#                 window it has is >= max(1.875 D / speed, sqrt(5.7735 D / accel)) with the wrist's caps. A shift that cannot fit costs its note (R-417).
+endpoints:
+  smooth_frames: 5
+  shoulder: {speed_m_s: 1.0, accel_m_s2: 25.0}     # CMU: 0.94 m/s, 20.7 m/s2 (the shoulder joint in world space: what the trunk does to it). A trunk that dives at a tom shows here
+  elbow: {speed_m_s: 5.5, accel_m_s2: 115.0}      # CMU 79_18: 5.53 m/s, 114 m/s2 (a real elbow does swing as fast as its wrist)
+  wrist: {speed_m_s: 5.0, accel_m_s2: 160.0}
+  hand:  {speed_m_s: 5.5, accel_m_s2: 200.0}
+  tip:   {speed_m_s: 12.0, accel_m_s2: 500.0, contact_exempt_frames: 3}
+  foot:  {speed_m_s: 2.5, accel_m_s2: 150.0, contact_exempt_frames: 2}
+  shift: {speed_m_s: 5.0, accel_m_s2: 160.0}
+
+# S-IK-7 shoulder girdle
+clavicle: {elev_per_deg_above_30: 0.3333, prot_start: 0.86, prot_full: 1.0, prot_max: 15, smooth: 400.0}
+
+# S-IK-3 the swivel plan
+swivel:
+  grid: [-40, 110, 5]         # the phi samples the per-frame cost table is built on (interpolated, never arg-min'd per frame)
+  w_prior: 0.06              # per deg^2: a 20 deg departure from the natural elbow costs about as much as sitting one comfort-band outside a joint's comfort
+  w_comfort: 3.0
+  w_hard: 600.0
+  guard_deg: 6.0              # the planner keeps this far inside the hard limits (the solver itself clamps only AT them, and reports it)
+  w_collision: 4000.0         # per metre of capsule penetration, squared
+  smooth: 3000.0              # lambda on the second difference (deg^2 per frame^4)
+  still: 60.0                 # extra first-difference weight where the wrist is still (C-CONT-3: phi may only move fast when the hand does)
+  prior_table: phi_prior_v001.json
+  head_point: [0.0, -0.03, 0.34]     # Kim/Rosen's rule: the point on the head the palm heads for, in the chest frame from the chest bone's head (x left, y back, z up)
+
+# capsules (collision): arm capsules ride the solved arm; body capsules come from the frozen torso
+capsules:
+  upper_arm: {from: 0.45, r: 0.043}
+  forearm: {r: 0.038}
+  hand: {len: 0.12, r: 0.028}
+  finger_r: 0.008
+
+# S-GRIP: the drumstick and the grip
+stick:
+  length: 0.406               # a 5A
+  radius: 0.00725
+  fulcrum_from_butt: 0.3333   # x length
+grip:
+  preset: german              # his default is AMERICAN (README, His answers). The proof runs GERMAN: with this android hand the stick must cross the palm at 60 deg for the
+                              # fingers to wrap it; at American's 45 deg roll 9 of 57 strokes have a home outside the wrist ellipse (German: 2) and a full American run did not
+                              # converge (README Proof, item 2). Unresolved: the hand, or the planner.
+  presets:                    # roll = the back of the hand's angle from vertical about the stick (0 = palm down, 90 = thumb up); shares of the distal stroke angle
+    german:   {roll: 5,  wrist: 0.30, forearm_rot: 0.25}     # with the stick 60 deg across the palm, forearm rotation lifts the tip more than wrist flexion does (0.87 vs 0.50 per degree)
+    american: {roll: 45, wrist: 0.40, forearm_rot: 0.15}
+    french:   {roll: 80, wrist: 0.15, forearm_rot: 0.25}
+  stick_in_hand_deg: 60       # the stick crosses the palm diagonally: its angle from the hand's forward axis toward the thumb side
+  fulcrum_hand: [0.038, 0.080, -0.022]    # in the hand frame: [toward the thumb side, forward from the wrist, toward the back of the hand]: under the index finger's first phalanx, the thumb pad on top
+  contact_alpha: -3.0         # the stick is pressed 3 deg into the fulcrum at contact
+  arm_share: {base: 0.06, loud_slow: 0.34}    # S-GRIP-4: soft/fast -> distal; loud/slow -> up to 40 % from the elbow and shoulder
+  restitution: 0.65           # S-GRIP-5 (the rebound hump is the envelope's, carried by alpha)
+  pulse: {height: 0.020, sigma_s: 0.11, min_gap_beats: 1.5}   # R-406: a waiting stick bobs on the beat (L1), carried by the wrist and fingers
+
+# ───────────────────────── full body (2026-11-16, R-412): trunk, head, legs, feet. Read by tools/body_rig.py, body_plan.py, body_checks.py ─────────────────────────
+# The android has hips, spine, chest (no upperChest), neck, head, thigh, shin, foot, toe. Trunk channels are TOTALS (lean = forward flexion, side = lateral bend toward
+# the character's left, turn = axial twist to its left), shared out over the bones; each bone is a swing (flex, side) then a twist about its own axis (never Euler).
+body:
+  trunk_share:               # [lean, side, turn] share per bone; the pelvis rocks on the throne (seated) or over the feet (standing)
+    hips:  [0.30, 0.25, 0.20]
+    spine: [0.35, 0.40, 0.40]
+    chest: [0.35, 0.35, 0.40]
+  head_share: {neck: 0.4, head: 0.6}
+  seat_pivot: [0.0, 0.02, 0.50]         # seated: the pelvis rocks about the sit bones on the throne top (kit.SEAT_Z 0.475), not about the hips bone
+  seated_neutral: {lean: 5.0, side: 0.0, turn: 0.0}     # upright with a small forward lean: no hunch at rest (the proof sat at 15 deg + 13 deg of built-in spine pitch)
+  standing_neutral: {lean: 6.0, side: 0.0, turn: 0.0, drop: 0.022, back: 0.025}    # soft knees: the pelvis 3 cm under the rest height so a weight shift never straightens a leg
+  knee_swivel: {seated: 3.0, standing: 4.0}             # S-FOOT-5: the knee's angle about the hip-ankle axis, + = splayed outward; a clip-level plan (constant)
+  limits:
+    spine_flex:  {hard: [-10, 15],  comfort: [-5, 7.5]}     # per bone (spine, chest); STANDARD §2 [ours]
+    spine_side:  {hard: [-10, 10],  comfort: [-5, 5]}
+    spine_twist: {hard: [-15, 15],  comfort: [-7.5, 7.5]}
+    pelvis_tilt: {hard: [-8, 12],   comfort: [-4, 8]}       # [ours] the pelvis on the throne / over the feet
+    pelvis_side: {hard: [-8, 8],    comfort: [-4, 4]}
+    pelvis_turn: {hard: [-12, 12],  comfort: [-6, 6]}
+    head_flex:   {hard: [-45, 45],  comfort: [-22, 22]}     # neck + head summed
+    head_side:   {hard: [-40, 40],  comfort: [-20, 20]}
+    head_twist:  {hard: [-70, 70],  comfort: [-35, 35]}
+    hip_flex:    {hard: [-17, 130], comfort: [-12, 100]}    # [CDC]
+    hip_abd:     {hard: [-30, 45],  comfort: [-21, 32]}
+    hip_twist:   {hard: [-45, 45],  comfort: [-32, 32]}     # + internal
+    knee:        {hard: [0, 138],   comfort: [10, 120]}
+    ankle:       {hard: [-54, 12],  comfort: [-38, 8], bent_knee_extra: 10, bent_knee_deg: 60}   # + dorsiflexion; up to 10 deg more as the knee bends, in proportion, all of it from 60 deg (C-FOOT-2; the standard's step at 60 deg made a ramp, calibration log)
+    ankle_roll:  {hard: [-15, 35],  comfort: [-10, 24]}     # + inversion
+    foot_yaw:    {hard: [-20, 20],  comfort: [-10, 10]}     # [ours] what the shank's own rotation must supply; large values mean the knee swivel is wrong
+    toes:        {hard: [-40, 70],  comfort: [-28, 49]}     # MTP, + extension (heel-up)
+  ceilings: {spine: 150, pelvis: 150, head: 300, hip: 400, knee: 600, ankle: 900, toes: 900, knee_swivel: 400}     # STANDARD §5 (deg/s)
+  pelvis_drift_m: 0.02        # S-BODY-1: seated, the pelvis stays on the throne
+  slide_mm: 5.0               # C-FOOT-1
+  leg_reach: {flag: 0.97, max_ext: 0.995}
+  foot: {sole: 0.030, heel_lever: 0.17, ball_on_board: 0.16, board_top: 0.005}     # MTP joint above the sole; MTP -> heel; the ball's place on a pedal board from its hinge; half the board's thickness
+  kick:  {heel_base_deg: 10.0, heel_per_beater_deg: 0.22, idle_pulse_deg: 3.0, turnout_deg: 12.0}     # heel-up: the heel's lift about the ball (MTP extension), growing with the beater's pull-back (velocity, R-402)
+  hat:   {chick_deg: 8.0, chick_rise_s: 0.24, plate_deg: 11.0, turnout_deg: 18.0}   # turn-out: the kit's pedals sit wide of the hips; a foot square on its board would need 20-31 deg of shank rotation                     # the free hi-hat foot: a heel tap on 2 and 4 (the ball keeps the hat closed); the board's angle fully open
+  layers:
+    pulse:   {lean_deg: 1.3, nod_deg: 5.0, drop_m: 0.003, sigma_s: 0.055, lead_s: 0.15, lead_gain: 0.45, base: 0.35}     # L1: a dip that bottoms ON the beat, a small rise before it (anticipation)
+    breath:  {period_s: 4.0, chest_deg: 0.8}                                                                              # L2: 15 breaths a minute
+    phrase:  {bars: 2, side_deg: 2.0, turn_deg: 1.5, shift_m: 0.006}                                                      # L3: one weight shift per phrase, at rest on the phrase boundaries
+    accent:  {vel_min: 100, lean_deg: 1.6}                                                                                # R-402: a loud hit goes through the trunk
+  gaze: {lead_s: 0.25, yaw_share: 0.5, pitch_share: 0.35, yaw_max: 45.0, pitch_max: 24.0, smooth: 4000.0, polish: 600.0, min_gap_s: 0.35}     # the head turns part of the way to the next target (the eyes do the rest), never faster than a head turns: a new target at most every min_gap_s
+  reach_plan:                 # the trunk's posture (S-IK-4, S-BODY-1): per frame a soft minimum over a small grid of postures, then one smooth whole-clip curve
+    drums: {tool_min: 0.45, tool_max: 0.70, lean: [-4, 26.1, 2], side: [-12, 12.1, 3], turn: [-28, 28.1, 4], shift: [0, 0.1, 1]}       # tool_max: stick tip from the shoulder; beyond it the trunk goes
+    keys:  {tool_min: 0.30, tool_max: 0.56, lean: [-4, 8.1, 2], side: [-10, 10.1, 2.5], turn: [-20, 20.1, 5], shift: [-0.10, 0.101, 0.025]}
+    w_over: 30.0              # per (0.1 m)^2 beyond the comfortable distance from the shoulder
+    w_cross: 3.0              # per (0.1 m)^2 of reaching across the body beyond cross_free
+    cross_free: 0.45
+    w_out: 4.0                # per (0.1 m)^2 of reaching out to the hand's own side beyond out_free (a target beside the shoulder asks for the arm's worst pose: the trunk turns to face it)
+    out_free: 0.35
+    ahead_s: 0.45             # a coming hit pulls the trunk from this long before it
+    ahead_gain: 0.8
+    sweep_margin: 0.03        # m: a hand dragging a sweep is planned as if its reach were this much shorter
+    trunk_cost: {lean: 20.0, side: 9.0, turn: 22.0, shift: 0.07}      # the angle (or shift) that costs 1
+    tau: 0.15                 # the soft minimum's temperature
+    follow_s: 0.12            # sigma of the zero-phase follow
+    smooth: 30.0
+
+# ───────────────────────── fingers (2026-11-16, the piano fingers round; R-403: anatomy per digit). Read by tools/fingers/hand.py, fchecks.py ─────────────────────────
+# Sources are in FINGERS.md §3. [v] = a number read in a primary source; [ours] = our choice where no source was verified.
+# Channels per finger (index..pinky): mcp (flexion +, hyperextension -), abd (at the MCP, + toward the thumb side), pip; dip = dip_over_pip x pip (hard coupling, Rijpkema & Girard 1991 [v]).
+# Thumb: cmc_flex (palmar: the tip goes down, toward the palm), cmc_abd (in the palm's plane: + away from the index, - under the palm), mcp; ip = thumb_ip_over_mcp x mcp [ours].
+fingers:
+  digits: {1: thumb, 2: index, 3: middle, 4: ring, 5: pinky}
+  active_sets: {1: [2], 2: [1, 5], 3: [1, 3, 5], 5: [1, 2, 3, 4, 5]}     # which digits strike, per "fingers per hand" (the dial): one finger = the index; two = thumb + pinky (octaves); three = + middle (triads)
+  limits:                       # hard, degrees
+    mcp: [-20, 80]              # flexion 80-87 [v, PMC4372184: the smallest, the index]; hyperextension 20 [ours: AAOS norm not verified]
+    pip: [0, 100]               # 104-107 [v]; the older table's 90 is superseded for the finger rig, 100 keeps a margin
+    dip: [0, 67]                # = 2/3 x pip by the coupling; 66-70 [v]
+    abd: {index: [-15, 25], middle: [-10, 10], ring: [-15, 15], pinky: [-30, 15]}     # +-15 [v, Lin, Wu & Huang 2000, a model's limits]; the index's 25 radial and the pinky's 30 ulnar [ours: what a 17 cm index-to-pinky span (Boyle 2015 [v]) needs from a hand this size]
+    abd_at_flexion: {from_deg: 20, to_deg: 100, floor: 0.25}                          # the sideways range narrows as the knuckle flexes (collateral ligaments) [ours: anatomy, no number verified]
+    thumb_cmc_flex: [-15, 45]   # CMC flexion 40-49 [v]; from this rig's rest pose
+    thumb_cmc_abd: [-45, 32]    # CMC abduction 71 (SD 10) in total [v]; from this rig's rest pose (already 35 deg out): 32 further out, 45 in and under the palm [ours: the split; 77 in total, inside one SD]
+    thumb_mcp: [0, 60]          # 61 [v]; no hyperextension (not verified)
+    thumb_ip: [0, 80]           # 81 [v]
+  dip_over_pip: 0.6667
+  thumb_ip_over_mcp: 0.6
+  speed_caps:                   # deg/s, HARD (R-417): mean + 2 SD of the fastest grip-and-release, 22 adults (Li et al. 2023 [v]); not measured on pianists
+    mcp: 1900
+    pip: 2000
+    dip: 1600
+    abd: 1260                   # [ours: no measurement of sideways speed found; taken as the MCP's measured MEAN peak, without the 2 SD. 600 was tried first: a guess that alone forced most of the cuts]
+    thumb_cmc: 700              # [ours: taken as the thumb MCP's]
+    thumb_mcp: 700
+    thumb_ip: 1150
+  step_deg: 5.0                 # second difference per 120 Hz frame (STANDARD C-CONT-2, fingers)
+  radius: 0.007                 # collision capsule along each phalanx
+  enslave: {thumb: {index: 0.05}, index: {thumb: 0.03, middle: 0.15}, middle: {index: 0.12, ring: 0.30}, ring: {middle: 0.30, pinky: 0.35}, pinky: {ring: 0.35}}     # master: {slave: share of the master's dip}. Order from Hager-Ross & Schieber 2000 [v: ring least independent, thumb and index most]; magnitudes [ours]
+  curl_inactive: {mcp: -4, pip: 38, thumb_cmc_flex: -6, thumb_cmc_abd: -14, thumb_mcp: 24}     # a digit that is not in the active set: held a little raised and softly curled, clear of the keys (a full curl, 52 / 88, put its middle joint INTO the keys under this low wrist), and still riding its neighbour (enslave)
+  repeat_same_finger_s: 0.157   # one finger's shortest re-strike (Furuya et al. 2011 [v]: professionals, 156.6 ms a key in alternation). Planner floor; the 120 Hz checks are the guarantee
+  key_return_s: 0.060           # a changed finger may re-strike once the key is half-way up (Goebl et al. 2005 [v]: half the dip); [ours: as a time]
+  attack_s: {soft: 0.160, loud: 0.025}      # key rest -> bottom (Goebl et al. 2005, quoting Askenfelt & Jansson [v]); R-402: velocity 1..127 maps between them
+  lift_mm: {soft: 3.0, loud: 22.0}          # how high the finger starts above the key, by velocity [ours]
+  sound_at: 0.7                 # a key sounds when it is this far down its travel [ours; RoboPianist counts a key within 0.5 deg of full travel]
+  timing_tol_s: 0.0334          # a struck key must cross sound_at within one 30 fps frame of its MIDI onset (the ladder's sync tolerance)

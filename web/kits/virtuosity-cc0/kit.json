@@ -1,0 +1,23 @@
+{
+ "id": "virtuosity-cc0",
+ "name": "Virtuosity Drums (CC0)",
+ "license": "CC0-1.0",
+ "credit": "Virtuosity Drums v0.925 by Versilian Studios LLC, released under Creative Commons 0 (public domain dedication). Converted to mono Ogg Vorbis, trimmed, velocity layers reduced; tom2 and tom3 are pitch-shifted copies (-3 and +3 semitones) of the two recorded toms.",
+ "url": "https://versilian-studios.com/virtuosity-drums/",
+ "pieces": {
+  "kick": [{"file": "kick/kick_1.ogg", "vel": [1, 52]}, {"file": "kick/kick_2.ogg", "vel": [53, 92]}, {"file": "kick/kick_3.ogg", "vel": [93, 127]}],
+  "snare": [{"file": "snare/snare_1.ogg", "vel": [1, 52]}, {"file": "snare/snare_2.ogg", "vel": [53, 92]}, {"file": "snare/snare_3.ogg", "vel": [93, 127]}],
+  "snare:cross": [{"file": "snare/snare-cross_1.ogg", "vel": [1, 127]}],
+  "snare:rimshot": [{"file": "snare/snare-rimshot_1.ogg", "vel": [1, 127]}],
+  "hat": [{"file": "hat/hat_1.ogg", "vel": [1, 52]}, {"file": "hat/hat_2.ogg", "vel": [53, 92]}, {"file": "hat/hat_3.ogg", "vel": [93, 127]}],
+  "hat:open": [{"file": "hat/hat-open_1.ogg", "vel": [1, 80]}, {"file": "hat/hat-open_2.ogg", "vel": [81, 127]}],
+  "hatped": [{"file": "hat/hatped_1.ogg", "vel": [1, 127]}],
+  "tom1": [{"file": "toms/tom1_1.ogg", "vel": [1, 80]}, {"file": "toms/tom1_2.ogg", "vel": [81, 127]}],
+  "tom2": [{"file": "toms/tom2_1.ogg", "vel": [1, 80]}, {"file": "toms/tom2_2.ogg", "vel": [81, 127]}],
+  "tom3": [{"file": "toms/tom3_1.ogg", "vel": [1, 80]}, {"file": "toms/tom3_2.ogg", "vel": [81, 127]}],
+  "floor": [{"file": "toms/floor_1.ogg", "vel": [1, 80]}, {"file": "toms/floor_2.ogg", "vel": [81, 127]}],
+  "crash": [{"file": "cymbals/crash_1.ogg", "vel": [1, 80]}, {"file": "cymbals/crash_2.ogg", "vel": [81, 127]}],
+  "ride": [{"file": "cymbals/ride_1.ogg", "vel": [1, 80]}, {"file": "cymbals/ride_2.ogg", "vel": [81, 127]}],
+  "ride:bell": [{"file": "cymbals/ride-bell_1.ogg", "vel": [1, 80]}, {"file": "cymbals/ride-bell_2.ogg", "vel": [81, 127]}]
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "windows": [
+  "drummer1_s2_101_b1-1_v009",
+  "drummer7_eval_6_b6-9_v009",
+  "drummer7_s2_61_b1-1_v009",
+  "drummer7_s3_48_b2-5_v009",
+  "drummer1_s2_101_b1-1_v013",
+  "drummer7_eval_6_b6-9_v013",
+  "drummer7_s2_61_b1-1_v013"
+ ],
+ "zones": {
+  "L snare": {
+   "lo": -64.6,
+   "hi": -48.5,
+   "frames": 1419,
+   "median": -59.1
+  },
+  "R centre": {
+   "lo": 47.6,
+   "hi": 69.6,
+   "frames": 434,
+   "median": 60.7
+  },
+  "R left side": {
+   "lo": 77.7,
+   "hi": 87.4,
+   "frames": 991,
+   "median": 81.5
+  }
+ },
+ "note": "fitted on this rig's own cleanest frames (0 missed, 0 wrong, 0 hard frames, 0 splay), not measured on human drummers"
+}
