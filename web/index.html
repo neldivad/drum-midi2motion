@@ -42,83 +42,125 @@
         <select id="fmeter" aria-label="Meter"><option value="">Any meter</option></select>
         <select id="fsource" aria-label="Source"><option value="">Any source</option></select>
       </div>
-      <button id="fclear" class="ghost small" hidden>Clear filters</button>
+      <div class="frow">
+        <select id="fsort" aria-label="Sort"><option value="worst">Worst first</option><option value="best">Best first</option><option value="worst_orn">Worst first (ornament-aware)</option><option value="style">Style</option><option value="bpm">Tempo</option><option value="name">Name</option></select>
+        <button id="fclear" class="ghost small" hidden>Clear filters</button>
+      </div>
     </div>
-    <ul id="list" role="listbox" aria-label="Preset clips"></ul>
+    <ul id="list" class="scroll" role="listbox" aria-label="Preset clips"></ul>
     <div id="dropcard" class="dropcard">
       <b>Your own drums</b>
       <p>Drop a <code>.mid</code> to chart it and get the solve command, or a <code>.motion.json</code> to play it.</p>
     </div>
   </aside>
+  <div class="hnd v" id="hSide" role="separator" aria-orientation="vertical" title="Drag to resize · double-click to reset"></div>
 
-  <main id="main">
+  <main id="center">
     <section id="stagewrap">
       <div id="stage"></div>
       <div id="hud" aria-live="off"></div>
-      <div id="loading" class="loading"><span class="spin"></span><span id="loadmsg">Loading the drummer…</span></div>
-      <div id="empty" class="empty" hidden><p><b>No clip on stage.</b></p><p>Pick a preset, or drop a <code>.motion.json</code> here.</p></div>
-    </section>
-
-    <div id="transport">
-      <div class="trow">
-        <button id="play" class="iconbtn primary" title="Play / pause (Space)" aria-label="Play"><svg viewBox="0 0 24 24"><path id="playIcon" d="M7 5v14l12-7z"/></svg></button>
-        <button id="prev" class="iconbtn" title="One frame back (←)" aria-label="One frame back"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM19 5v14L9 12z"/></svg></button>
-        <button id="next" class="iconbtn" title="One frame on (→)" aria-label="One frame on"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM5 5v14l10-7z"/></svg></button>
-        <div class="readout"><span id="bb" title="bar.beat">–</span><span id="tt" class="dim"></span></div>
-        <div class="seg" id="speed" role="group" aria-label="Speed"><button data-v="0.25">¼×</button><button data-v="0.5">½×</button><button data-v="1">1×</button></div>
-        <button id="loop" class="toggle" title="Loop (L)" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2z"/></svg>Loop</button>
-        <div class="sound">
-          <button id="mute" class="iconbtn" title="Sound on / off" aria-label="Mute"><svg viewBox="0 0 24 24"><path id="muteIcon" d="M3 9v6h4l5 5V4L7 9z"/></svg></button>
-          <input id="vol" type="range" min="0" max="1" step="0.01" aria-label="Volume">
-          <span id="kitname" class="dim small"></span>
-        </div>
-      </div>
-      <canvas id="timeline" aria-label="Timeline: drag to scrub"></canvas>
-      <div class="trow view">
-        <span class="dim small">View</span>
-        <div class="seg" id="cams" role="group" aria-label="Camera"><button data-cam="perf">Front</button><button data-cam="grip">Hands</button><button data-cam="side">Side</button><button data-cam="feet">Feet</button><button data-cam="top">Top</button></div>
+      <div id="sel" class="sel" hidden></div>
+      <pre id="perf" class="perf" hidden></pre>
+      <div class="stagebar">
+        <div class="seg small" id="cams" role="group" aria-label="Camera"><button data-cam="perf">Front</button><button data-cam="grip">Hands</button><button data-cam="side">Side</button><button data-cam="feet">Feet</button><button data-cam="top">Top</button></div>
         <button id="orbit" class="toggle small" aria-pressed="false" title="Slowly circle the drummer">Orbit</button>
         <button id="xray" class="toggle small" aria-pressed="false" title="See-through body">X-ray</button>
         <button id="flash" class="toggle small" aria-pressed="true" title="Light up each drum as it is struck">Hit flash</button>
         <button id="hudbtn" class="toggle small" aria-pressed="true" title="Name the drums as they sound">Names</button>
-        <span class="keys dim small">Space play · ←/→ frame · L loop · drag the stage to orbit</span>
+        <button id="lanebtn" class="toggle small" aria-pressed="true" title="On the note lane: freezes, crossed hands, habit boxes, splay and zone bands, collisions">Lane marks</button>
+      </div>
+
+      <div id="loading" class="loading"><span class="spin"></span><span id="loadmsg">Loading the drummer…</span></div>
+      <div id="empty" class="empty" hidden><p><b>No clip on stage.</b></p><p>Pick a preset, or drop a <code>.motion.json</code> here.</p></div>
+    </section>
+    <div class="hnd h" id="hStage" role="separator" aria-orientation="horizontal" title="Drag to resize · double-click to reset"></div>
+
+    <div id="transport">
+      <div class="trow">
+        <button id="play" class="iconbtn primary" title="Play / pause (Space) · ←/→ frame · L loop · P perf HUD" aria-label="Play"><svg viewBox="0 0 24 24"><path id="playIcon" d="M7 5v14l12-7z"/></svg></button>
+        <button id="prev" class="iconbtn" title="One frame back (←)" aria-label="One frame back"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM19 5v14L9 12z"/></svg></button>
+        <button id="next" class="iconbtn" title="One frame on (→)" aria-label="One frame on"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM5 5v14l10-7z"/></svg></button>
+        <div class="readout"><span id="bb" title="bar.beat">–</span><span id="tt" class="dim"></span></div>
+        <div class="seg" id="speed" role="group" aria-label="Speed"><button data-v="0.25">¼×</button><button data-v="0.5">½×</button><button data-v="1">1×</button></div>
+        <div class="loopctl">
+          <button id="loop" class="toggle" title="Loop (L): the whole clip, or A–B when set" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2z"/></svg>Loop</button>
+          <button id="la" class="small" title="Set loop point A at the playhead">A</button><button id="lb" class="small" title="Set loop point B at the playhead">B</button><button id="lclr" class="small" title="Clear A–B (loop the whole clip)">×</button>
+          <span id="lstat" class="dim small"></span>
+        </div>
+      </div>
+      <div id="tlwrap" class="cstack"><canvas id="tlBase"></canvas><canvas id="tlTop" aria-label="Timeline: drag to scrub"></canvas></div>
+      <div class="trow">
+        <span class="dim small">Sound</span>
+        <select id="smode" aria-label="Sound source" title="What you hear"><option value="off">Off</option><option value="midi">MIDI (what should sound)</option><option value="hits">Performance (what was played)</option><option value="stack">Stack: MIDI left, played right</option></select>
+        <select id="sengine" aria-label="Sound engine" title="Samples: the kit's recordings · Synth: the page's own clicks"><option value="samples">Samples</option><option value="synth">Synth</option></select>
+        <label class="vl small" title="MIDI volume">MIDI <input id="vm" type="range" min="0" max="1.5" step="0.05"></label>
+        <label class="vl small" title="Performance volume">Played <input id="vp" type="range" min="0" max="1.5" step="0.05"></label>
+        <button id="mute" class="iconbtn" title="Sound on / off" aria-label="Mute"><svg viewBox="0 0 24 24"><path id="muteIcon" d="M3 9v6h4l5 5V4L7 9z"/></svg></button>
+        <span id="kitname" class="dim small"></span>
       </div>
     </div>
-
-    <section id="info" class="panel">
-      <div class="panel-head"><h3 id="ititle">–</h3><button id="tgInfo" class="ghost small" aria-expanded="true">Hide</button></div>
-      <div id="ibody">
-        <div id="icredit" class="credit"></div>
-        <div id="ichips" class="chips"></div>
-        <div id="ilegend" class="legend"></div>
-      </div>
-    </section>
-
-    <section id="midi" class="panel" hidden>
-      <div class="panel-head"><h3 id="mtitle">Upload a MIDI</h3><button id="tgMidi" class="ghost small">Close</button></div>
-      <div id="mempty" class="mempty">
-        <p>Your MIDI is read here in the browser; nothing is uploaded anywhere. The solver runs on your own machine (it takes minutes per clip), and you drop its result back on this page.</p>
-        <button id="btnMidi2" class="primary">Choose a .mid file</button>
-      </div>
-      <div id="mbody" hidden>
-        <div id="mchips" class="chips"></div>
-        <div class="chartwrap"><canvas id="chart" aria-label="Notes by drum and bar: drag across bars to pick the range"></canvas></div>
-        <div class="range">
-          <label>Bars <input id="b0" type="number" min="1" step="1" inputmode="numeric"></label>
-          <label>to <input id="b1" type="number" min="1" step="1" inputmode="numeric"></label>
-          <span id="bof" class="dim"></span>
-          <button id="listen" class="small">Listen</button>
-          <span id="est" class="dim small"></span>
-        </div>
-        <ol class="steps">
-          <li>Run this where <code>midi2motion</code> is installed:
-            <div class="cmd"><code id="cmd"></code><button id="copy" class="small">Copy</button></div></li>
-          <li>Drop the <code>.motion.json</code> it writes on this page (and its <code>.judgement.json</code>, for the hit/miss lanes).</li>
-        </ol>
-        <p id="mnote" class="dim small"></p>
-      </div>
+    <section id="lanebox">
+      <div class="lanehead"><span class="dim small">Notes</span>
+        <div class="seg" id="zoom" role="group" aria-label="Lane zoom"><button data-v="5">5 s</button><button data-v="2.5">2.5 s</button><button data-v="1.25">1.25 s</button></div>
+        <span class="dim small lkey">outline = the MIDI (verdict colour once judged) · fill = the stroke, limb colour · click to seek</span></div>
+      <canvas id="lane" aria-label="Note lane: click to seek"></canvas>
     </section>
   </main>
+  <div class="hnd v" id="hRev" role="separator" aria-orientation="vertical" title="Drag to resize · double-click to reset"></div>
+
+  <aside id="review" aria-label="Check">
+    <button id="tgReview" class="phone-only rtoggle" aria-expanded="true">Check: tally and mistakes</button>
+    <div id="rbody">
+      <div class="rtop scroll">
+        <section id="info">
+          <div class="rh"><h3 id="ititle">–</h3><button id="tgInfo" class="ghost small" aria-expanded="true">Hide</button></div>
+          <div id="ibody"><div id="icredit" class="credit"></div><div id="ichips" class="chips"></div><div id="ilegend" class="legend"></div></div>
+        </section>
+        <section id="tallyBox">
+          <div class="rh"><h3>Tally to the playhead</h3><button id="tview" class="ghost small">per limb</button></div>
+          <table id="tally"></table>
+          <div id="cumwrap" class="cstack"><canvas id="cumBase"></canvas><canvas id="cumTop"></canvas></div>
+          <div id="cumLegend" class="legend"></div>
+        </section>
+      </div>
+      <section id="mistBox">
+        <div class="rh"><h3>Mistakes <span id="nmist" class="dim"></span></h3><span class="dim small">click: jump there at ¼×</span></div>
+        <div class="mf small">
+          <label><input type="checkbox" id="mfcol"> collisions</label><label><input type="checkbox" id="mfsoft"> softer / simplified</label><label><input type="checkbox" id="mfgood"> good (≤ 67 ms)</label>
+          <label><input type="checkbox" id="mffrz"> freezes / crossed / splay / habits / zones</label><label title="R-527: ornament notes after the transient whose cost is under 0.5"><input type="checkbox" id="mforn"> hide ornament notes costing &lt; 0.5</label>
+        </div>
+        <button id="mloop" class="small" disabled title="Loop 1 s before to 1 s after the selected mistake">Loop ±1 s around the selected mistake</button>
+        <div id="mlist" class="scroll" role="list"></div>
+      </section>
+    </div>
+  </aside>
+</div>
+
+<div id="midiModal" class="modal" hidden>
+  <section id="midi" class="panel scroll" role="dialog" aria-labelledby="mtitle">
+    <div class="panel-head"><h3 id="mtitle">Upload a MIDI</h3><button id="tgMidi" class="ghost small">Close</button></div>
+    <div id="mempty" class="mempty">
+      <p>Your MIDI is read here in the browser; nothing is uploaded anywhere. The solver runs on your own machine (it takes minutes per clip), and you drop its result back on this page.</p>
+      <button id="btnMidi2" class="primary">Choose a .mid file</button>
+    </div>
+    <div id="mbody" hidden>
+      <div id="mchips" class="chips"></div>
+      <div class="chartwrap scroll"><canvas id="chart" aria-label="Notes by drum and bar: drag across bars to pick the range"></canvas></div>
+      <div class="range">
+        <label>Bars <input id="b0" type="number" min="1" step="1" inputmode="numeric"></label>
+        <label>to <input id="b1" type="number" min="1" step="1" inputmode="numeric"></label>
+        <span id="bof" class="dim"></span>
+        <button id="listen" class="small">Listen</button>
+        <span id="est" class="dim small"></span>
+      </div>
+      <ol class="steps">
+        <li>Run this where <code>midi2motion</code> is installed:
+          <div class="cmd"><code id="cmd" class="scroll"></code><button id="copy" class="small">Copy</button></div></li>
+        <li>Drop the <code>.motion.json</code> it writes on this page (and its <code>.judgement.json</code>, for the hit/miss lanes).</li>
+      </ol>
+      <p id="mnote" class="dim small"></p>
+    </div>
+  </section>
 </div>
 
 <div id="dropveil" class="dropveil" hidden><div>Drop a <b>.mid</b> to chart it, or a <b>.motion.json</b> to play it</div></div>

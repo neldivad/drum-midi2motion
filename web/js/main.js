@@ -1,10 +1,13 @@
 // main.js: the page. One UI state object (state.js: S) that clip changes never reset; a clip is {motion, judgement, meta}
-// and loading one swaps only that. Query (not state): ?manifest=<url> · ?glb=<url> · ?kit=<kit folder with kit.json>.
-import { S, loadState, save, onHashChange } from './state.js';
+// and loading one swaps only that. Query (not state): ?manifest=<url> · ?glb=<url> · ?kit=<kit folder with kit.json> · ?perf (the perf HUD).
+// Time: while sound plays, the AudioContext clock is the master (picture = the time being heard); voices are queued ahead by a
+// look-ahead scheduler at exact context times. Muted or silent: performance.now() is the clock. Nothing accumulates frame deltas.
+import { S, DEFAULTS, loadState, save, onHashChange } from './state.js';
 import { createStage, CAMS } from './stage.js';
 import { Drums } from './audio.js';
 import { parseSMF, analyse } from './smf.js';
-import { Timeline, Chart, PCOL, VCOL, LABEL, SHORT, sortRows } from './lanes.js';
+import { Timeline, Chart, PCOL, VCOL, LABEL, sortRows } from './lanes.js';
+import { buildReview, filterMist, count, CumChart, Lane, COL, CATS, TYPES, series, cumAt } from './review.js';
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -16,28 +19,37 @@ const SRC_CREDIT = { groove: 'Groove MIDI Dataset (Magenta), CC BY 4.0', author:
 const fmtMeter = (m) => (m == null || m === '' ? '' : typeof m === 'string' ? m : Number.isInteger(m) ? `${m}/4` : Number.isInteger(m * 2) ? `${m * 2}/8` : String(m));
 const meterQ = (m) => { if (typeof m === 'number') return m; const x = /^(\d+)\s*\/\s*(\d+)$/.exec(m || ''); return x ? (+x[1] * 4) / +x[2] : null; };
 async function getJSON(u) { const r = await fetch(u); if (!r.ok) throw new Error(`${r.status} ${u}`); return r.json(); }
+const phone = () => matchMedia('(max-width: 600px)').matches;
+const setText = (el, s) => { if (el.textContent !== s) el.textContent = s; };
 
 let toastT = 0;
 function toast(msg, ms = 3200) { const t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, ms); }
 
 // ───────── state → controls ─────────
 loadState();
-let PRESETS = [], MAN = null, stage = null, CL = null, Tn = 0, playing = false, dirty = true, listen = null;
-const drums = new Drums(); drums.setVolume(S.sound.vol); drums.setMuted(S.sound.muted);
+if (Q.has('perf')) S.ov.perf = true;
+let PRESETS = [], MAN = null, stage = null, CL = null, Tn = 0, playing = false, listen = null, HL = null;
+const drums = new Drums(); drums.setVolume(S.sound.vol); drums.setMuted(S.sound.muted); drums.engine = S.sound.engine; drums.vsrc = { midi: S.sound.vm, hits: S.sound.vp };
 
 const pressed = (el, on) => { el.setAttribute('aria-pressed', on ? 'true' : 'false'); };
 function applyUI() {
-  $('fq').value = S.f.q; for (const k of ['kind', 'style', 'meter', 'source']) ensureOpt($('f' + k), S.f[k]);
+  $('fq').value = S.f.q; for (const k of ['kind', 'style', 'meter', 'source']) ensureOpt($('f' + k), S.f[k]); $('fsort').value = S.sort;
   $('filters').hidden = !S.panels.filters; $('tgFilters').setAttribute('aria-expanded', String(S.panels.filters));
   $('fclear').hidden = !Object.values(S.f).some(Boolean);
   for (const b of $('speed').children) b.classList.toggle('on', +b.dataset.v === S.speed);
-  pressed($('loop'), S.loop); pressed($('orbit'), S.orbit); pressed($('xray'), S.ov.xray); pressed($('flash'), S.ov.flash); pressed($('hudbtn'), S.ov.hud);
+  for (const b of $('zoom').children) b.classList.toggle('on', +b.dataset.v === S.zoom);
+  pressed($('loop'), S.loop); pressed($('orbit'), S.orbit); pressed($('xray'), S.ov.xray); pressed($('flash'), S.ov.flash); pressed($('hudbtn'), S.ov.hud); pressed($('lanebtn'), S.ov.lane);
   for (const b of $('cams').children) b.classList.toggle('on', b.dataset.cam === S.cam);
-  $('vol').value = S.sound.vol; soundUI();
-  $('ibody').hidden = !S.panels.info; $('tgInfo').textContent = S.panels.info ? 'Hide' : 'Show'; $('tgInfo').setAttribute('aria-expanded', String(S.panels.info));
-  $('midi').hidden = !S.panels.midi;
+  $('smode').value = S.sound.mode; $('sengine').value = S.sound.engine; $('vm').value = S.sound.vm; $('vp').value = S.sound.vp; soundUI();
+  $('ibody').hidden = !S.panels.info; setText($('tgInfo'), S.panels.info ? 'Hide' : 'Show'); $('tgInfo').setAttribute('aria-expanded', String(S.panels.info));
+  $('rbody').hidden = phone() && !S.panels.review; $('tgReview').setAttribute('aria-expanded', String(S.panels.review));
+  $('midiModal').hidden = !S.panels.midi;
+  setText($('tview'), S.tview === 'cat' ? 'per limb' : 'by category');
+  for (const k of ['col', 'soft', 'good', 'frz', 'orn']) $('mf' + k).checked = S.mf[k];
+  loopUI(); sizesUI();
+  $('perf').hidden = !S.ov.perf;
   if (stage) stage.setXray(S.ov.xray);
-  dirty = true;
+  tallyKey = ''; markDirty();
 }
 function ensureOpt(sel, v) { if (v && ![...sel.options].some((o) => o.value === v)) sel.add(new Option(v, v)); sel.value = v; }
 function soundUI() {
@@ -46,7 +58,28 @@ function soundUI() {
   b.title = !drums.ac ? 'Sound starts after your first click or key press' : S.sound.muted ? 'Sound is muted: click to unmute' : 'Mute';
   $('muteIcon').setAttribute('d', off ? 'M3 9v6h4l5 5V4L7 9zm13.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4z' : 'M3 9v6h4l5 5V4L7 9zm11.5 3A4.5 4.5 0 0 0 12 8v8a4.5 4.5 0 0 0 2.5-4zM12 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z');
 }
-function setS(fn, { list = false, now = false } = {}) { fn(); applyUI(); if (list) renderList(); save(now); }
+function setS(fn, { list = false, now = false, anchor = false } = {}) { fn(); applyUI(); if (list) renderList(); if (anchor) reanchor(); save(now); }
+
+// ───────── resizable panels: sizes in S.size (localStorage only) ─────────
+function sizesUI() {
+  const app = $('app').style; app.setProperty('--side-w', S.size.side + 'px'); app.setProperty('--rev-w', S.size.review + 'px');
+  $('stagewrap').style.setProperty('--stage-h', S.size.stage ? S.size.stage + 'px' : '48%');
+}
+function clampSizes() {
+  const W = innerWidth; S.size.side = Math.round(Math.max(170, Math.min(480, W * 0.4, S.size.side))); S.size.review = Math.round(Math.max(220, Math.min(620, W * 0.45, S.size.review)));
+  if (S.size.stage) { const H = $('center').clientHeight - $('transport').offsetHeight - 6 - 90; S.size.stage = Math.round(Math.max(160, Math.min(H, S.size.stage))); }
+}
+function handle(id, axis, onMove, reset) {
+  const el = $(id); let start = null;
+  el.addEventListener('pointerdown', (e) => { e.preventDefault(); el.setPointerCapture(e.pointerId); el.classList.add('drag'); start = { x: e.clientX, y: e.clientY, side: S.size.side, review: S.size.review, stage: S.size.stage || $('stagewrap').clientHeight }; });
+  el.addEventListener('pointermove', (e) => { if (!start) return; onMove(e.clientX - start.x, e.clientY - start.y, start); clampSizes(); sizesUI(); resized(); });
+  const end = () => { if (!start) return; start = null; el.classList.remove('drag'); save(); }; el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end);
+  el.addEventListener('dblclick', () => { reset(); sizesUI(); resized(); save(); });
+}
+handle('hSide', 'x', (dx, dy, s0) => { S.size.side = s0.side + dx; }, () => { S.size.side = DEFAULTS.size.side; });
+handle('hRev', 'x', (dx, dy, s0) => { S.size.review = s0.review - dx; }, () => { S.size.review = DEFAULTS.size.review; });
+handle('hStage', 'y', (dx, dy, s0) => { S.size.stage = s0.stage + dy; }, () => { S.size.stage = 0; });
+function resized() { timeline.resized(); cum.resized(); lane.resized(); markDirty(); }
 
 // ───────── the preset list ─────────
 function matches(p) {
@@ -55,6 +88,8 @@ function matches(p) {
   if (f.q) { const hay = [p.title, p.style, p.kind, p.source, p.credit, p.id, SRC_LABEL[p.source]].join(' ').toLowerCase(); for (const w of f.q.toLowerCase().split(/\s+/).filter(Boolean)) if (!hay.includes(w)) return false; }
   return true;
 }
+const played = (x) => (x == null || !Number.isFinite(+x) ? null : +x);
+const SORTS = { worst: (p) => played(p.played_pct) ?? 101, best: (p) => -(played(p.played_pct) ?? -1), worst_orn: (p) => played(p.ornament_pct) ?? played(p.played_pct) ?? 101, style: (p) => `${p.style || ''} ${p.title || p.id}`, bpm: (p) => +p.bpm || 0, name: (p) => (p.title || p.id).toLowerCase() };
 function fillFilterOptions() {
   const opts = (sel, vals, label) => { const cur = S.f[sel.id.slice(1)]; sel.innerHTML = `<option value="">${label}</option>` + vals.map((v) => `<option value="${esc(v[0])}">${esc(v[1])}</option>`).join(''); ensureOpt(sel, cur); };
   const uniq = (a) => [...new Set(a.filter((x) => x != null && x !== ''))].sort();
@@ -63,7 +98,7 @@ function fillFilterOptions() {
   opts($('fsource'), uniq(PRESETS.map((p) => p.source)).map((s) => [s, SRC_LABEL[s] || s]), 'Any source');
 }
 function renderList() {
-  const L = $('list'), vis = PRESETS.filter(matches); const top = L.scrollTop;
+  const L = $('list'), key = SORTS[S.sort] || SORTS.worst, vis = PRESETS.filter(matches).sort((a, b) => { const p = key(a), q = key(b); return p < q ? -1 : p > q ? 1 : 0; }); const top = L.scrollTop;
   $('count').textContent = PRESETS.length ? (vis.length === PRESETS.length ? `${PRESETS.length}` : `${vis.length} of ${PRESETS.length}`) : '';
   if (!PRESETS.length) { L.innerHTML = `<li class="none">${MAN === false ? 'No presets are published yet. Drop a motion file to play one.' : 'Loading presets…'}</li>`; return; }
   if (!vis.length) { L.innerHTML = '<li class="none">No preset matches these filters.</li>'; return; }
@@ -73,128 +108,260 @@ function renderList() {
       `<span class="m"><span class="badge ${esc(p.kind)}">${esc(p.kind || '')}</span>${esc([p.style, p.bpm ? Math.round(p.bpm) + ' bpm' : '', fmtMeter(p.meter), bars].filter(Boolean).join(' · '))}</span></li>`; }).join('');
   L.scrollTop = top;
 }
-const played = (x) => (x == null || !Number.isFinite(+x) ? null : +x);
 function markSelected() { for (const li of $('list').querySelectorAll('li[data-id]')) { const on = li.dataset.id === S.clip; li.classList.toggle('on', on); li.setAttribute('aria-selected', String(on)); } }
 
-// ───────── clips ─────────
+// ───────── clips (motion fetched only when selected; decoded once per clip) ─────────
 const cache = new Map(); let loadSeq = 0;
 async function loadPreset(p, { autoplay = true } = {}) {
   const seq = ++loadSeq; S.clip = p.id; markSelected(); save();
   try {
     let pair = cache.get(p.id);
-    if (!pair) { $('ititle').textContent = `Loading ${p.title || p.id}…`;
+    if (!pair) { setText($('ititle'), `Loading ${p.title || p.id}…`);
       pair = await Promise.all([getJSON(url(p.motion)), p.judgement ? getJSON(url(p.judgement)).catch(() => null) : null]);
-      cache.set(p.id, pair); if (cache.size > 8) cache.delete(cache.keys().next().value); }
+      cache.set(p.id, pair); if (cache.size > 6) cache.delete(cache.keys().next().value); }
     if (seq !== loadSeq) return;
     showClip({ M: pair[0], J: pair[1], meta: p, kind: 'preset' }, autoplay);
   } catch (e) { if (seq === loadSeq) { toast(`Could not load “${p.title || p.id}”: ${e.message}`); renderInfo(); } }
 }
 function gridOf(M, J, meta) {
   if (J && J.grid && J.grid.beat_s) return { lead: J.grid.lead || 0, beat: J.grid.beat_s, bar0: J.grid.bar0 ?? 1, bpb: J.grid.bpb || 4 };
-  const c = M.chart, bpb = meterQ(meta && meta.meter) || (J && J.library && +J.library.meter) || 4;
+  const c = M.chart, bpb = (meta && +meta.bpb) || meterQ(meta && meta.meter) || (J && J.library && +J.library.meter) || 4;
   if (c && c.bar_s) return { lead: c.lead || 0, beat: c.bar_s / bpb, bar0: (c.bars || [1])[0], bpb };
   return null;
 }
+let pendingClip = null;
 function showClip(c, autoplay) {
   if (!stage) { pendingClip = [c, autoplay]; return; }
   try { stage.setClip(c.M); } catch (e) { toast('This motion file does not fit the drummer: ' + e.message, 5000); return; }
-  stopListen();
-  const M = c.M, J = c.J && Array.isArray(c.J.source) ? c.J : null, dur = Math.max(0.001, (M.frames - 1) / M.fps), G = gridOf(M, J, c.meta);
+  stopListen(); HL = null; $('sel').hidden = true; $('mloop').disabled = true;
+  const M = c.M, J = c.J && Array.isArray(c.J.source) ? c.J : null, dur = Math.max(0.001, Math.min(J && J.duration ? J.duration : Infinity, (M.frames - 1) / M.fps)), G = gridOf(M, J, c.meta);
   const notes = (M.notes || []).map(([t, row, vel, zone]) => ({ t, row, vel, zone }));
-  let marks, snd;
-  if (J) {
-    marks = J.source.map((s) => ({ t: s.t, row: s.row, cls: !s.judged ? 'none' : s.verdict && s.verdict.cls === 'missed' ? 'missed' : s.verdict && s.verdict.cls === 'wrong' ? 'wrong' : 'hit' }));
-    snd = J.source.filter((s) => s.judged && s.verdict && s.verdict.cls !== 'missed').map((s) => (s.verdict.cls === 'wrong' && s.verdict.row_hit ? { t: s.verdict.t_hit ?? s.t, row: s.verdict.row_hit, vel: s.vel, zone: s.verdict.zone_hit || s.zone } : { t: s.t, row: s.row, vel: s.vel, zone: s.zone }));
-  } else { marks = notes.map((n) => ({ t: n.t, row: n.row, cls: 'hit' })); snd = notes; }
-  snd.sort((a, b) => a.t - b.t);
+  const R = buildReview(M, J);
+  const marks = J ? J.source.map((s) => ({ t: s.t, row: s.row, cls: !s.judged ? 'none' : s.verdict && s.verdict.cls === 'missed' ? 'missed' : s.verdict && s.verdict.cls === 'wrong' ? 'wrong' : 'hit' })) : notes.map((n) => ({ t: n.t, row: n.row, cls: 'hit' }));
+  // the two sound sources: MIDI = the judged source notes (what should sound); hits = the measured stick contacts (what was played)
+  const sMidi = (J ? J.source.filter((s) => s.judged).map((s) => ({ t: s.t, row: s.row, vel: s.vel, zone: s.zone })) : notes.slice()).sort((a, b) => a.t - b.t);
+  const sHits = (J ? (J.contacts || []).filter((x) => x.sounding && x.role !== 'articulation' && !x.under_stick).map((x) => ({ t: x.t, row: x.row, vel: x.vel_est || 90, zone: x.zone, limb: x.limb })) : notes.slice()).sort((a, b) => a.t - b.t);
   const bars = [];
-  if (G) { for (let k = Math.floor((0 - G.lead) / G.beat) - 1; k <= Math.ceil((dur - G.lead) / G.beat) + 1; k++) { const t = G.lead + k * G.beat; if (t < 0 || t > dur) continue; const q = k / G.bpb; bars.push({ t, beat: Math.abs(q - Math.round(q)) > 1e-6, n: G.bar0 + Math.round(q) }); } }
+  if (G) for (let k = Math.floor((0 - G.lead) / G.beat) - 1; k <= Math.ceil((dur - G.lead) / G.beat) + 1; k++) { const t = G.lead + k * G.beat; if (t < 0 || t > dur) continue; const q = k / G.bpb; bars.push({ t, beat: Math.abs(q - Math.round(q)) > 1e-6, n: G.bar0 + Math.round(q) }); }
   const rows = sortRows(J && J.rows ? J.rows.map((r) => r.id).filter((id) => marks.some((m) => m.row === id)) : marks.map((m) => m.row));
-  CL = { ...c, J, dur, G, marks, snd, rows, notes };
-  timeline.set({ dur, rows, marks, bars });
-  drums.preload([...new Set(snd.map((n) => n.row + '\u0000' + (n.zone || '')))].map((k) => k.split('\u0000')));
-  Tn = 0; $('empty').hidden = true; renderInfo();
-  if (autoplay) setPlay(true); dirty = true;
+  const evT = R.ev.map((e) => e.t).sort((a, b) => a - b), mistT = R.mist.map((m) => m.t);
+  CL = { ...c, J, dur, G, marks, sMidi, sHits, rows, notes, R, evT, mistT };
+  stage.setContacts(sHits.map((n) => n.t));
+  timeline.set({ dur, rows, marks, bars }); lane.set(R, G, M.fps); cum.set(R, dur);
+  drums.preload([...new Set([...sMidi, ...sHits].map((n) => n.row + '\u0000' + (n.zone || '')))].map((k) => k.split('\u0000')));
+  $('empty').hidden = true; renderInfo(); renderMist(); cumLegend(); tallyKey = ''; mistPastKey = -1;
+  Tn = 0; if (autoplay) setPlay(true); else reanchor();
+  markDirty();
 }
-let pendingClip = null;
 
 function renderInfo() {
-  if (!CL) { $('ititle').textContent = PRESETS.length ? 'Pick a preset' : 'No clip yet'; $('icredit').textContent = ''; $('ichips').innerHTML = ''; $('ilegend').innerHTML = ''; return; }
+  if (!CL) { setText($('ititle'), PRESETS.length ? 'Pick a preset' : 'No clip yet'); $('icredit').textContent = ''; $('ichips').innerHTML = ''; $('ilegend').innerHTML = ''; return; }
   const { M, J, meta, G } = CL, m = meta || {};
-  $('ititle').textContent = m.title || M.title || M.key || 'Motion';
+  setText($('ititle'), m.title || M.title || M.key || 'Motion');
   const credit = m.credit || SRC_CREDIT[m.source] || (CL.kind === 'file' ? `Your file: ${m.file}` : '');
-  const kitc = drums.kit ? `Drum sounds: ${drums.kit.name || drums.kit.id}${drums.kit.license ? ` (${drums.kit.license})` : ''}${drums.kit.credit ? `, ${drums.kit.credit}` : ''}` : '';
-  $('icredit').innerHTML = [credit, kitc].filter(Boolean).map((x) => `<div>${esc(x)}</div>`).join('');
+  const kitc = drums.kit ? `Drum sounds: ${drums.kit.name || drums.kit.id}${drums.kit.license ? ` (${drums.kit.license})` : ''}` : '';
+  $('icredit').innerHTML = [credit, kitc, m.notes && typeof m.notes === 'string' ? m.notes : ''].filter(Boolean).map((x) => `<div>${esc(x)}</div>`).join('');
   const A = J && J.tally && J.tally.all, pct = played(A ? A.accuracy_pct : m.played_pct ?? (M.remedy && M.remedy.played_pct));
   const bpm = m.bpm || (G ? 60 / G.beat : null), meter = fmtMeter(m.meter) || (G ? fmtMeter(G.bpb) : ''), bars = Array.isArray(m.bars) ? m.bars : M.chart && M.chart.bars;
-  const nMiss = CL.marks.filter((x) => x.cls === 'missed').length, nWrong = CL.marks.filter((x) => x.cls === 'wrong').length, nJ = CL.marks.filter((x) => x.cls !== 'none').length;
   const chip = (k, v, cls = '') => (v == null || v === '' ? '' : `<span class="chip ${cls}">${esc(k)} <b>${esc(v)}</b></span>`);
   $('ichips').innerHTML = chip('played', pct != null ? `${pct.toFixed(pct === 100 ? 0 : 1)} %` : null, pct === 100 ? 'ok' : pct != null && pct < 90 ? 'warn' : '') + chip('tempo', bpm ? `${Math.round(bpm)} bpm` : null) + chip('meter', meter) +
-    chip('bars', bars ? `${bars[0]}–${bars[1]}` : null) + chip('length', `${CL.dur.toFixed(1)} s`) + chip('notes', J ? nJ : CL.notes.length) + (J ? chip('missed', nMiss, nMiss ? 'bad' : '') + chip('wrong drum', nWrong || null, 'warn') : '') +
-    (M.collisions && M.collisions.length ? chip('collision runs', M.collisions.length, 'bad') : '');
+    chip('bars', bars ? `${bars[0]}–${bars[1]}` : null) + chip('length', `${CL.dur.toFixed(1)} s`) + chip('notes', J ? CL.marks.filter((x) => x.cls !== 'none').length : CL.notes.length);
   $('ilegend').innerHTML = CL.rows.map((id) => `<span><i style="background:${PCOL[id] || '#888'}"></i>${esc(LABEL[id] || id)}</span>`).join('') +
     (J ? `<span><i style="background:${VCOL.missed}"></i>missed</span><span><i style="border:1px solid ${VCOL.wrong}"></i>wrong drum</span>` : '<span>(no judgement file: every note shown as played)</span>');
 }
 
-// ───────── transport ─────────
-function setPlay(p) { playing = !!p && !!CL; $('play').setAttribute('aria-label', playing ? 'Pause' : 'Play'); $('playIcon').setAttribute('d', playing ? 'M6 5h4v14H6zm8 0h4v14h-4z' : 'M7 5v14l12-7z'); if (playing) stopListen(); }
-function seek(t) { if (!CL) return; Tn = Math.max(0, Math.min(CL.dur, t)); dirty = true; }
-function step(d) { if (!CL) return; setPlay(false); seek(Math.round(Tn * CL.M.fps + d) / CL.M.fps); }
-function lower(t) { const a = CL.snd; let lo = 0, hi = a.length; while (lo < hi) { const m = (lo + hi) >> 1; if (a[m].t <= t) lo = m + 1; else hi = m; } return lo; }      // first note after t
-function soundBetween(t0, t1) { if (!drums.live || !CL) return; for (let i = lower(t0); i < CL.snd.length && CL.snd[i].t <= t1; i++) { const n = CL.snd[i]; drums.hit(n.row, n.vel, n.zone, 0); } }
-function barbeat(t) { const G = CL && CL.G; if (!G) return '–'; const b = (t - G.lead) / G.beat, bar = G.bar0 + Math.floor(b / G.bpb), beat = Math.floor(((b % G.bpb) + G.bpb) % G.bpb) + 1; return `${bar}.${beat}`; }
-const timeline = new Timeline($('timeline'), (t, phase) => { if (phase === 'start') { scrubWasPlaying = playing; setPlay(false); } seek(t); if (phase === 'end' && scrubWasPlaying) setPlay(true); });
-let scrubWasPlaying = false;
+// ───────── the tally to the playhead, the mistakes list, the cumulative chart's legend ─────────
+let tallyKey = '';
+function renderTally(t) {
+  if (!CL) { $('tally').innerHTML = ''; return; }
+  const tt = t >= CL.dur - 1e-6 ? 1e9 : t;       // at the end, misses judged after the last frame (onset + 100 ms) count too
+  const key = `${cumAt(CL.evT, tt)}|${cumAt(CL.mistT, tt)}|${S.tview}|${CL.R === tallyR}`; if (key === tallyKey) return; tallyKey = key; tallyR = CL.R;
+  const R = count(CL.R, tt); let h = '';
+  if (!CL.J) { $('tally').innerHTML = '<tr><td class="dim">No judgement file: drop the clip\'s .judgement.json with it to see the tally.</td></tr>'; return; }
+  if (S.tview === 'cat') {      // two columns: the note verdicts, then the motion's own errors
+    const ext = [['collision', 'collisions'], ['freeze', 'freezes'], ['crossed', 'crossed'], ['habit', 'habits'], ['splay', 'splay runs'], ['zone', 'zone runs']];
+    const cells = [...CATS.map((k) => [k, k, R.c[k]]), ...ext.map(([k, l]) => [k, l, R.ext[k]])], td = (c) => (c ? `<td class="${c[2] ? '' : 'z'}"><span class="sw" style="background:${COL[c[0]]}"></span>${c[1]}</td><td class="n${c[2] ? '' : ' z'}">${c[2]}</td>` : '<td></td><td></td>');
+    for (let i = 0; i < cells.length; i += 2) h += `<tr>${td(cells[i])}${td(cells[i + 1])}</tr>`;
+    const by = Object.entries(R.by); if (by.length) h += `<tr class="sub"><td colspan="4">missed by: ${by.map(([l, v]) => `${esc(l)} ${v}`).join(' · ')}</td></tr>`;
+    h += `<tr class="sum"><td colspan="3">notes judged so far · played</td><td class="n">${R.notes} · ${R.acc.toFixed(1)} %</td></tr>` + (R.orn != null ? `<tr class="sum"><td colspan="3">played, ornament-aware</td><td class="n">${R.orn.toFixed(1)} %</td></tr>` : '');
+  } else {
+    const L = Object.fromEntries((CL.J.limbs || []).map((l) => [l.id, l]));
+    h += '<tr><th>limb</th><th>hit</th><th>missed</th><th>wrong</th><th>extra</th></tr>' + Object.entries(R.lb).map(([l, v]) => `<tr><td><span class="sw" style="background:${L[l] ? `rgb(${L[l].color})` : '#555'}"></span>${esc(L[l] ? L[l].label.toLowerCase() : 'no limb (cut before a limb had it)')}</td><td class="n">${v[0]}</td><td class="n">${v[1]}</td><td class="n">${v[3]}</td><td class="n">${v[2]}</td></tr>`).join('');
+  }
+  $('tally').innerHTML = h;
+}
+let tallyR = null, mistShown = [], mistPastKey = -1;
+function renderMist() {
+  if (!CL) { $('mlist').innerHTML = ''; setText($('nmist'), ''); return; }
+  mistShown = filterMist(CL.R, S.mf); setText($('nmist'), `(${mistShown.length})`);
+  const bb = (t) => barbeat(t);
+  $('mlist').innerHTML = mistShown.length ? mistShown.map((m) => `<div class="mi${HL && HL.i === m.i ? ' cur' : ''}" role="listitem" data-i="${m.i}"><span>${m.t.toFixed(2)}</span><span class="dim">${bb(m.t)}</span>` +
+    `<span class="mw"><span class="sw" style="background:${m.col}"></span><span class="tag" style="color:${m.col}">${esc(m.cat)}</span> ${esc(m.piece)}${m.limbs.length ? ' · ' + esc(m.limbs.map((l) => (CL.R.lshort[l] || l)).join('+')) : ''}</span>` +
+    (m.reason ? `<span class="mr">${esc(m.reason)}</span>` : '') + '</div>').join('') : `<div class="dim small" style="padding:8px 4px">${CL.J ? 'No mistakes under these filters.' : 'No judgement file.'}</div>`;
+  mistPastKey = -1;
+}
+function markPast(t) { const k = cumAt(CL ? CL.mistT : [], t - 0.05); if (k === mistPastKey) return; mistPastKey = k; for (const el of $('mlist').children) { const m = CL.R.mist[+el.dataset.i]; if (m) el.classList.toggle('past', m.t < t - 0.05); } }
+function cumLegend() { const s = CL ? series(CL.R) : {}; $('cumLegend').innerHTML = TYPES.filter(([k]) => s[k] && s[k].length).map(([k, l, c]) => `<span><i style="background:${c}"></i>${esc(l)} ${s[k].length}</span>`).join('') || ''; }
+function jumpTo(i) {
+  const m = CL.R.mist[i]; if (!m) return; HL = m; $('mloop').disabled = false;
+  for (const el of $('mlist').children) el.classList.toggle('cur', +el.dataset.i === i);
+  $('sel').hidden = false; $('sel').innerHTML = `<b style="color:${m.col}">${esc(m.cat.toUpperCase())}</b> · ${m.t.toFixed(2)} s · bar.beat ${barbeat(m.t)} · ${esc(m.piece)} · ${esc(m.reason)}`;
+  S.speed = 0.25; setPlay(false); seek(m.t - 0.4); applyUI(); save();
+}
 
-function frame() {
-  if (!stage) return;
-  let flash = null, hud = [];
-  if (CL) {
-    const recent = []; for (let i = lower(Tn) - 1; i >= 0 && Tn - CL.snd[i].t < 0.25; i--) recent.push(CL.snd[i]);
-    if (S.ov.flash) { flash = {}; for (const n of recent) { const a = 0.5 * (1 - (Tn - n.t) / 0.18); if (a > 0) flash[n.row] = Math.max(flash[n.row] || 0, a); } }
-    if (S.ov.hud) hud = [...new Set(recent.map((n) => LABEL[n.row] || n.row))];
-    $('bb').textContent = barbeat(Tn); $('tt').textContent = `${Tn.toFixed(2)} / ${CL.dur.toFixed(2)} s`;
-  }
-  $('hud').textContent = hud.join('  ·  ');
-  stage.draw(Tn, flash); timeline.draw(Tn);
+// ───────── transport: the clock, loops, the look-ahead scheduler ─────────
+const LOOKAHEAD = 0.2, TICK_MS = 25, LEAD = 0.03;      // a 25 ms timer queues the next 200 ms (the frame loop tops it up too, for a busy main thread)
+const clock = { src: 'perf', u0: 0, ac0: 0, pf0: 0, sched: 0 };       // song time u = u0 + (clock - anchor) * speed; the clip time is u wrapped into the loop
+let LR = null, LRkey = '';      // the loop range, recomputed only when the loop settings or the clip change (no per-frame arrays)
+function loopRange() { const k = CL ? `${S.loop}|${S.ab}|${CL.dur}` : ''; if (k !== LRkey) { LRkey = k; LR = null; if (CL && S.loop) { LR = [0, CL.dur]; if (S.ab) { const a = Math.max(0, Math.min(S.ab[0], CL.dur)), b = Math.min(CL.dur, S.ab[1]); if (b - a >= 0.1) LR = [a, b]; } } } return LR; }
+function wrap(u) { const L = loopRange(); if (!L) return Math.min(u, CL.dur); const [a, b] = L; return u < b ? u : a + ((u - a) % (b - a)); }
+const audioMaster = () => !!drums.ac && drums.ac.state === 'running' && !S.sound.muted && S.sound.mode !== 'off';
+function heardAc() {      // the context time being heard right now (output latency taken off)
+  const a = drums.ac; if (a.getOutputTimestamp) { const ts = a.getOutputTimestamp(); if (ts && ts.contextTime > 0 && ts.performanceTime > 0) return ts.contextTime + (performance.now() - ts.performanceTime) / 1000; }
+  return a.currentTime - (a.outputLatency || a.baseLatency || 0);
 }
-let last = performance.now();
-function tick(now) {
-  const dt = Math.min(0.1, (now - last) / 1000); last = now;
-  if (stage && S.orbit) { stage.orbit(dt); dirty = true; }
+function songNow() {
+  if (clock.src === 'ac') return clock.u0 + Math.max(0, heardAc() - clock.ac0) * S.speed;
+  return clock.u0 + Math.max(0, performance.now() - clock.pf0) / 1000 * S.speed;
+}
+// a new anchor at the current picture time: seeks, speed, loop and sound changes; queued voices are dropped and re-queued
+function reanchor() {
+  drums.flush(); clock.u0 = Tn; clock.pf0 = performance.now(); clock.src = playing && audioMaster() ? 'ac' : 'perf';
+  if (drums.ac) clock.ac0 = drums.ac.currentTime + LEAD; clock.sched = Tn; clock.start = { u0: clock.u0, ac0: clock.ac0, speed: S.speed };
+  if (playing && clock.src === 'ac') schedule();
+}
+function acAt(u) { return clock.ac0 + (u - clock.u0) / S.speed; }
+function schedule() {
+  if (!playing || clock.src !== 'ac' || !CL) return;
+  const uEnd = clock.u0 + Math.max(0, drums.ac.currentTime + LOOKAHEAD - clock.ac0) * S.speed; let s = clock.sched; if (uEnd <= s) return;
+  const L = loopRange(), mode = S.sound.mode, stack = mode === 'stack', lists = mode === 'midi' ? [['midi', CL.sMidi]] : mode === 'hits' ? [['hits', CL.sHits]] : mode === 'stack' ? [['midi', CL.sMidi], ['hits', CL.sHits]] : [];
+  let guard = 0;
+  while (s < uEnd && guard++ < 64) {
+    const c = wrap(s); let rem = L ? L[1] - c : CL.dur - c; if (rem <= 1e-9) { if (!L) break; rem = L[1] - L[0]; }
+    const seg = Math.min(uEnd - s, rem), c1 = c + seg;
+    for (const [src, arr] of lists) for (let i = lowerT(arr, c); i < arr.length && arr[i].t < c1; i++) { const n = arr[i], u = s + (n.t - c); drums.hit(n.row, n.vel, n.zone, 0, { src, stack, at: acAt(u), t: n.t, u }); }
+    s += seg; if (!L && c1 >= CL.dur) break;
+  }
+  clock.sched = uEnd;
+}
+setInterval(schedule, TICK_MS);
+function lowerT(a, t) { let lo = 0, hi = a.length; while (lo < hi) { const m = (lo + hi) >> 1; if (a[m].t < t) lo = m + 1; else hi = m; } return lo; }
+function setPlay(p) {
+  const was = playing; playing = !!p && !!CL;
+  if (playing && !was) { const L = loopRange(); if (L && S.ab && (Tn < L[0] || Tn >= L[1])) Tn = L[0]; if (!S.loop && Tn >= CL.dur - 1e-3) Tn = 0; }
+  $('play').setAttribute('aria-label', playing ? 'Pause' : 'Play'); $('playIcon').setAttribute('d', playing ? 'M6 5h4v14H6zm8 0h4v14h-4z' : 'M7 5v14l12-7z');
+  if (playing) stopListen(); reanchor(); markDirty();
+}
+function seek(t) { if (!CL) return; Tn = Math.max(0, Math.min(CL.dur, t)); reanchor(); markDirty(); }
+function step(d) { if (!CL) return; setPlay(false); seek(Math.round(Tn * CL.M.fps + d) / CL.M.fps); }
+function lowerSnd(a, t) { let lo = 0, hi = a.length; while (lo < hi) { const m = (lo + hi) >> 1; if (a[m].t <= t) lo = m + 1; else hi = m; } return lo; }      // first note after t
+function barbeat(t) { const G = CL && CL.G; if (!G) return '–'; const b = (t - G.lead) / G.beat, bar = G.bar0 + Math.floor(b / G.bpb), beat = Math.floor(((b % G.bpb) + G.bpb) % G.bpb) + 1; return `${bar}.${beat}`; }
+let scrubWasPlaying = false;
+const timeline = new Timeline($('tlBase'), $('tlTop'), (t, phase) => { if (phase === 'start') { scrubWasPlaying = playing; if (playing) setPlay(false); } seek(t); if (phase === 'end' && scrubWasPlaying) setPlay(true); });
+const lane = new Lane($('lane'), (t) => seek(t));
+const cum = new CumChart($('cumBase'), $('cumTop'));
+new ResizeObserver(() => resized()).observe($('center'));
+new ResizeObserver(() => { cum.resized(); markDirty(); }).observe($('cumwrap'));
+
+// ───────── the frame loop: draws only when something changed; stops when idle or hidden ─────────
+let raf = 0, dirty = true, lastFrame = 0, lastText = 0;
+const PF = { iv: new Float32Array(240), work: new Float32Array(240), n: 0, dropped: 0, drift: 0, lastHud: 0 };
+function markDirty() { dirty = true; if (!raf) raf = requestAnimationFrame(loop); }
+function loop(now) {
+  raf = 0; const iv = lastFrame ? now - lastFrame : 16.7; lastFrame = now;
+  const w0 = performance.now();
   if (playing && CL) {
-    const t0 = Tn; Tn += dt * S.speed;
-    if (Tn >= CL.dur) { if (S.loop) { soundBetween(t0, CL.dur); Tn = Tn % CL.dur; soundBetween(-1, Tn); } else { soundBetween(t0, CL.dur); Tn = CL.dur; setPlay(false); } }
-    else soundBetween(t0, Tn);
-    dirty = true;
+    schedule(); const u = songNow(), L = loopRange();
+    PF.lastU = u; PF.lastNow = performance.now();
+    if (!L && u >= CL.dur) { Tn = CL.dur; setPlay(false); } else Tn = wrap(u);
+    if (clock.src === 'ac') { const d = (clock.u0 + Math.max(0, heardAc() - clock.ac0) * S.speed - u) * 1000 / S.speed; PF.drift = d; PF.driftMax = Math.max(PF.driftMax || 0, Math.abs(d)); }
+    if (!S.loop && Tn >= CL.dur) setPlay(false);
   }
+  if (stage && S.orbit) { stage.orbit(Math.min(0.1, iv / 1000)); dirty = true; }
   if (listen) listenTick();
-  if (dirty) { dirty = false; frame(); }
-  requestAnimationFrame(tick);
+  if (dirty || playing) { dirty = false; frame(now, iv); }
+  const work = performance.now() - w0;
+  if (playing || S.orbit) { const i = PF.n++ % 240; PF.iv[i] = iv; PF.work[i] = work; if (PF.n > 2 && iv > 1.6 * (PF.ivMed || 16.7)) PF.dropped++; }
+  if (now - PF.lastHud > 500) { PF.lastHud = now; perfStats(); if (S.ov.perf) perfHud(); }
+  if (playing || S.orbit || listen || dirty) raf = requestAnimationFrame(loop);
+  else lastFrame = 0;
 }
+const flash = {}, LO = { zoom: 5, overlays: true, loop: null, hl: null }; let hudKey = '';
+function frame(now, iv) {
+  if (!stage) return;
+  let fl = null;
+  if (CL) {
+    for (const k in flash) flash[k] = 0;
+    const A = CL.sHits;
+    if (S.ov.flash) for (let i = lowerSnd(A, Tn) - 1; i >= 0 && Tn - A[i].t < 0.18; i--) { const n = A[i], a = 0.5 * (1 - (Tn - n.t) / 0.18); if (a > (flash[n.row] || 0)) flash[n.row] = a; }
+    if (HL) for (const r of HL.rows) flash[r] = Math.max(flash[r] || 0, 0.6);
+    fl = flash;
+  }
+  const snap = playing ? Math.max(1 / 240, (PF.ivMed || iv || 16.7) / 2000 * S.speed) : 0;     // half a display frame, in clip seconds
+  stage.draw(Tn, fl, snap);
+  const L = loopRange(), ab = L && S.ab ? L : null; timeline.draw(Tn, ab);
+  LO.zoom = S.zoom; LO.overlays = S.ov.lane; LO.loop = ab; LO.hl = HL; lane.draw(Tn, LO);
+  cum.draw(Tn);
+  if (!playing || now - lastText > 66) { lastText = now;      // text at <= 15 Hz while playing, and only when it changed
+    if (CL) { setText($('bb'), barbeat(Tn)); setText($('tt'), `${Tn.toFixed(2)} / ${CL.dur.toFixed(2)} s`); renderTally(Tn); markPast(Tn);
+      let hud = ''; if (S.ov.hud) { const A = CL.sHits; for (let i = lowerSnd(A, Tn) - 1; i >= 0 && Tn - A[i].t < 0.25; i--) { const l = LABEL[A[i].row] || A[i].row; if (!hud.includes(l)) hud = hud ? hud + '  ·  ' + l : l; } }
+      if (hud !== hudKey) { hudKey = hud; $('hud').textContent = hud; } } }
+}
+const qn = (a, p) => a[Math.min(a.length - 1, Math.floor(p * (a.length - 1)))];
+function perfStats() { const n = Math.min(PF.n, 240); if (n < 8) return; const iv = Array.from(PF.iv.subarray(0, n)).sort((a, b) => a - b), wk = Array.from(PF.work.subarray(0, n)).sort((a, b) => a - b);
+  PF.ivMed = qn(iv, 0.5); PF.ivP95 = qn(iv, 0.95); PF.wkMed = qn(wk, 0.5); PF.wkP95 = qn(wk, 0.95); }
+function perfHud() {
+  if (!PF.ivMed) { $('perf').textContent = 'perf: play to measure'; return; }
+  const f1 = (x) => x.toFixed(1);
+  $('perf').textContent = `fps ${(1000 / PF.ivMed).toFixed(0)}  frame p50 ${f1(PF.ivMed)} p95 ${f1(PF.ivP95)} ms\nwork p50 ${f1(PF.wkMed)} p95 ${f1(PF.wkP95)} ms  render ${stage ? f1(stage.renderMs) : '-'} ms\n` +
+    `dropped ${PF.dropped}  px ratio ${stage ? stage.renderer.getPixelRatio() : '-'}\nclock ${clock.src}  audio-picture drift ${clock.src === 'ac' ? f1(PF.drift) + ' ms' : 'n/a (silent clock)'}`;
+}
+document.addEventListener('visibilitychange', () => { if (!document.hidden) markDirty(); });
 
 // ───────── controls ─────────
-$('play').onclick = () => { if (!CL) return; if (!playing && !S.loop && Tn >= CL.dur - 1e-3) Tn = 0; setPlay(!playing); };
+$('play').onclick = () => { if (!CL) return; setPlay(!playing); };
 $('prev').onclick = () => step(-1); $('next').onclick = () => step(1);
-for (const b of $('speed').children) b.onclick = () => setS(() => { S.speed = +b.dataset.v; });
-$('loop').onclick = () => setS(() => { S.loop = !S.loop; });
+for (const b of $('speed').children) b.onclick = () => setS(() => { S.speed = +b.dataset.v; }, { anchor: true });
+for (const b of $('zoom').children) b.onclick = () => setS(() => { S.zoom = +b.dataset.v; });
+$('loop').onclick = () => setS(() => { S.loop = !S.loop; }, { anchor: true });
+function loopUI() {
+  const L = CL ? loopRange() : null;
+  setText($('lstat'), S.abA != null ? `A ${S.abA.toFixed(2)} s · set B` : S.ab ? `A–B ${S.ab[0].toFixed(2)}–${S.ab[1].toFixed(2)} s${S.loop ? '' : ' (loop off)'}` : '');
+  $('lclr').disabled = !S.ab && S.abA == null; void L;
+}
+$('la').onclick = () => { if (!CL) return; setS(() => { S.abA = +Tn.toFixed(3); }); };
+$('lb').onclick = () => { if (!CL) return; const a = S.abA ?? 0, b = +Tn.toFixed(3); setS(() => { if (Math.abs(b - a) >= 0.1) { S.ab = [Math.min(a, b), Math.max(a, b)]; S.loop = true; } S.abA = null; }, { anchor: true }); };
+$('lclr').onclick = () => setS(() => { S.ab = null; S.abA = null; }, { anchor: true });
+$('mloop').onclick = () => { if (!HL || !CL) return; setS(() => { S.ab = [Math.max(0, +(HL.t - 1).toFixed(3)), Math.min(CL.dur, +(HL.end + 1).toFixed(3))]; S.abA = null; S.loop = true; }); seek(S.ab[0]); setPlay(true); };
 $('orbit').onclick = () => setS(() => { S.orbit = !S.orbit; if (!S.orbit && stage) { const c = stage.getCam(); S.cam = 'custom'; S.camPos = c.pos; S.camTgt = c.tgt; } });
 $('xray').onclick = () => setS(() => { S.ov.xray = !S.ov.xray; });
 $('flash').onclick = () => setS(() => { S.ov.flash = !S.ov.flash; });
-$('hudbtn').onclick = () => setS(() => { S.ov.hud = !S.ov.hud; });
+$('hudbtn').onclick = () => setS(() => { S.ov.hud = !S.ov.hud; if (!S.ov.hud) $('hud').textContent = ''; hudKey = ''; });
+$('lanebtn').onclick = () => setS(() => { S.ov.lane = !S.ov.lane; });
 for (const b of $('cams').children) b.onclick = () => setS(() => { S.cam = b.dataset.cam; S.orbit = false; if (stage) stage.setCam(S.cam); });
-$('vol').oninput = () => { S.sound.vol = +$('vol').value; drums.setVolume(S.sound.vol); if (S.sound.muted && S.sound.vol > 0) { S.sound.muted = false; drums.setMuted(false); } soundUI(); save(); };
+$('smode').onchange = () => { drums.unlock(); setS(() => { S.sound.mode = $('smode').value; }, { anchor: true }); };
+$('sengine').onchange = () => setS(() => { S.sound.engine = $('sengine').value; drums.engine = S.sound.engine; }, { anchor: true });
+$('vm').oninput = () => { S.sound.vm = +$('vm').value; drums.vsrc.midi = S.sound.vm; save(); };
+$('vp').oninput = () => { S.sound.vp = +$('vp').value; drums.vsrc.hits = S.sound.vp; save(); };
+$('vm').onchange = $('vp').onchange = () => reanchor();      // queued voices take the new level
 let unlockedAt = -1e9;
-$('mute').onclick = () => { drums.unlock(); if (performance.now() - unlockedAt < 600 && !S.sound.muted) { soundUI(); return; } setS(() => { S.sound.muted = !S.sound.muted; drums.setMuted(S.sound.muted); }); };
-const unlock = () => { if (drums.ac) return; if (drums.unlock()) { unlockedAt = performance.now(); soundUI(); window.removeEventListener('pointerdown', unlock, true); window.removeEventListener('keydown', unlock, true); } };
+$('mute').onclick = () => { drums.unlock(); if (performance.now() - unlockedAt < 600 && !S.sound.muted) { soundUI(); reanchor(); return; } setS(() => { S.sound.muted = !S.sound.muted; drums.setMuted(S.sound.muted); }, { anchor: true }); };
+const unlock = () => { if (drums.ac) return; if (drums.unlock()) { unlockedAt = performance.now(); soundUI(); window.removeEventListener('pointerdown', unlock, true); window.removeEventListener('keydown', unlock, true);
+  const re = () => { if (drums.ac.state === 'running') reanchor(); else setTimeout(re, 30); }; re(); } };
 window.addEventListener('pointerdown', unlock, true); window.addEventListener('keydown', unlock, true);
 
 for (const k of ['kind', 'style', 'meter', 'source']) $('f' + k).onchange = () => setS(() => { S.f[k] = $('f' + k).value; }, { list: true });
+$('fsort').onchange = () => setS(() => { S.sort = $('fsort').value; }, { list: true });
 $('fq').oninput = () => setS(() => { S.f.q = $('fq').value.trim(); }, { list: true });
 $('fclear').onclick = () => setS(() => { for (const k of Object.keys(S.f)) S.f[k] = ''; }, { list: true });
 $('tgFilters').onclick = () => setS(() => { S.panels.filters = !S.panels.filters; });
 $('tgInfo').onclick = () => setS(() => { S.panels.info = !S.panels.info; });
+$('tgReview').onclick = () => setS(() => { S.panels.review = !S.panels.review; });
 $('tgMidi').onclick = () => { stopListen(); setS(() => { S.panels.midi = false; }); };
+$('midiModal').addEventListener('pointerdown', (e) => { if (e.target === $('midiModal')) $('tgMidi').click(); });
+$('tview').onclick = () => setS(() => { S.tview = S.tview === 'cat' ? 'limb' : 'cat'; });
+for (const k of ['col', 'soft', 'good', 'frz', 'orn']) $('mf' + k).onchange = () => { setS(() => { S.mf[k] = $('mf' + k).checked; }); renderMist(); };
+$('mlist').addEventListener('click', (e) => { const el = e.target.closest('.mi[data-i]'); if (el) jumpTo(+el.dataset.i); });
 const pick = (li) => { const p = PRESETS.find((x) => x.id === li.dataset.id); if (p) loadPreset(p); };
 $('list').addEventListener('click', (e) => { const li = e.target.closest('li[data-id]'); if (li) pick(li); });
 $('list').addEventListener('keydown', (e) => { const li = e.target.closest('li[data-id]'); if (!li) return;
@@ -204,14 +371,16 @@ $('list').addEventListener('scroll', () => { S.scroll = Math.round($('list').scr
 
 const typing = (el) => el && (el.tagName === 'INPUT' || el.tagName === 'SELECT' || el.tagName === 'TEXTAREA' || el.isContentEditable);
 window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && S.panels.midi) { $('tgMidi').click(); return; }
   if (typing(e.target) || e.ctrlKey || e.metaKey || e.altKey) return;
   if (e.code === 'Space') { e.preventDefault(); if (!e.repeat) $('play').click(); }
   else if (e.code === 'ArrowLeft') { e.preventDefault(); step(-1); }
   else if (e.code === 'ArrowRight') { e.preventDefault(); step(1); }
   else if (e.code === 'KeyL') $('loop').click();
+  else if (e.code === 'KeyP') setS(() => { S.ov.perf = !S.ov.perf; });
 });
 window.addEventListener('keyup', (e) => { if (e.code === 'Space' && !typing(e.target)) e.preventDefault(); });      // a focused button must not also click on Space
-window.addEventListener('resize', () => { dirty = true; if (A) { chart.set(A); chart.draw(); } });
+window.addEventListener('resize', () => { clampSizes(); applyUI(); resized(); if (A) { chart.set(A); chart.draw(); } });
 
 // ───────── files: MIDI uploads and dropped motion / judgement JSON ─────────
 $('btnMidi').onclick = $('btnMidi2').onclick = () => $('fileMidi').click();
@@ -235,12 +404,12 @@ async function handleFiles(files) {
     if (isMotion(o)) { M = o; name = f.name; } else if (isJudgement(o)) J = o; else toast(`${f.name} is neither a motion nor a judgement file.`); }
   if (M) { S.clip = ''; markSelected(); save(); showClip({ M, J, meta: { title: M.title || name.replace(/\.json$/i, ''), file: name }, kind: 'file' }, true); toast(`Playing ${name}${J ? ' with its judgement' : ''}.`); }
   else if (J) {
-    if (CL && CL.kind === 'file' && (!J.frames || J.frames === CL.M.frames)) { showClip({ ...CL, J }, false); toast('Judgement added: the lanes show hits and misses.'); }
+    if (CL && CL.kind === 'file' && (!J.frames || J.frames === CL.M.frames)) { showClip({ M: CL.M, J, meta: CL.meta, kind: 'file' }, false); toast('Judgement added: the lanes show hits and misses.'); }
     else toast('Drop the judgement together with its motion file.');
   }
 }
 
-// ---- the upload panel ----
+// ---- the upload panel (a dialog) ----
 let A = null;
 const chart = new Chart($('chart'), (b0, b1, done) => { setRange(b0, b1); if (done) stopListen(); });
 async function openMidi(file) {
@@ -255,7 +424,6 @@ async function openMidi(file) {
     (A.sigChanges ? 'The meter changes in this file: the solver counts bars in the first meter. ' : '') + (A.notes.length ? '' : 'No drum notes found.');
   $('b0').max = $('b1').max = A.nbars; $('bof').textContent = `of ${A.nbars}`;
   chart.set(A); setRange(A.firstBar, Math.min(A.nbars, A.firstBar + 3));
-  $('midi').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 function setRange(b0, b1) {
   if (!A) return; b0 = Math.max(1, Math.min(A.nbars, Math.round(b0) || 1)); b1 = Math.max(b0, Math.min(A.nbars, Math.round(b1) || b0));
@@ -277,26 +445,25 @@ $('copy').onclick = async () => {
 $('listen').onclick = () => {
   if (listen) { stopListen(); return; } if (!A || !A.notes.length) return;
   if (!drums.unlock()) { toast('This browser has no WebAudio.'); return; } if (S.sound.muted) setS(() => { S.sound.muted = false; drums.setMuted(false); });
-  setPlay(false); dirty = true;
+  setPlay(false);
   const [b0, b1] = chart.sel, t0 = A.barStart(b0), t1 = A.barStart(b1 + 1), list = A.notes.filter((n) => n.bar >= b0 && n.bar < b1 + 1);
   drums.preload([...new Set(list.map((n) => n.row + '\u0000' + n.zone))].map((k) => k.split('\u0000')));
-  listen = { c0: drums.ac.currentTime + 0.15, t0, t1, list, i: 0, b0, b1 }; $('listen').textContent = 'Stop';
+  listen = { c0: drums.ac.currentTime + 0.15, t0, t1, list, i: 0, b0, b1 }; $('listen').textContent = 'Stop'; markDirty();
 };
 function listenTick() {
   const L = listen, now = drums.ac.currentTime - L.c0 + L.t0;
-  while (L.i < L.list.length && L.list[L.i].t < now + 0.12) { const n = L.list[L.i++]; drums.hit(n.row, n.vel, n.zone, Math.max(0, n.t - now)); }
-  const span = L.t1 - L.t0; chart.head = L.b0 + Math.max(0, Math.min(1, (now - L.t0) / span)) * (L.b1 - L.b0 + 1); chart.draw();
+  while (L.i < L.list.length && L.list[L.i].t < now + LOOKAHEAD) { const n = L.list[L.i++]; drums.hit(n.row, n.vel, n.zone, 0, { src: 'midi', at: L.c0 + (n.t - L.t0) }); }
+  chart.head = L.b0 + Math.max(0, Math.min(1, (now - L.t0) / (L.t1 - L.t0))) * (L.b1 - L.b0 + 1); chart.draw();
   if (now > L.t1 + 0.2) stopListen();
 }
-function stopListen() { if (!listen) return; listen = null; chart.head = null; $('listen').textContent = 'Listen'; chart.draw(); }
+function stopListen() { if (!listen) return; listen = null; drums.flush(); chart.head = null; $('listen').textContent = 'Listen'; chart.draw(); }
 
 // ───────── boot ─────────
-applyUI();
-renderInfo();
+clampSizes(); applyUI(); renderInfo();
 onHashChange(() => {
-  applyUI(); renderList();
+  applyUI(); renderList(); renderMist();
   if (stage) { if (S.cam === 'custom' && S.camPos && S.camTgt) stage.setCamRaw(S.camPos, S.camTgt); else stage.setCam(S.cam); }
-  const p = PRESETS.find((x) => x.id === S.clip); if (p && (!CL || CL.meta !== p)) loadPreset(p);
+  const p = PRESETS.find((x) => x.id === S.clip); if (p && (!CL || CL.meta !== p)) loadPreset(p); else reanchor();
   save(true);
 });
 
@@ -311,10 +478,9 @@ const manifestReady = (async () => {
   if (!dir) { try { const ix = await getJSON(url('kits/index.json')); const L = Array.isArray(ix) ? ix : ix.kits || []; const k = L[0]; if (k) dir = typeof k === 'string' ? `kits/${k}/` : k.path || `kits/${k.id}/`; } catch { /* no index */ } }
   if (!dir) { await manifestReady; if (MAN && MAN.kit) dir = typeof MAN.kit === 'string' ? `kits/${MAN.kit}/` : MAN.kit.path || `kits/${MAN.kit.id}/`; }
   if (!dir) { $('kitname').textContent = 'synth'; $('kitname').title = 'No sample kit found: a simple synth plays'; return; }
-  try { const k = await drums.loadKit(url(dir)); $('kitname').textContent = k.name || k.id || 'kit'; $('kitname').title = [k.name, k.license, k.credit].filter(Boolean).join(' · '); if (CL) { drums.preload(CL.snd.map((n) => [n.row, n.zone])); renderInfo(); } }
+  try { const k = await drums.loadKit(url(dir)); $('kitname').textContent = k.name || k.id || 'kit'; $('kitname').title = [k.name, k.license, k.credit].filter(Boolean).join(' · '); if (CL) { drums.preload([...CL.sMidi, ...CL.sHits].map((n) => [n.row, n.zone])); renderInfo(); } }
   catch { $('kitname').textContent = 'synth'; $('kitname').title = `Could not load the kit at ${dir}: a simple synth plays`; }
 })();
-
 
 (async () => {
   try {
@@ -323,14 +489,16 @@ const manifestReady = (async () => {
   $('loading').hidden = true; stage.setXray(S.ov.xray);
   if (S.cam === 'custom' && S.camPos && S.camTgt) stage.setCamRaw(S.camPos, S.camTgt); else stage.setCam(CAMS[S.cam] ? S.cam : 'perf');
   stage.controls.addEventListener('start', () => { if (S.orbit) setS(() => { S.orbit = false; }); });
-  stage.controls.addEventListener('change', () => { dirty = true; });
+  stage.controls.addEventListener('change', () => markDirty());
   stage.controls.addEventListener('end', () => { const c = stage.getCam(); setS(() => { S.cam = 'custom'; S.camPos = c.pos; S.camTgt = c.tgt; }); });
-  new ResizeObserver(() => { dirty = true; }).observe($('stagewrap'));
+  new ResizeObserver(() => markDirty()).observe($('stagewrap'));
   await manifestReady;
   if (pendingClip) { showClip(...pendingClip); pendingClip = null; }
   else { const p = PRESETS.find((x) => x.id === S.clip) || PRESETS.filter(matches)[0] || PRESETS[0]; if (p) await loadPreset(p); else { $('empty').hidden = false; renderInfo(); } }
   window.__app.ready = true;
 })();
-requestAnimationFrame(tick);
+markDirty();
 
-window.__app = { ready: false, S, get clip() { return CL; }, get t() { return Tn; }, get playing() { return playing; }, seek, setPlay, get presets() { return PRESETS; }, get midi() { return A; }, cmd: () => $('cmd').textContent, cam: () => stage && stage.getCam(), drums };
+window.__app = { ready: false, S, get clip() { return CL; }, get t() { return Tn; }, get playing() { return playing; }, seek, setPlay, jumpTo, get presets() { return PRESETS; }, get midi() { return A; }, cmd: () => $('cmd').textContent,
+  cam: () => stage && stage.getCam(), drums, clock: () => ({ ...clock, start: clock.start }), tip: () => (stage ? Array.from(stage.tip) : null), perf: () => ({ ...PF, iv: Array.from(PF.iv.subarray(0, Math.min(PF.n, 240))), work: Array.from(PF.work.subarray(0, Math.min(PF.n, 240))) }),
+  tally: (t) => (CL ? count(CL.R, t) : null), series: () => (CL ? series(CL.R) : null), mistShown: () => mistShown.map((m) => ({ i: m.i, t: m.t, cat: m.cat })), loopRange: () => (CL ? loopRange() : null), HL: () => HL && HL.i };

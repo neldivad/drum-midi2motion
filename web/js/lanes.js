@@ -12,21 +12,21 @@ export const sortRows = (ids) => [...new Set(ids)].sort((a, b) => (ORDER.indexOf
 
 function fit(cv) { const dpr = Math.min(2, devicePixelRatio || 1), w = cv.clientWidth, h = cv.clientHeight; if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); } const g = cv.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0); return { g, w, h }; }
 
-// ---- the transport timeline ----
+// ---- the transport timeline: a static base canvas (lanes, bar ticks, hit/miss marks; redrawn on clip or resize) under a thin playhead canvas ----
 export class Timeline {
-  constructor(cv, onSeek) {
-    this.cv = cv; this.clip = null; this.base = null; this.onSeek = onSeek; this.LX = 26;
+  constructor(base, top, onSeek) {
+    this.cv = base; this.top = top; this.clip = null; this.dirty = true; this.onSeek = onSeek; this.LX = 26; this.lastX = -1; this.loop = null;
     let drag = false;
-    const at = (e) => { const r = cv.getBoundingClientRect(), x = e.clientX - r.left; return this.clip ? Math.max(0, Math.min(1, (x - this.LX) / (r.width - this.LX - 4))) * this.clip.dur : 0; };
-    cv.addEventListener('pointerdown', (e) => { if (!this.clip) return; drag = true; cv.setPointerCapture(e.pointerId); this.onSeek(at(e), 'start'); });
-    cv.addEventListener('pointermove', (e) => { if (drag) this.onSeek(at(e), 'move'); });
-    const up = (e) => { if (!drag) return; drag = false; this.onSeek(at(e), 'end'); }; cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
+    const at = (e) => { const r = top.getBoundingClientRect(), x = e.clientX - r.left; return this.clip ? Math.max(0, Math.min(1, (x - this.LX) / (r.width - this.LX - 4))) * this.clip.dur : 0; };
+    top.addEventListener('pointerdown', (e) => { if (!this.clip) return; drag = true; top.setPointerCapture(e.pointerId); this.onSeek(at(e), 'start'); });
+    top.addEventListener('pointermove', (e) => { if (drag) this.onSeek(at(e), 'move'); });
+    const up = (e) => { if (!drag) return; drag = false; this.onSeek(at(e), 'end'); }; top.addEventListener('pointerup', up); top.addEventListener('pointercancel', up);
   }
-  // clip: {dur, rows: [ids], marks: [{t,row,cls}], bars: [{t, n}]}
-  set(clip) { this.clip = clip; this.base = null; this.cv.style.height = clip ? `${18 + Math.max(3, clip.rows.length) * 6 + 4}px` : '22px'; }
+  // clip: {dur, rows: [ids], marks: [{t,row,cls}], bars: [{t, n, beat}]}
+  set(clip) { this.clip = clip; this.dirty = true; this.cv.parentElement.style.height = clip ? `${18 + Math.max(3, clip.rows.length) * 6 + 4}px` : '22px'; }
   X(t) { return this.LX + (t / this.clip.dur) * (this.w - this.LX - 4); }
   paintBase() {
-    const { g, w, h } = fit(this.cv); this.w = w; this.h = h; g.fillStyle = BG; g.fillRect(0, 0, w, h); const c = this.clip; if (!c) return;
+    const { g, w, h } = fit(this.cv); this.w = w; this.h = h; this.dirty = false; this.lastX = -1; g.fillStyle = BG; g.fillRect(0, 0, w, h); const c = this.clip; if (!c) return;
     const top = 16, rh = (h - top - 3) / Math.max(1, c.rows.length);
     c.rows.forEach((id, i) => { g.fillStyle = i % 2 ? ROWB : ROWA; g.fillRect(this.LX, top + i * rh, w - this.LX - 4, rh); g.fillStyle = PCOL[id] || DIM; g.fillRect(this.LX - 5, top + i * rh + 0.5, 3, Math.max(1, rh - 1)); });
     g.font = '10px system-ui, sans-serif'; g.textBaseline = 'middle';
@@ -38,13 +38,16 @@ export class Timeline {
       if (m.cls === 'missed') { g.fillStyle = VCOL.missed; g.fillRect(x - 1.5, y - 1, 3, hh + 2); }
       else if (m.cls === 'wrong') { g.strokeStyle = VCOL.wrong; g.lineWidth = 1; g.strokeRect(x - 1.5, y, 3, hh); }
       else { g.fillStyle = m.cls === 'none' ? VCOL.none : PCOL[m.row] || DIM; g.fillRect(x - 1, y, 2, hh); } }
-    this.base = g.getImageData(0, 0, this.cv.width, this.cv.height);
   }
-  draw(t) {
-    if (!this.base || this.cv.width !== Math.round(this.cv.clientWidth * Math.min(2, devicePixelRatio || 1))) this.paintBase();
-    if (!this.clip) return; const g = this.cv.getContext('2d'); g.putImageData(this.base, 0, 0);
-    const dpr = Math.min(2, devicePixelRatio || 1); g.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const x = this.X(t); g.fillStyle = 'rgba(255,255,255,0.08)'; g.fillRect(this.LX, 0, x - this.LX, this.h); g.fillStyle = '#ffffff'; g.fillRect(Math.round(x) - 1, 0, 2, this.h);
+  resized() { this.dirty = true; }
+  // the playhead (and the loop span) on the thin top canvas; only when it moved by a pixel
+  draw(t, loop) {
+    if (this.dirty || this.cv.width !== Math.round(this.cv.clientWidth * Math.min(2, devicePixelRatio || 1))) this.paintBase();
+    if (!this.clip) return; const x = Math.round(this.X(t) * 2) / 2;
+    if (x === this.lastX && loop === this.loopRef) return; this.lastX = x; this.loopRef = loop;
+    const { g, w, h } = fit(this.top); g.clearRect(0, 0, w, h);
+    if (loop) { const a = this.X(loop[0]), b = this.X(loop[1]); g.fillStyle = 'rgba(110,205,225,0.10)'; g.fillRect(a, 0, b - a, h); g.fillStyle = '#6ecde1'; g.fillRect(a, 0, b - a, 2); }
+    g.fillStyle = 'rgba(255,255,255,0.07)'; g.fillRect(this.LX, 0, x - this.LX, h); g.fillStyle = '#ffffff'; g.fillRect(x - 1, 0, 2, h);
   }
 }
 

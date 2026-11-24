@@ -1,12 +1,15 @@
 // audio.js: the drum sound. A sample kit (kits/<id>/kit.json, pieces keyed by the motion's piece ids, velocity layers per piece)
 // played through WebAudio; a small synth stands in for any piece the kit lacks (or when no kit loads).
 // No AudioContext exists until the first user gesture (autoplay rules): until then the page is silent.
+// Each hit is a source: 'midi' (what should sound) or 'hits' (the measured contacts, what the drummer played). In stack mode MIDI pans
+// left and the performance right, and a performance hit carries a short bright tick, so a late hit reads as a flam (the review page's sound).
 
 const FALLBACK = { crash2: ['crash'], china: ['crash'], splash: ['crash'], tom3: ['tom2', 'floor'], floor: ['tom3'], floor2: ['floor', 'tom3'], kick2: ['kick'], tom1: ['tom2'], tom2: ['tom1', 'tom3'] };
 const CHOKES = { hat: ['hat'], hatped: ['hat'] };       // a closed hat or the pedal stops the ringing open hat
 
 export class Drums {
-  constructor() { this.ac = null; this.out = null; this.kit = null; this.dir = ''; this.bufs = new Map(); this.rr = new Map(); this.ring = new Map(); this.vol = 0.8; this.muted = false; this.noiseBuf = null; this.status = 'no kit'; }
+  constructor() { this.ac = null; this.out = null; this.kit = null; this.dir = ''; this.bufs = new Map(); this.rr = new Map(); this.ring = new Map(); this.vol = 0.8; this.muted = false; this.noiseBuf = null; this.status = 'no kit';
+    this.engine = 'samples'; this.pending = []; this.log = null; this.vsrc = { midi: 1, hits: 1 }; this.count = { midi: 0, hits: 0, tick: 0, samples: 0, synth: 0 }; }
 
   // call from a user gesture
   unlock() {
@@ -51,35 +54,48 @@ export class Drums {
   }
   noise() { if (this.noiseBuf) return this.noiseBuf; const a = this.ac, b = a.createBuffer(1, a.sampleRate, a.sampleRate), d = b.getChannelData(0); let s = 7; for (let i = 0; i < d.length; i++) { s = (s * 16807) % 2147483647; d[i] = (s / 2147483647) * 2 - 1; } return (this.noiseBuf = b); }
 
-  // play one hit `when` seconds from now (AudioContext time offset)
-  hit(row, vel = 90, zone = '', when = 0) {
+  // play one hit `when` seconds from now (AudioContext time offset). o = {src: 'midi' | 'hits', stack: bool}
+  // o.at = the exact AudioContext time to sound at (the look-ahead scheduler's); otherwise `when` seconds from now
+  hit(row, vel = 90, zone = '', when = 0, o = {}) {
     if (!this.live) return;
-    const a = this.ac, t0 = a.currentTime + 0.01 + Math.max(0, when), v = Math.max(1, Math.min(127, Math.round(vel)));
-    for (const id of CHOKES[row] || []) if (!(row === 'hat' && /^open/.test(zone || ''))) { for (const g of this.ring.get(id) || []) g.gain.setTargetAtTime(0, t0, 0.012); this.ring.set(id, []); }
-    const p = this.pick(row, zone, v);
-    if (p && p.layer.file) {
-      const pr = this.bufs.get(p.layer.file);
-      if (pr && typeof pr.then !== 'function') return this._play(pr, p, v, t0, row, zone);
-      if (pr === undefined) this.preload([...(this._want || []), [row, zone]]);        // not asked for yet: fetch it, the synth covers this hit
+    const src = o.src || 'midi', a = this.ac, now = a.currentTime, t0 = o.at != null ? Math.max(o.at, now) : now + 0.01 + Math.max(0, when), v = Math.max(1, Math.min(127, Math.round(vel)));
+    const lvl = this.vsrc[src] ?? 1; if (lvl <= 0) return;
+    this.count[src] = (this.count[src] || 0) + 1;
+    if (this.log && o.at != null) this.log.push({ src, row, at: o.at, start: t0, now, t: o.t, u: o.u });
+    const bus = a.createGain(); bus.gain.value = lvl; const rec = { t0, nodes: [], bus }; this._rec = rec;
+    if (t0 > now + 0.004) { this.pending.push(rec); if (this.pending.length > 512) this.pending = this.pending.filter((p) => p.t0 > now); }
+    if (o.stack && a.createStereoPanner) { const pn = a.createStereoPanner(); pn.pan.value = src === 'midi' ? -0.85 : 0.85; bus.connect(pn); pn.connect(this.out); } else bus.connect(this.out);
+    if (o.stack && src === 'hits') { this.count.tick++; const os = a.createOscillator(), og = a.createGain(); os.type = 'square'; os.frequency.value = 3200; og.gain.setValueAtTime(0.18, t0); og.gain.exponentialRampToValueAtTime(0.001, t0 + 0.012); os.connect(og); og.connect(bus); os.start(t0); os.stop(t0 + 0.015); rec.nodes.push(os); }
+    const chokeKey = src + ':hat';
+    for (const id of CHOKES[row] || []) if (!(row === 'hat' && /^open/.test(zone || ''))) { for (const g of this.ring.get(src + ':' + id) || []) g.gain.setTargetAtTime(0, t0, 0.012); this.ring.set(src + ':' + id, []); }
+    if (this.engine === 'samples') {
+      const p = this.pick(row, zone, v);
+      if (p && p.layer.file) {
+        const pr = this.bufs.get(p.layer.file);
+        if (pr && typeof pr.then !== 'function') { this.count.samples++; return this._play(pr, p, v, t0, row, zone, bus, chokeKey); }
+        if (pr === undefined) this.preload([...(this._want || []), [row, zone]]);        // not asked for yet: fetch it, the synth covers this hit
+      }
     }
-    this.synth(row, v, zone, t0);
+    this.count.synth++; this.synth(row, v, zone, t0, bus);
   }
-  _play(buf, p, v, t0, row, zone) {
+  _play(buf, p, v, t0, row, zone, bus, chokeKey) {
     const a = this.ac, g = a.createGain(), lo = p.layer.vel ? p.layer.vel[0] : 0, hi = p.layer.vel ? p.layer.vel[1] : 127;
-    g.gain.value = 0.55 * (p.layer.gain || 1) * (0.7 + 0.3 * Math.min(1, (v - lo + 1) / (hi - lo + 1))); g.connect(this.out);
-    const s = a.createBufferSource(); s.buffer = buf; s.connect(g); s.start(t0);
-    if (row === 'hat' && /^open/.test(zone || '')) { const l = this.ring.get('hat') || []; l.push(g); this.ring.set('hat', l); }
+    g.gain.value = 0.55 * (p.layer.gain || 1) * (0.7 + 0.3 * Math.min(1, (v - lo + 1) / (hi - lo + 1))); g.connect(bus);
+    const s = a.createBufferSource(); s.buffer = buf; s.connect(g); s.start(t0); this._rec.nodes.push(s);
+    if (row === 'hat' && /^open/.test(zone || '')) { const l = this.ring.get(chokeKey) || []; l.push(g); this.ring.set(chokeKey, l); }
   }
-  synth(row, v, zone, t0) {
-    const a = this.ac, g = a.createGain(), amp = Math.max(0.08, v / 127) * 0.5; g.connect(this.out);
+  // drop every voice queued for the future (a seek, a re-anchor, a pause)
+  flush() { if (!this.ac) return; const now = this.ac.currentTime; for (const p of this.pending) if (p.t0 > now) { for (const n of p.nodes) { try { n.stop(0); } catch { /* not started */ } } try { p.bus.disconnect(); } catch { /* gone */ } } this.pending = []; }
+  synth(row, v, zone, t0, bus) {
+    const a = this.ac, g = a.createGain(), amp = Math.max(0.08, v / 127) * 0.5; g.connect(bus || this.out);
     const fam = row.startsWith('kick') ? 'kick' : row === 'snare' ? 'snare' : row === 'hat' ? 'hat' : row === 'hatped' ? 'ped' : /crash|ride|china|splash/.test(row) ? 'cym' : /tom|floor/.test(row) ? 'tom' : 'other';
-    const nz = (dur, type, f, q = 0.8) => { const s = a.createBufferSource(); s.buffer = this.noise(); const fl = a.createBiquadFilter(); fl.type = type; fl.frequency.value = f; fl.Q.value = q; s.connect(fl); fl.connect(g); s.start(t0); s.stop(t0 + dur); };
-    const tone = (f0, f1, dur) => { const o = a.createOscillator(); o.frequency.setValueAtTime(f0, t0); o.frequency.exponentialRampToValueAtTime(f1, t0 + dur); o.connect(g); o.start(t0); o.stop(t0 + dur); };
+    const nz = (dur, type, f, q = 0.8) => { const s = a.createBufferSource(); s.buffer = this.noise(); const fl = a.createBiquadFilter(); fl.type = type; fl.frequency.value = f; fl.Q.value = q; s.connect(fl); fl.connect(g); s.start(t0); s.stop(t0 + dur); this._rec.nodes.push(s); };
+    const tone = (f0, f1, dur) => { const o = a.createOscillator(); o.frequency.setValueAtTime(f0, t0); o.frequency.exponentialRampToValueAtTime(f1, t0 + dur); o.connect(g); o.start(t0); o.stop(t0 + dur); this._rec.nodes.push(o); };
     let dur = 0.1;
     if (fam === 'kick') { dur = 0.18; tone(130, 45, dur); } else if (fam === 'snare') { dur = 0.14; nz(dur, 'bandpass', 1900, 0.6); tone(230, 170, 0.06); }
     else if (fam === 'tom') { dur = 0.22; const f = { tom1: 210, tom2: 170, tom3: 140, floor: 110, floor2: 95 }[row] || 150; tone(f, f * 0.7, dur); }
     else if (fam === 'hat') { dur = /^open/.test(zone || '') ? 0.25 : 0.045; nz(dur, 'highpass', 7500); } else if (fam === 'ped') { dur = 0.03; nz(dur, 'highpass', 5000); }
-    else if (fam === 'cym') { dur = row === 'ride' ? 0.35 : 0.8; nz(dur, 'highpass', row === 'ride' ? 6000 : 4500); } else nz(dur, 'highpass', 3000);
+    else if (fam === 'cym') { dur = row === 'ride' ? 0.35 : 0.8; nz(dur, 'highpass', row === 'ride' ? 6000 : 4500); if (zone === 'bell') tone(1250, 1200, 0.25); } else nz(dur, 'highpass', 3000);
     g.gain.setValueAtTime(amp, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
   }
 }

@@ -16,7 +16,7 @@ const Cm = new THREE.Matrix4().set(1, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0,
 const STICK_PROFILE = [[0, 0], [0.0068, 0], [0.00725, 0.004], [0.00725, 0.62], [0.0052, 0.86], [0.0034, 0.955], [0.0042, 0.975], [0.0036, 0.995], [0, 1]].map(([r, y]) => new THREE.Vector2(r, y));
 
 export async function createStage(el, glbUrl, onProgress) {
-  const renderer = new THREE.WebGLRenderer({ antialias: true }); renderer.setPixelRatio(Math.min(2, devicePixelRatio || 1)); el.appendChild(renderer.domElement);
+  const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' }); let prCap = Math.min(1.5, devicePixelRatio || 1); renderer.setPixelRatio(prCap); el.appendChild(renderer.domElement);
   const scene = new THREE.Scene(); scene.background = new THREE.Color('#101118');
   const camera = new THREE.PerspectiveCamera(34, 16 / 9, 0.03, 200);
   const controls = new OrbitControls(camera, renderer.domElement); controls.enableDamping = false;
@@ -32,8 +32,8 @@ export async function createStage(el, glbUrl, onProgress) {
   const skin = new THREE.MeshStandardMaterial({ color: '#d9e4ea', roughness: 0.55, metalness: 0.05 }); mesh.material = skin; mesh.frustumCulled = false;
 
   const stickM = {}; for (const h of ['L', 'R']) { const m = new THREE.Mesh(new THREE.LatheGeometry(STICK_PROFILE, 14), new THREE.MeshStandardMaterial({ color: '#e3b87a', roughness: 0.6, emissive: LIMBCOL[h], emissiveIntensity: 0.25 })); m.visible = false; scene.add(m); stickM[h] = m; }
-  const placeStick = (m, a, b) => { m.position.copy(a); m.scale.set(1, a.distanceTo(b), 1); m.quaternion.setFromUnitVectors(UP, b.clone().sub(a).normalize()); };
-  const tmp = new THREE.Matrix4(), Dm = new THREE.Matrix4();
+  const placeStick = (m, a, b) => { m.position.copy(a); m.scale.set(1, a.distanceTo(b), 1); m.quaternion.setFromUnitVectors(UP, vD.subVectors(b, a).normalize()); };
+  const tmp = new THREE.Matrix4(), Dm = new THREE.Matrix4(), vA = new THREE.Vector3(), vB = new THREE.Vector3(), vD = new THREE.Vector3(), vP = new THREE.Vector3(), qQ = new THREE.Quaternion(), ONE = new THREE.Vector3(1, 1, 1), qOut = new Float32Array(4), hatOff = new THREE.Vector3();
   let C = null;        // the clip on stage
 
   function disposeKit() { if (!C) return; scene.remove(C.sets); C.sets.traverse((o) => { if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); }); }
@@ -59,29 +59,51 @@ export async function createStage(el, glbUrl, onProgress) {
     const board = (a, dx, len) => { const piv = new THREE.Group(); piv.position.copy(B(a[0] + dx, a[1] + 0.05, 0.012)); sets.add(piv); const g = new THREE.BoxGeometry(0.085, 0.010, len); g.translate(0, 0, len / 2); piv.add(new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: '#b9bcc6', metalness: 0.6, roughness: 0.4 }))); return piv; };
     const kf = (M.kick_foot || 'RF')[0], hf = (M.hat_foot || 'LF')[0], kickBoard = board(K.ankle[kf], 0, 0.29), hatBoard = board(K.ankle[hf], 0.02, 0.27);
     PIECE.hatped = [hatBoard.children[0]]; PIECE.kick = (PIECE.kick || []).concat([kickBoard.children[0]]);
-    C = { M, K, NB, list, sets, PIECE, hatTop, kickBoard, hatBoard, FPS: M.fps, NF: M.frames, DQ: dec16(M.delta), ST: dec16(M.sticks), HAT: dec16(M.hat30), KP: dec16(M.kick_plate), HP: dec16(M.hat_plate) };
+    // decoded once per clip: per frame and bone the delta as position + quaternion (three.js space), sticks as float points, the pedal tracks as floats
+    const NF = M.frames, DQ = dec16(M.delta), QP = new Float32Array(NF * NB * 7), pos = new THREE.Vector3(), quat = new THREE.Quaternion(), scl = new THREE.Vector3();
+    for (let f = 0; f < NF; f++) for (let i = 0; i < NB; i++) { const o = (f * NB + i) * 12, r = (k) => DQ[o + k] / 32000, t = (k) => DQ[o + k] / 10000;
+      Dm.set(r(0), r(1), r(2), t(3), r(4), r(5), r(6), t(7), r(8), r(9), r(10), t(11), 0, 0, 0, 1); tmp.copy(Cm).multiply(Dm).multiply(Ci); tmp.decompose(pos, quat, scl);
+      const q = (f * NB + i) * 7; QP[q] = quat.x; QP[q + 1] = quat.y; QP[q + 2] = quat.z; QP[q + 3] = quat.w; QP[q + 4] = pos.x; QP[q + 5] = pos.y; QP[q + 6] = pos.z; }
+    const S16 = dec16(M.sticks), ST = new Float32Array(S16.length); for (let j = 0; j < S16.length; j += 3) { ST[j] = S16[j] / 1e4; ST[j + 1] = S16[j + 2] / 1e4; ST[j + 2] = -S16[j + 1] / 1e4; }      // Blender (x, y, z) -> three (x, z, -y)
+    const f32 = (s16, k) => Float32Array.from(dec16(s16), (v) => v / k);
+    C = { M, K, NB, list, sets, PIECE, hatTop, kickBoard, hatBoard, FPS: M.fps, NF, QP, ST, HAT: f32(M.hat30, 1e4), KP: f32(M.kick_plate, 100), HP: f32(M.hat_plate, 100), contact: new Uint8Array(NF) };
     for (const h of ['L', 'R']) stickM[h].visible = C.ST.length > 0;
   }
+  // the frames where something is struck: the blend snaps to them so a hit is never blended away
+  function setContacts(times) { if (!C) return; C.contact.fill(0); for (const t of times) { const f = Math.round(t * C.FPS); if (f >= 0 && f < C.NF) C.contact[f] = 1; } }
 
-  function pose(f) { const { DQ, NB, list } = C, base = f * NB * 12; for (let i = 0; i < NB; i++) { const o = base + i * 12, r = (k) => DQ[o + k] / 32000, t = (k) => DQ[o + k] / 10000; Dm.set(r(0), r(1), r(2), t(3), r(4), r(5), r(6), t(7), r(8), r(9), r(10), t(11), 0, 0, 0, 1); tmp.copy(Cm).multiply(Dm).multiply(Ci); list[i].b.matrixWorld.multiplyMatrices(tmp, list[i].rest); } }
-  const stickPt = (f, h, k) => { const o = (f * 2 + (h === 'L' ? 0 : 1)) * 6 + k * 3, S = C.ST; return B(S[o] / 1e4, S[o + 1] / 1e4, S[o + 2] / 1e4); };
+  // the pose between frames f0 and f0 + 1: slerp the rotations, lerp the positions (no allocation)
+  function pose(f0, f1, a) { const { QP, NB, list } = C, b0 = f0 * NB * 7, b1 = f1 * NB * 7;
+    for (let i = 0; i < NB; i++) { const o0 = b0 + i * 7, o1 = b1 + i * 7; THREE.Quaternion.slerpFlat(qOut, 0, QP, o0, QP, o1, a); qQ.set(qOut[0], qOut[1], qOut[2], qOut[3]);
+      vP.set(QP[o0 + 4] + (QP[o1 + 4] - QP[o0 + 4]) * a, QP[o0 + 5] + (QP[o1 + 5] - QP[o0 + 5]) * a, QP[o0 + 6] + (QP[o1 + 6] - QP[o0 + 6]) * a);
+      tmp.compose(vP, qQ, ONE); list[i].b.matrixWorld.multiplyMatrices(tmp, list[i].rest); } }
+  const stickPt = (out, f0, f1, a, h, k) => { const S = C.ST, o0 = (f0 * 2 + (h === 'L' ? 0 : 1)) * 6 + k * 3, o1 = (f1 * 2 + (h === 'L' ? 0 : 1)) * 6 + k * 3; return out.set(S[o0] + (S[o1] - S[o0]) * a, S[o0 + 1] + (S[o1 + 1] - S[o0 + 1]) * a, S[o0 + 2] + (S[o1 + 2] - S[o0 + 2]) * a); };
+  const lerpT = (arr, f0, f1, a) => arr[f0] + (arr[f1] - arr[f0]) * a;
+  const tip = new Float32Array(6);      // the last drawn tips (L xyz, R xyz): a debug read for the continuity check
 
   function resize() {
     const w = el.clientWidth, h = el.clientHeight, pr = renderer.getPixelRatio();
     if (w && h && (renderer.domElement.width !== Math.floor(w * pr) || renderer.domElement.height !== Math.floor(h * pr))) { renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
   }
-  // t in seconds; flash = {pieceId: 0..1}
-  function draw(t, flash) {
+  // t in seconds; flash = {pieceId: 0..1}; snap = half a display frame in clip seconds (0 = no snapping, e.g. paused: show t exactly)
+  let renderMs = 0, slowN = 0, fastN = 0;
+  function draw(t, flash, snap = 0) {
     resize();
     if (C) {
-      const f = Math.max(0, Math.min(C.NF - 1, Math.round(t * C.FPS))); pose(f);
-      if (C.ST.length) for (const h of ['L', 'R']) placeStick(stickM[h], stickPt(f, h, 0), stickPt(f, h, 1));
-      const K = C.K; if (C.hatTop && C.HAT.length) C.hatTop.position.copy(C.hatTop.userData.base).add(new THREE.Vector3(0, K.hat_gap[0] + (K.hat_gap[1] - K.hat_gap[0]) * C.HAT[f] / 1e4, 0));
-      if (C.KP.length) C.kickBoard.rotation.x = -THREE.MathUtils.degToRad(C.KP[f] / 100);
-      if (C.HP.length) C.hatBoard.rotation.x = -THREE.MathUtils.degToRad(C.HP[f] / 100);
-      for (const [id, ms] of Object.entries(C.PIECE)) { const a = (flash && flash[id]) || 0; for (const m of ms) { m.material.emissive.setRGB(1, 0.72, 0.35); m.material.emissiveIntensity = a; } }
+      const x = Math.max(0, Math.min(C.NF - 1, t * C.FPS)); let f0 = Math.floor(x), a = x - f0;
+      if (snap > 0) { const h = snap * C.FPS; if (C.contact[f0] && x - f0 <= h && C.lastSnap !== f0) { a = 0; C.lastSnap = f0; } else if (f0 + 1 < C.NF && C.contact[f0 + 1] && f0 + 1 - x <= h && C.lastSnap !== f0 + 1) { f0 += 1; a = 0; C.lastSnap = f0; } } else C.lastSnap = -1;      // each contact is snapped to once      // the display frame nearest a contact shows it exactly
+      const f1 = Math.min(C.NF - 1, f0 + 1); if (f1 === f0) a = 0;
+      pose(f0, f1, a);
+      if (C.ST.length) for (const h of ['L', 'R']) { stickPt(vA, f0, f1, a, h, 0); stickPt(vB, f0, f1, a, h, 1); placeStick(stickM[h], vA, vB); const j = h === 'L' ? 0 : 3; tip[j] = vB.x; tip[j + 1] = vB.y; tip[j + 2] = vB.z; }
+      const K = C.K; if (C.hatTop && C.HAT.length) C.hatTop.position.copy(C.hatTop.userData.base).add(hatOff.set(0, K.hat_gap[0] + (K.hat_gap[1] - K.hat_gap[0]) * lerpT(C.HAT, f0, f1, a), 0));
+      if (C.KP.length) C.kickBoard.rotation.x = -THREE.MathUtils.degToRad(lerpT(C.KP, f0, f1, a));
+      if (C.HP.length) C.hatBoard.rotation.x = -THREE.MathUtils.degToRad(lerpT(C.HP, f0, f1, a));
+      for (const id in C.PIECE) { const v = (flash && flash[id]) || 0, ms = C.PIECE[id]; for (let k = 0; k < ms.length; k++) { const m = ms[k].material; if (m.emissiveIntensity !== v) { m.emissive.setRGB(1, 0.72, 0.35); m.emissiveIntensity = v; } } }
     }
-    renderer.render(scene, camera);
+    const t0 = performance.now(); renderer.render(scene, camera); const ms = performance.now() - t0; renderMs = renderMs * 0.9 + ms * 0.1;
+    // adaptive pixel ratio: down to 1 (then 0.75 on very slow GPUs) when renders run long, back up to the cap when they are cheap
+    if (renderMs > 14) { if (++slowN > 30) { const pr = renderer.getPixelRatio(), next = pr > 1 ? 1 : pr > 0.75 ? 0.75 : pr; if (next !== pr) renderer.setPixelRatio(next); slowN = 0; renderMs = 8; } } else slowN = 0;
+    if (renderMs < 5) { if (++fastN > 120) { const pr = renderer.getPixelRatio(); if (pr < prCap) renderer.setPixelRatio(Math.min(prCap, pr + 0.25)); fastN = 0; } } else fastN = 0;
   }
 
   function setCam(name) { const [e, t, fov] = CAMS[name] || CAMS.perf; camera.fov = fov; camera.updateProjectionMatrix(); camera.position.copy(Bv(e)); controls.target.copy(Bv(t)); controls.update(); }
@@ -89,5 +111,5 @@ export async function createStage(el, glbUrl, onProgress) {
   const getCam = () => ({ pos: camera.position.toArray().map((x) => +x.toFixed(3)), tgt: controls.target.toArray().map((x) => +x.toFixed(3)) });
   function orbit(dt) { const t = controls.target, p = camera.position.clone().sub(t); p.applyAxisAngle(UP, dt * 0.35); camera.position.copy(t).add(p); controls.update(); }
   function setXray(on) { skin.transparent = on; skin.opacity = on ? 0.5 : 1; skin.depthWrite = !on; skin.needsUpdate = true; }
-  return { setClip, draw, setCam, setCamRaw, getCam, orbit, setXray, controls, renderer, get clip() { return C; } };
+  return { setClip, setContacts, draw, setCam, setCamRaw, getCam, orbit, setXray, controls, renderer, tip, get renderMs() { return renderMs; }, get clip() { return C; } };
 }
