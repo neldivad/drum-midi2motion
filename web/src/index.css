@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+/* dark only: a calm blue-grey palette (the canvases share these colours) */
+:root {
+  color-scheme: dark;
+  --radius: 0.5rem;
+  --background: #0e0f15;
+  --foreground: #e8e9f1;
+  --card: #15161f;
+  --card-foreground: #e8e9f1;
+  --popover: #191a25;
+  --popover-foreground: #e8e9f1;
+  --primary: #7aa2ff;
+  --primary-foreground: #0d1530;
+  --secondary: #1f2130;
+  --secondary-foreground: #e8e9f1;
+  --muted: #1b1c27;
+  --muted-foreground: #8b8ea6;
+  --accent: #232a42;
+  --accent-foreground: #dfe6ff;
+  --destructive: #e5484d;
+  --border: #2a2c3b;
+  --input: #2f3244;
+  --ring: #7aa2ff;
+  --ok: #6fdc9c;
+  --warn: #f2b84b;
+  --bad: #ff4f4f;
+  --stage: #101118;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --color-stage: var(--stage);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@layer base {
+  * { @apply border-border; }
+  html, body { @apply bg-background text-foreground; font-size: 14px; line-height: 1.4; }
+  /* thin themed bars for anything that still scrolls natively (the window on a phone, the chart strip) */
+  * { scrollbar-width: thin; scrollbar-color: #353850 #12131a; }
+  code { @apply font-mono rounded bg-muted px-1 py-px text-[12.5px]; }
+}
+
+@media (min-width: 761px) { html, body { height: 100%; overflow: hidden; } }
+
+/* the canvases stack inside their box; their buffers follow the box on a debounced resize */
+.cstack { position: relative; width: 100%; }
+.cstack canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.mi[data-past] { opacity: 0.55; }
+.mi[data-cur] { background: var(--accent); outline: 1px solid #34406a; }
+.tally td, .tally th { padding: 1px 6px; border-bottom: 1px solid #222433; text-align: left; }
+.tally td.n { text-align: right; }
+.tally td.z { color: #5d6078; }
+.tally th { color: var(--muted-foreground); font-weight: 500; }
+.tally tr.sub td { color: var(--muted-foreground); font-size: 11.5px; }
+.tally tr.sum td { border-top: 1px solid var(--border); }
+.sw { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }

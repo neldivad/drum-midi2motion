@@ -23,8 +23,8 @@ midi2motion solve my_beat.mid --bars 1-4 --out my_beat.motion.json      # also w
 | command | what it does |
 |---|---|
 | `midi2motion solve IN.mid [--bars A-B] [--meter M] [--layout L] --out NAME.motion.json` | solves one MIDI file. `--bars` are real bars of the file, 1-based, inclusive (default: the whole file). `--meter` is quarter notes per bar or a time signature: `4`, `3`, `5`, `2.5`, `4/4`, `3/4`, `6/8`, `5/4`, `5/8` (default 4). Writes the motion and, next to it, `NAME.judgement.json`. Never overwrites. |
-| `midi2motion serve [--kit DIR] [--port 8814]` | serves `web/` on `127.0.0.1` only. `--kit DIR` mounts your own drum samples (see [Bring your own kit](#bring-your-own-kit)). |
-| `midi2motion presets build [--groove-dir D] [--author-dir D] [--jobs 2] [--only ID ...]` | rebuilds `web/presets/` from `presets/presets.json`; skips presets already built. Needs the source MIDI (the [Groove MIDI Dataset](https://magenta.tensorflow.org/datasets/groove) folder, and the author's own files, which are not in this repo). |
+| `midi2motion serve [--kit DIR] [--port 8814]` | serves the built page (`web/dist/`, checked in: no Node needed) and its data (`web/public/`) on `127.0.0.1` only. `--kit DIR` mounts your own drum samples (see [Bring your own kit](#bring-your-own-kit)). |
+| `midi2motion presets build [--groove-dir D] [--author-dir D] [--jobs 2] [--only ID ...]` | rebuilds `web/public/presets/` from `presets/presets.json`; skips presets already built. Needs the source MIDI (the [Groove MIDI Dataset](https://magenta.tensorflow.org/datasets/groove) folder, and the author's own files, which are not in this repo). |
 
 A solve is one process and 1 to 3 GB. On a shared machine run it under a cap and at low priority, and no more than two at once:
 
@@ -38,11 +38,11 @@ Input: standard General MIDI drum pitches. The Groove dataset's electronic-kit r
 
 ## The motion JSON, in brief
 
-A 30 fps file: the android's bones as quantised deltas from its rest pose (`web/assets/android_base.glb`), both sticks, the two pedals, the hi-hat opening, the kit layout, and the judged source notes (`[time, piece, velocity, zone]`, for sound). The judgement file holds one verdict per source note (hit, wrong drum, missed, extra, early/late, softer, and why) with tallies; `remedy.played_pct` is the headline number. Full schemas: [docs/formats.md](docs/formats.md).
+A 30 fps file: the android's bones as quantised deltas from its rest pose (`web/public/assets/android_base.glb`), both sticks, the two pedals, the hi-hat opening, the kit layout, and the judged source notes (`[time, piece, velocity, zone]`, for sound). The judgement file holds one verdict per source note (hit, wrong drum, missed, extra, early/late, softer, and why) with tallies; `remedy.played_pct` is the headline number. Full schemas: [docs/formats.md](docs/formats.md).
 
 ## Presets and credits
 
-Bundled in `web/presets/` (listed in `manifest.json`), each with its motion, judgement and the source MIDI cut to its bars. *Played* is the share of judged notes played on their own piece within 100 ms, from the judgement summary.
+Bundled in `web/public/presets/` (listed in `manifest.json`), each with its motion, judgement and the source MIDI cut to its bars. *Played* is the share of judged notes played on their own piece within 100 ms, from the judgement summary.
 
 <!-- presets -->
 | id | kind | style | bpm | meter | bars | played | credit |
@@ -63,7 +63,7 @@ Bundled in `web/presets/` (listed in `manifest.json`), each with its motion, jud
 - **Groove presets** are windows of the [Groove MIDI Dataset](https://magenta.tensorflow.org/datasets/groove) (Gillick, Roberts, Engel, Tomer and Bamman, "Learning to Groove with Inverse Sequence Transformations", ICML 2019), licensed **CC BY 4.0**. The MIDI cut for each preset is a derivative of those performances; the motion and judgement files are ours.
 - **The author's own songs** (closure, dumbrock) are marked `"source": "author"` in the manifest: **© the author, all rights reserved.** They are bundled for this preview only.
 - **The drum kit** (sound) is [Virtuosity Drums](https://versilian-studios.com/virtuosity-drums/) by Versilian Studios, **CC0**; see below.
-- **The android model** (`web/assets/android_base.glb`, 2.4 MB) is built in code by us (a Blender scene script that makes the android from a description of its bones) and is shipped as built. It was exported from the research lab where the rig was developed (`android-mocap-midi/out/android_base.glb`); the rest pose and bone names the solver uses (`src/midi2motion/rig/sibling/android_rest.json`) were dumped from the same scene.
+- **The android model** (`web/public/assets/android_base.glb`, 2.4 MB) is built in code by us (a Blender scene script that makes the android from a description of its bones) and is shipped as built. It was exported from the research lab where the rig was developed (`android-mocap-midi/out/android_base.glb`); the rest pose and bone names the solver uses (`src/midi2motion/rig/sibling/android_rest.json`) were dumped from the same scene.
 
 ## Bring your own kit
 

@@ -1,12 +1,12 @@
 """presets.py: `midi2motion presets build`. Solves the preset list (presets/presets.json) with the packaged CLI, one process per preset, and writes
-web/presets/<id>/<id>.motion.json + <id>.judgement.json + <id>.mid (the source cut to its bars, bar `a` at tick 0), and web/presets/manifest.json.
+web/public/presets/<id>/<id>.motion.json + <id>.judgement.json + <id>.mid (the source cut to its bars, bar `a` at tick 0), and web/public/presets/manifest.json.
 One folder per preset keeps every folder small. Presets already built are skipped (nothing is overwritten); an older flat <id>.json / <id>.judgement.json is moved into its folder."""
 import json, os, pathlib, shutil, subprocess, sys, threading, time
 
 from .midiutil import cut_window, tempo_bpm
 
 
-KIT = "virtuosity-cc0"          # the default kit id of web/kits/ (the page falls back to this kit per preset)
+KIT = "virtuosity-cc0"          # the default kit id of web/public/kits/ (the page falls back to this kit per preset)
 
 
 def _src(d, groove_dir, author_dir):

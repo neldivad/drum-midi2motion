@@ -1,7 +1,7 @@
 """cli.py: the `midi2motion` command.
 
     midi2motion solve IN.mid [--bars A-B] [--meter 4|6/8|5/4] --out NAME.motion.json   (also writes NAME.judgement.json beside it)
-    midi2motion serve [--kit DIR] [--port 8814]                                     (a local server of web/, 127.0.0.1 only)
+    midi2motion serve [--kit DIR] [--port 8814]                                     (a local server of the built page web/dist + web/public, 127.0.0.1 only)
     midi2motion presets build [--groove-dir D] [--author-dir D] [--jobs 2] [--only id ...]
 """
 import argparse, json, os, pathlib, shutil, subprocess, sys, tempfile
@@ -39,7 +39,7 @@ def _serve(a):
 
 def _presets(a):
     from .presets import build
-    build(web_dir(a.web) / "presets", pathlib.Path(a.defs) if a.defs else pathlib.Path(__file__).resolve().parents[2] / "presets" / "presets.json",
+    build(web_dir(a.web) / "public" / "presets", pathlib.Path(a.defs) if a.defs else pathlib.Path(__file__).resolve().parents[2] / "presets" / "presets.json",
           groove_dir=a.groove_dir, author_dir=a.author_dir, jobs=a.jobs, only=a.only, mem=a.mem)
 
 
@@ -53,12 +53,12 @@ def main(argv=None):
     s.add_argument("--layout", default="standard", help="the kit layout (default: the adopted kit)")
     s.add_argument("--out", required=True, help="motion JSON path (NAME.motion.json or NAME.json); the judgement JSON is written next to it as NAME.judgement.json")
     s.set_defaults(fn=_solve)
-    v = sp.add_parser("serve", help="serve web/ on 127.0.0.1 (local use only)")
+    v = sp.add_parser("serve", help="serve the page (web/dist + web/public) on 127.0.0.1 (local use only)")
     v.add_argument("--kit", help="a folder with kit.json + samples: mounted as the page's kit 'user' (see docs/kits.md)")
     v.add_argument("--port", type=int, default=8814); v.add_argument("--web", help="the web folder (default: the repo's web/)")
     v.set_defaults(fn=_serve)
     pr = sp.add_parser("presets", help="the bundled presets"); ps = pr.add_subparsers(dest="sub", required=True)
-    b = ps.add_parser("build", help="solve the preset list into web/presets/ (skips presets already built)")
+    b = ps.add_parser("build", help="solve the preset list into web/public/presets/ (skips presets already built)")
     b.add_argument("--defs", help="the preset list (default presets/presets.json)"); b.add_argument("--web")
     b.add_argument("--groove-dir", help="the Groove MIDI Dataset's groove/ folder (source of the groove presets)")
     b.add_argument("--author-dir", help="a folder holding the author's MIDI files named in the list")

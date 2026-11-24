@@ -12,7 +12,7 @@ A compact 30 frames-per-second pose file. It is a few hundred kilobytes per clip
 | `key`, `title` | clip name and a human title (source file, bars, layout, version) |
 | `fps`, `frames` | 30, and the number of frames `M` |
 | `names` | the android's bones, in order (51 names); `nb = len(names)` |
-| `delta` | base64 int16, shape `[M][nb][12]`: for each frame and bone a 3x4 matrix, row-major `[r00 r01 r02 tx, r10 r11 r12 ty, r20 r21 r22 tz]`, the **delta from the bone's rest pose** in its parent's frame. Rotation entries divide by 32000; translation entries (indices 3, 7, 11) divide by 10000 (metres). The rest pose ships as `web/assets/android_base.glb`. |
+| `delta` | base64 int16, shape `[M][nb][12]`: for each frame and bone a 3x4 matrix, row-major `[r00 r01 r02 tx, r10 r11 r12 ty, r20 r21 r22 tz]`, the **delta from the bone's rest pose** in its parent's frame. Rotation entries divide by 32000; translation entries (indices 3, 7, 11) divide by 10000 (metres). The rest pose ships as `web/public/assets/android_base.glb`. |
 | `sticks` | base64 int16, shape `[M][2][6]`: hand `L` then `R`; `butt x y z, tip x y z`, divide by 10000 (metres, in the kit's frame) |
 | `hat30` | base64 int16 `[M]`: how far the hi-hat is lifted (open) / closed, divide by 10000 |
 | `kick_plate`, `hat_plate` | base64 int16 `[M]`: the two pedal boards' angle in degrees, divide by 100 |
@@ -47,12 +47,12 @@ The judge's file: every source note's verdict, with tallies. It can be large (ab
 | `grid` | `{lead, beat_s, bar0, bpb}`: the bar grid of the window in its own meter (`bpb` is quarter notes per bar) |
 | `library` | `{name, version, midi, layout, preset, bars, meter, tag, rows, seconds, adopted}` |
 
-## Preset manifest (`web/presets/manifest.json`)
+## Preset manifest (`web/public/presets/manifest.json`)
 
 ```json
 {
   "version": 1,
-  "kit": "virtuosity-cc0",              // the default kit id (folder web/kits/<id>/)
+  "kit": "virtuosity-cc0",              // the default kit id (folder web/public/kits/<id>/)
   "presets": [
     {
       "id": "rock-100", "title": "Rock beat, 100 bpm",
@@ -73,9 +73,9 @@ The judge's file: every source note's verdict, with tallies. It can be large (ab
 }
 ```
 
-Paths are relative to `web/`; each preset has its own folder. `bpb` (quarter notes per bar: 3 for 3/4 and 6/8, 5 for 5/4) and the three counts are additions to the minimal schema. The cut `.mid` keeps the source tempo and ticks per beat, has one channel-9 track, and puts the first note of bar `a` at tick 0 (the motion's `chart.lead` seconds of lead-in are not in the cut).
+Paths are relative to the page (`web/public/` in the repo); each preset has its own folder. `bpb` (quarter notes per bar: 3 for 3/4 and 6/8, 5 for 5/4) and the three counts are additions to the minimal schema. The cut `.mid` keeps the source tempo and ticks per beat, has one channel-9 track, and puts the first note of bar `a` at tick 0 (the motion's `chart.lead` seconds of lead-in are not in the cut).
 
-## Kit index (`web/kits/index.json`)
+## Kit index (`web/public/kits/index.json`)
 
 ```json
 { "kits": [ { "id": "virtuosity-cc0" } ] }

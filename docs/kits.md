@@ -4,7 +4,7 @@ The motion does not need sound. The page plays the judged source notes through a
 
 ## The bundled kit
 
-`web/kits/virtuosity-cc0/` is a reduction of **Virtuosity Drums v0.925** by Versilian Studios LLC, released under **Creative Commons 0** (public domain dedication; licence text in `LICENSE.txt` next to the samples, project page [versilian-studios.com/virtuosity-drums](https://versilian-studios.com/virtuosity-drums/)). We took the overhead-microphone recordings and kept up to three velocity layers per piece, converted to mono Ogg Vorbis, trimmed to the length each piece rings and faded out, with one static gain per piece (the loudest layer peaks at -3 dBFS, cymbals and hi-hat lower) and the softest layers lifted to at most 14 dB under the loudest. The recorded kit has two toms, so `tom2` and `tom3` are pitch-shifted copies of the high and low toms (minus and plus three semitones); `floor` is the low tom unshifted. The sound is a jazz kit with the snares on for the kick, not a rock kit: it is for checking, not for mixing.
+`web/public/kits/virtuosity-cc0/` is a reduction of **Virtuosity Drums v0.925** by Versilian Studios LLC, released under **Creative Commons 0** (public domain dedication; licence text in `LICENSE.txt` next to the samples, project page [versilian-studios.com/virtuosity-drums](https://versilian-studios.com/virtuosity-drums/)). We took the overhead-microphone recordings and kept up to three velocity layers per piece, converted to mono Ogg Vorbis, trimmed to the length each piece rings and faded out, with one static gain per piece (the loudest layer peaks at -3 dBFS, cymbals and hi-hat lower) and the softest layers lifted to at most 14 dB under the loudest. The recorded kit has two toms, so `tom2` and `tom3` are pitch-shifted copies of the high and low toms (minus and plus three semitones); `floor` is the low tom unshifted. The sound is a jazz kit with the snares on for the kick, not a rock kit: it is for checking, not for mixing.
 
 ## The kit format
 
@@ -54,7 +54,7 @@ A piece with no entry is silent. A kit needs at minimum `kick`, `snare`, `hat`, 
 2. Run `midi2motion serve --kit ./my-kit`.
 3. The page lists your kit as `user`. The folder is served from `127.0.0.1` only, read-only, from where it is: nothing is uploaded and nothing is copied into the repo.
 
-This is for a local install only. Do not commit samples you may not redistribute: commercial drum libraries are licensed to you, not to the people who clone your repo. If you can share your kit, put it in `web/kits/<id>/`, add its id to `web/kits/index.json` and keep its licence text beside it.
+This is for a local install only. Do not commit samples you may not redistribute: commercial drum libraries are licensed to you, not to the people who clone your repo. If you can share your kit, put it in `web/public/kits/<id>/`, add its id to `web/public/kits/index.json` and keep its licence text beside it.
 
 ## Finding a kit that may be redistributed
 

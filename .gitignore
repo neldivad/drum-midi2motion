@@ -4,5 +4,5 @@ __pycache__/
 .pytest_cache/
 *.motion.json
 *.judgement.json
-!web/presets/**/*.motion.json
-!web/presets/**/*.judgement.json
+!web/public/presets/**/*.motion.json
+!web/public/presets/**/*.judgement.json
