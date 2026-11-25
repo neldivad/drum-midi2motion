@@ -2,6 +2,10 @@
 
 Drum MIDI in, an android drummer's motion out. **Realism first**: the drummer is a rigged android that has to reach every drum within human joint ranges, speed limits and without its arms going through the kit or its own body. When a note cannot be played that way, the note is softened, played on the nearest reachable drum (only where the passage is hard), or cut, and the loss is written down. A local web page plays the result in 3D with sound.
 
+[![The android drummer plays the rock-100 preset](docs/media/preview.gif)](https://drum-midi2motion.vercel.app)
+
+[Watch with sound (MP4)](docs/media/preview.mp4) · [Try it in the browser](https://drum-midi2motion.vercel.app). Preview: the `rock-100` preset, three bars, sound from the CC0 kit at the hits the drummer made.
+
 The solver is **frozen**: it is packaged exactly as it finished its research, with its failures listed as limits instead of being fixed (see [Honest limits](#honest-limits)).
 
 ## Quick start

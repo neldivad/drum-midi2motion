@@ -70,7 +70,9 @@ const R: { bb?: HTMLElement | null; tt?: HTMLElement | null; hud?: HTMLElement |
 export function bindReadout(k: keyof typeof R, el: HTMLElement | null) { R[k] = el; if (el) { if (k === 'perf') el.hidden = !S.ov.perf; markDirty(); } if (k === 'mlist') mistPastKey = -1; }
 
 let stageBox: HTMLElement | null = null;
-export function attachStage(el: HTMLElement | null) { stageBox = el; if (el && stage) { stage.attach(el); markDirty(); } }
+// ?capture=1 (README preview only): the canvas fills the window and window.__capture.at(t) seeks and draws that frame at once, so frames can be grabbed off-line
+const capBox: HTMLElement | null = Q.has('capture') ? Object.assign(document.body.appendChild(document.createElement('div')), { style: 'position:fixed;inset:0;z-index:9999;background:#101118' }) : null;
+export function attachStage(el: HTMLElement | null) { if (capBox) el = capBox; stageBox = el; if (el && stage) { stage.attach(el); markDirty(); } }
 
 // the canvases: their boxes are measured on a debounced resize (never per frame), then redrawn once
 let timeline: Timeline | null = null, lane: Lane | null = null, cum: CumChart | null = null, chart: Chart | null = null, scrubWasPlaying = false;
@@ -401,4 +403,5 @@ const app: any = { ready: false, S, get clip() { return CL; }, get t() { return 
   clock: () => ({ ...clock, start: clock.start }), tip: () => (stage ? Array.from(stage.tip) : null), perf: () => ({ ...PF, iv: Array.from(PF.iv.subarray(0, Math.min(PF.n, 240))), work: Array.from(PF.work.subarray(0, Math.min(PF.n, 240))) }),
   tally: (t: number) => (CL ? count(CL.R, t) : null), series: () => (CL ? series(CL.R) : null), mistShown: () => mistShown().map((m: any) => ({ i: m.i, t: m.t, cat: m.cat })), loopRange: () => (CL ? loopRange() : null), HL: () => HL && HL.i };
 (window as any).__app = app;
+if (capBox) (window as any).__capture = { at: (t: number) => { if (!stage || !CL) return false; seek(t); frame(performance.now(), 16.7); return true; }, cam: (n: string) => { setCam(n); frame(performance.now(), 16.7); }, raw: (pos: number[], tgt: number[]) => { if (stage) { stage.setCamRaw(pos, tgt); frame(performance.now(), 16.7); } } };
 export { S, DEFAULTS };
