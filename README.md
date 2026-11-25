@@ -10,8 +10,10 @@ The solver is **frozen**: it is packaged exactly as it finished its research, wi
 
 ## Quick start
 
+![How to use the page: pick a preset, press play, choose the sound, read the mistakes, solve your own songs locally](docs/media/how-to-use.png)
+
 ```bash
-git clone <this repo> && cd drum-midi2motion
+git clone https://github.com/neldivad/drum-midi2motion && cd drum-midi2motion
 pip install -e .                                   # numpy, scipy, PyYAML, mido; Python 3.10+
 midi2motion serve                                  # then open http://127.0.0.1:8814/
 ```
