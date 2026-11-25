@@ -6,3 +6,4 @@ __pycache__/
 *.judgement.json
 !web/public/presets/**/*.motion.json
 !web/public/presets/**/*.judgement.json
+build/
