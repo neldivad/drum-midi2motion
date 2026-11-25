@@ -2,7 +2,7 @@
 
 Drum MIDI in, an android drummer's motion out. **Realism first**: the drummer is a rigged android that has to reach every drum within human joint ranges, speed limits and without its arms going through the kit or its own body. When a note cannot be played that way, the note is softened, played on the nearest reachable drum (only where the passage is hard), or cut, and the loss is written down. A local web page plays the result in 3D with sound.
 
-This is a private preview. The solver is **frozen**: it is packaged exactly as it finished its research, with its failures listed as limits instead of being fixed (see [Honest limits](#honest-limits)).
+The solver is **frozen**: it is packaged exactly as it finished its research, with its failures listed as limits instead of being fixed (see [Honest limits](#honest-limits)).
 
 ## Quick start
 
@@ -61,7 +61,7 @@ Bundled in `web/public/presets/` (listed in `manifest.json`), each with its moti
 <!-- /presets -->
 
 - **Groove presets** are windows of the [Groove MIDI Dataset](https://magenta.tensorflow.org/datasets/groove) (Gillick, Roberts, Engel, Tomer and Bamman, "Learning to Groove with Inverse Sequence Transformations", ICML 2019), licensed **CC BY 4.0**. The MIDI cut for each preset is a derivative of those performances; the motion and judgement files are ours.
-- **The author's own songs** (closure, dumbrock) are marked `"source": "author"` in the manifest: **© the author, all rights reserved.** They are bundled for this preview only.
+- **The author's own songs** (closure, dumbrock) are marked `"source": "author"` in the manifest: **© the author, all rights reserved.** They are bundled so the page has real songs to play; they are not covered by the code licence.
 - **The drum kit** (sound) is [Virtuosity Drums](https://versilian-studios.com/virtuosity-drums/) by Versilian Studios, **CC0**; see below.
 - **The android model** (`web/public/assets/android_base.glb`, 2.4 MB) is built in code by us (a Blender scene script that makes the android from a description of its bones) and is shipped as built. It was exported from the research lab where the rig was developed (`android-mocap-midi/out/android_base.glb`); the rest pose and bone names the solver uses (`src/midi2motion/rig/sibling/android_rest.json`) were dumped from the same scene.
 
@@ -110,4 +110,13 @@ The parity test checks that the packaged solver reproduces the library it was pa
 
 ## Licence
 
-TBD (private preview). The Groove MIDI cuts are CC BY 4.0, the kit is CC0, and the author's songs are all rights reserved.
+The code (the Python package, the solver and rig, and the web app) is licensed under the **GNU General Public License v3.0 or later**; see [LICENSE](LICENSE). It is copyleft: you may use, change and share it, and anything you distribute that is built on it must be released under the same licence, with its source.
+
+The bundled data keeps its own terms, and its credits stay with it:
+
+- Groove MIDI cuts: **CC BY 4.0**, credit Gillick et al. (Magenta, Google), as listed under [Presets and credits](#presets-and-credits).
+- The Virtuosity Drums kit by Versilian Studios: **CC0**.
+- The author's two songs (closure, dumbrock), their MIDI and their motion: **© the author, all rights reserved.**
+- three.js, React, Radix and shadcn/ui: MIT, under their own licences.
+
+If you use this work, please credit **drum-midi2motion** and link to this repository.
